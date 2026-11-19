@@ -1,0 +1,8 @@
+**
+!requirements.txt
+!tools/
+!tools/*.py
+!examples/
+!examples/*.py
+!tests/
+!tests/*.py

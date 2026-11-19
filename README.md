@@ -77,6 +77,19 @@ python -m unittest discover -s tests -v
 
 示例采用构造路线和代价矩阵，在本地输出横穿事件数量、重复行走长度与访问顺序评估结果。两个算法模块及对应测试取自既有项目代码，保留原内容。输入输出与验证范围见 [技术说明](docs/system.md)。
 
+### 使用容器运行
+
+已安装 Docker 时，可直接拉取并运行 Linux x86_64 离线演示镜像。
+
+```bash
+docker pull ghcr.io/walmfml88886666/go2-rule-based-inspection:v0.1.0
+docker run --rm --network none ghcr.io/walmfml88886666/go2-rule-based-inspection:v0.1.0
+```
+
+镜像内置 Python、依赖和构造数据示例，运行后输出路线检查 JSON。镜像仅用于离线演示。
+
+[版本发布](https://github.com/walmfml88886666/go2-rule-based-inspection/releases) · [容器软件包](https://github.com/users/walmfml88886666/packages/container/package/go2-rule-based-inspection)
+
 ## 仓库导航
 
 ```text
