@@ -1,0 +1,74 @@
+[
+  {
+    "file": "assets/robot.jpg",
+    "source": "汇报与答辩/项目验收_答辩/硬件设备图片/宇树go2_edu.jpg",
+    "sha256": "7828556bac70a2862b5dd7c8f67fa6fbcd7bedabd7943f5b06ec7aed2facd8d4",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/semantic-targets.png",
+    "source": "汇报与答辩/机器狗项目汇报_202609/素材/exp2_targets.png",
+    "sha256": "f1cac6126e624a47e32e2de53e0f702bd0c2290ed4dbb2497fb4398b243df88c",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/planning-3d.png",
+    "source": "汇报与答辩/机器狗项目汇报_202609/素材/exp3_plan3d.png",
+    "sha256": "3bb37061f4d61b32594ff184cbba1998c9c1e38a39286fa4fcad3c8fa8724ed6",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/indoor-planning.png",
+    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验3/实验3（验收_室内大_路径规划结果）.png",
+    "sha256": "f91946471ca151426f6bec3131fe807e381f4fb86f22fc4034a2ee0e96b0f3d7",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/outdoor-planning.png",
+    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验3/实验3（验收_室外小_路径规划结果图）.png",
+    "sha256": "8586a8ce21c749722f3d677147d81514e04897853cfd51619799f5afddff1a24",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/outdoor-day.png",
+    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验5/实验5（验收_室外小_机器狗巡检中_巡检目标照片实时回传）（白天））.png",
+    "sha256": "cfdc96b8aebe86da16537acb708dd7e3a3fcb0f1c1d80843f72dcf0982364596",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/outdoor-night.png",
+    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验5/实验5（验收_室外小_机器狗巡检中_巡检目标照片实时回传）（晚上））.png",
+    "sha256": "a09111a67988e0727cda90eac86e96db997fa1b495bccfb1ed1d2c5026198b56",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/indoor-live.png",
+    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验4/实验4（验收_室内大_机器狗巡检中_实时显示在点云地图上）.png",
+    "sha256": "8f99b47e397960ef3e89323ca2ee9788f7b163732f2bf17b7ec50bae615ab398",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/outdoor-report.png",
+    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验5/实验5（验收_室外小_机器狗巡检结束_结果可视化展示（白天））.png",
+    "sha256": "c67f3518aeb9964c3779eb214fcac90a7a24892dec8c3f02e154bf5b03dbbf67",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "assets/indoor-report.png",
+    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验4/实验4（验收_室内大_机器狗巡检结束_结果可视化展示）.png",
+    "sha256": "a23c271e5c36db5363defd39033ad317bd3368fb103a2e6d7fbea6d41e23bc1a",
+    "treatment": "Unmodified original project image"
+  },
+  {
+    "file": "tools/route_intersections.py",
+    "source": "验收/乙方交付物/试验所产生的数据及相关资料/项目代码/tools/route_intersections.py",
+    "sha256": "c7d59ea0484e830cb15283d4aca1dd8376a38b5829a0596c3e3214275d97defd",
+    "treatment": "Unmodified source snapshot"
+  },
+  {
+    "file": "tools/visit_order_metrics.py",
+    "source": "验收/乙方交付物/试验所产生的数据及相关资料/项目代码/tools/visit_order_metrics.py",
+    "sha256": "a57b02a7e2fffea3bcb988130244507765a210fec08b75620d6ca7873b9918cb",
+    "treatment": "Unmodified source snapshot"
+  }
+]
