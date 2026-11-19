@@ -1,4 +1,6 @@
-# Planning demonstrations
+# Archived A* developer examples
+
+These independent fixtures ship with the historical releases. The original inspection system uses Dijkstra for graph search. See the [field system notes](system.md).
 
 ## Obstacle replanning in 3D
 

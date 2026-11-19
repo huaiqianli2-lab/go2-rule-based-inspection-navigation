@@ -1,6 +1,6 @@
 # System notes
 
-Go2 Patrol organizes the field inspection workflow around a source map and its mission. LiDAR and IMU recordings feed the 3D mapping pipeline. Operators annotate targets on the resulting point cloud. The desktop software generates observation poses, visit order, waypoints, and matching navigation layers. The robot checks the bundle before a supervised run, then returns trajectories, target images, and event logs.
+Go2 Patrol organizes the field inspection workflow around a source map and its mission. LiDAR and IMU recordings feed the 3D mapping pipeline. Operators annotate targets on the resulting point cloud. The desktop software generates observation poses, visit order, waypoints, and matching navigation layers. The robot checks the bundle before a supervised run, then returns trajectories, target images, and event logs. The original planning code uses Dijkstra for graph distances and path reconstruction. Observation pose checks, visit ordering and onboard execution are separate parts of the workflow.
 
 | Layer | Components | Responsibility |
 | --- | --- | --- |
@@ -13,7 +13,7 @@ Go2 Patrol organizes the field inspection workflow around a source map and its m
 
 ## Implementation map
 
-These names describe the original field system. This repository publishes the two offline audit tools and the synthetic grid simulation.
+These names describe the original field system. This repository publishes the two offline audit tools and standalone examples.
 
 | Module | Role |
 | --- | --- |
