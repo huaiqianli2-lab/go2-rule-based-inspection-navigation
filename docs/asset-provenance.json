@@ -1,74 +1,102 @@
 [
   {
     "file": "assets/robot.jpg",
-    "source": "汇报与答辩/项目验收_答辩/硬件设备图片/宇树go2_edu.jpg",
     "sha256": "7828556bac70a2862b5dd7c8f67fa6fbcd7bedabd7943f5b06ec7aed2facd8d4",
-    "treatment": "Unmodified original project image"
+    "source": "Original project hardware photograph",
+    "treatment": "Original JPEG"
   },
   {
-    "file": "assets/semantic-targets.png",
-    "source": "汇报与答辩/机器狗项目汇报_202609/素材/exp2_targets.png",
-    "sha256": "f1cac6126e624a47e32e2de53e0f702bd0c2290ed4dbb2497fb4398b243df88c",
-    "treatment": "Unmodified original project image"
+    "file": "assets/indoor-field-map.png",
+    "sha256": "5714a4ef702f5d093f002eaf55b7525d71a1a2ddc8e45022e07a93e1c08603c2",
+    "source": "Historical indoor LiDAR corner cloud and mission plan",
+    "treatment": "Rotated top-down plot; 22 planned stops"
   },
   {
-    "file": "assets/planning-3d.png",
-    "source": "汇报与答辩/机器狗项目汇报_202609/素材/exp3_plan3d.png",
-    "sha256": "3bb37061f4d61b32594ff184cbba1998c9c1e38a39286fa4fcad3c8fa8724ed6",
-    "treatment": "Unmodified original project image"
+    "file": "assets/outdoor-field-map.png",
+    "sha256": "a8c71e468429398ae9e6e40af2295fb35a846d21534a5f7f39cc0681d384d2b8",
+    "source": "Historical outdoor LiDAR corner cloud and mission plan",
+    "treatment": "Top-down plot; 8 planned stops"
   },
   {
-    "file": "assets/indoor-planning.png",
-    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验3/实验3（验收_室内大_路径规划结果）.png",
-    "sha256": "f91946471ca151426f6bec3131fe807e381f4fb86f22fc4034a2ee0e96b0f3d7",
-    "treatment": "Unmodified original project image"
+    "file": "assets/indoor-field.webp",
+    "sha256": "e80ea5333574729e429956920f1e3ad702113eb3726d20870ac24f11b89ac44e",
+    "source": "Indoor first-person field recording",
+    "treatment": "Animated preview of the original-camera excerpt"
   },
   {
-    "file": "assets/outdoor-planning.png",
-    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验3/实验3（验收_室外小_路径规划结果图）.png",
-    "sha256": "8586a8ce21c749722f3d677147d81514e04897853cfd51619799f5afddff1a24",
-    "treatment": "Unmodified original project image"
+    "file": "assets/outdoor-day-field.webp",
+    "sha256": "95fb15a96d172e8f06a53a697d69265b7b405abcce45b3d9087919ca9908c59f",
+    "source": "Outdoor daylight first-person field recording",
+    "treatment": "Animated preview of the original-camera excerpt"
   },
   {
-    "file": "assets/outdoor-day.png",
-    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验5/实验5（验收_室外小_机器狗巡检中_巡检目标照片实时回传）（白天））.png",
-    "sha256": "cfdc96b8aebe86da16537acb708dd7e3a3fcb0f1c1d80843f72dcf0982364596",
-    "treatment": "Unmodified original project image"
+    "file": "assets/outdoor-night-field.webp",
+    "sha256": "521bf09323b578be90a391e448a60965cc152ff8fce526d168bd2113fb47ac5d",
+    "source": "Outdoor night first-person field recording",
+    "treatment": "Animated preview of the original-camera excerpt"
   },
   {
-    "file": "assets/outdoor-night.png",
-    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验5/实验5（验收_室外小_机器狗巡检中_巡检目标照片实时回传）（晚上））.png",
-    "sha256": "a09111a67988e0727cda90eac86e96db997fa1b495bccfb1ed1d2c5026198b56",
-    "treatment": "Unmodified original project image"
+    "file": "assets/grid-simulation.webp",
+    "sha256": "344dd9735383d7284dc6b13d38506ee287ce4828b024d8ba94ab784beb72ed6b",
+    "source": "Synthetic indoor and outdoor A* routes",
+    "treatment": "Animated preview of the rendered simulation"
   },
   {
-    "file": "assets/indoor-live.png",
-    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验4/实验4（验收_室内大_机器狗巡检中_实时显示在点云地图上）.png",
-    "sha256": "8f99b47e397960ef3e89323ca2ee9788f7b163732f2bf17b7ec50bae615ab398",
-    "treatment": "Unmodified original project image"
+    "file": "assets/simulation-poster.png",
+    "sha256": "13e4491225bac812d62647626046b6965b14f860689b59f48007efc7dee478e2",
+    "source": "Synthetic indoor and outdoor A* routes",
+    "treatment": "Original 1280x720 render frame"
   },
   {
-    "file": "assets/outdoor-report.png",
-    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验5/实验5（验收_室外小_机器狗巡检结束_结果可视化展示（白天））.png",
-    "sha256": "c67f3518aeb9964c3779eb214fcac90a7a24892dec8c3f02e154bf5b03dbbf67",
-    "treatment": "Unmodified original project image"
+    "file": "assets/architecture.svg",
+    "sha256": "af634f49ae56dccb8ce3439c5e0e31a6f7e96f3ee3e4fc035c317598fd451a06",
+    "source": "System documentation and field workflow",
+    "treatment": "English architecture figure"
   },
   {
-    "file": "assets/indoor-report.png",
-    "source": "汇报与答辩/项目验收_答辩/集成-实验3、4、5图片/实验4/实验4（验收_室内大_机器狗巡检结束_结果可视化展示）.png",
-    "sha256": "a23c271e5c36db5363defd39033ad317bd3368fb103a2e6d7fbea6d41e23bc1a",
-    "treatment": "Unmodified original project image"
+    "file": "docs/architecture.drawio",
+    "sha256": "a1d9e8c8673fe1b338f1251c04570fc867424f2e81b84582f5ae0f35ca4f2e24",
+    "source": "System documentation and field workflow",
+    "treatment": "English editable architecture source"
   },
   {
     "file": "tools/route_intersections.py",
-    "source": "验收/乙方交付物/试验所产生的数据及相关资料/项目代码/tools/route_intersections.py",
-    "sha256": "c7d59ea0484e830cb15283d4aca1dd8376a38b5829a0596c3e3214275d97defd",
-    "treatment": "Unmodified source snapshot"
+    "sha256": "1bba3f6dfce9a42d63f1184e78ebbb5afddaa7a3b7440736bb723b141bc99f55",
+    "source": "Project offline evaluation code",
+    "treatment": "English diagnostic messages; algorithm preserved"
   },
   {
     "file": "tools/visit_order_metrics.py",
-    "source": "验收/乙方交付物/试验所产生的数据及相关资料/项目代码/tools/visit_order_metrics.py",
-    "sha256": "a57b02a7e2fffea3bcb988130244507765a210fec08b75620d6ca7873b9918cb",
-    "treatment": "Unmodified source snapshot"
+    "sha256": "c2ffa052a5c983e91f8e3f7a62b8ef32d514c7e05b540028ceb812bbc466b775",
+    "source": "Project offline evaluation code",
+    "treatment": "English diagnostic messages; algorithm preserved"
+  },
+  {
+    "file": "indoor-field.mp4",
+    "sha256": "da49b001d711b8b680fd0e502a078e656a10d3ab85911ebfac833f7075ace459",
+    "source": "Indoor first-person field recording",
+    "treatment": "00:21 to 00:33",
+    "release_asset": true
+  },
+  {
+    "file": "outdoor-day-field.mp4",
+    "sha256": "1e9b01915973f8fc87b94943a11dfeaa03769be91b78ef838710bc48c61dea26",
+    "source": "Outdoor daylight first-person field recording",
+    "treatment": "03:05 to 03:17",
+    "release_asset": true
+  },
+  {
+    "file": "outdoor-night-field.mp4",
+    "sha256": "0375ac912d01d6de5a9b95b0e7099b662f086d634c14a6cd158422eeda7df41d",
+    "source": "Outdoor night first-person field recording",
+    "treatment": "00:22 to 00:34",
+    "release_asset": true
+  },
+  {
+    "file": "grid-simulation.mp4",
+    "sha256": "82fb6cfecc36872da20f2bf22aedfb78f0498da5f63e658129680514a6173cfa",
+    "source": "Synthetic indoor and outdoor A* routes",
+    "treatment": "Complete rendered simulation",
+    "release_asset": true
   }
 ]

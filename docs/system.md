@@ -1,58 +1,37 @@
-# 系统技术说明
+# System notes
 
-## 系统工作流
+Go2 Patrol organizes the field inspection workflow around a source map and its mission. LiDAR and IMU recordings feed the 3D mapping pipeline. Operators annotate targets on the resulting point cloud. The desktop software generates observation poses, visit order, waypoints, and matching navigation layers. The robot checks the bundle before a supervised run, then returns trajectories, target images, and event logs.
 
-一次点云与 IMU 录制形成会话，经建图生成点云地图，在地图中保存语义目标，再生成路线与执行配套。机器人执行任务后，将轨迹、照片和事件日志回传并关联到来源地图。
+| Layer | Components | Responsibility |
+| --- | --- | --- |
+| Sensing | Hesai XT16, IMU, Go2 front camera | Geometry, inertial data, and inspection imagery |
+| Desktop orchestration | Python GUI and command dispatcher | Acquisition, mapping, annotation, planning, sync, review |
+| Mapping | ROS 2, Hesai driver, LIO-SAM | LiDAR and inertial recordings to point-cloud maps |
+| Planning | Separate indoor/outdoor entry points | Reachability, geometry, elevation, camera visibility, and mission consistency |
+| Robot execution | Go2 EDU, onboard compute, platform motion interface | Preflight, localization, navigation, capture, and operator takeover |
+| Reporting | Map, path, photos, logs | Traceable inspection evidence |
 
-| 层次 | 组件 | 职责 |
-| :--- | :--- | :--- |
-| 硬件感知 | 禾赛 XT16、IMU | 点云与惯性数据采集 |
-| 图像感知 | Go2 前置相机 | 停靠拍照及图像回传 |
-| 机器人平台 | Go2 EDU、机载计算单元、平台接口 | 定位、执行、运动接口与人工接管 |
-| 电脑端 | Python GUI 与命令编排 | 录制、建图、标注、规划、同步与结果管理 |
-| 建图组件 | ROS 2、雷达驱动、LIO-SAM | 从采集数据生成点云地图 |
-| 规则规划 | 可通行地图、观测点选择、任务生成 | 检查几何、视线、访问顺序和文件一致性 |
+## Implementation map
 
-## 原系统代码分工
+These names describe the original field system. This repository publishes the two offline audit tools and the synthetic grid simulation.
 
-以下名称来自既有项目源码，用于解释完整系统的实现关系。当前公开的两个离线模块在下一节详述。
+| Module | Role |
+| --- | --- |
+| `app/` | Desktop interface and orchestration |
+| `semantic_annotator.py` | Target annotation |
+| `planning_dispatch.py` | Indoor/outdoor planner selection |
+| `planning_indoor/`, `planning_outdoor/` | Scenario-specific planning and checks |
+| `map_navigation.py`, `inspection_planner.py` | Point-cloud geometry, observation poses, and route generation |
+| `navigation_checks.py`, `height_checks.py` | Footprint, route, elevation, and turning checks |
+| [`route_intersections.py`](../tools/route_intersections.py) | True XY crossings, including crossings split at vertices, and collinear retracing |
+| [`visit_order_metrics.py`](../tools/visit_order_metrics.py) | Exhaustive audit for 1–8 fixed stops with directed leg costs |
+| `inspection_bundle.py`, `acceptance_preflight.py` | Bundle consistency and preflight checks |
+| `exp4_inspect.cpp` | Field navigation and image capture |
 
-| 原项目模块 | 职责 |
-| :--- | :--- |
-| `app/` | 图形界面、步骤管理与命令编排 |
-| `semantic_annotator.py` | 点云地图目标标注 |
-| `planning_dispatch.py` | 室内/室外入口派发 |
-| `planning_indoor/`、`planning_outdoor/` | 各自场景的规划与复检流程 |
-| `map_navigation.py`、`inspection_planner.py` | 可通行地图、观测点与路线规划 |
-| `navigation_checks.py`、`height_checks.py` | 机身、路线、高程与转向核验 |
-| `route_intersections.py` | 实际折线横穿事件与重复行走统计 |
-| `visit_order_metrics.py` | 固定观测点与有向边下的访问顺序评估 |
-| `acceptance_preflight.py` | 巡检准备检查 |
-| `exp4_inspect.cpp` | 室内外任务执行与停靠拍照控制 |
-| `inspection_bundle.py` | 任务及相关地图配套的一致性检查 |
+## Interpreting the examples
 
-## 公开代码的输入输出
+The [maps](gallery.md) visualize the stored route and target poses for two historical scenes. The field clips show separate inspection excerpts. Evaluating measured performance requires the original logs, software version, and evaluation conditions for the corresponding run. The [grid simulation](simulation.md) verifies synthetic routes against its own grid model.
 
-`route_intersections.py` 接收二维或含更多维度的坐标序列，使用 XY 坐标评估实际走线。`crossing_pairs` 返回严格线段内部交叉，`transverse_events` 处理包含顶点细分的横穿事件，`repeated_length` 统计共线重复行走长度。横穿、共享端点与共线重走具有不同几何含义。
+The [SVG overview](../assets/architecture.svg) and [editable draw.io source](architecture.drawio) show the roles of the desktop and robot hardware. Solid edges show the mission flow. Dashed edges show onboard hardware services.
 
-`audit_visit_orders` 接收含起点的有向距离矩阵。目标数量为 1 至 8 时穷举访问顺序，可区分开放路线与返回起点的闭合路线，并报告固定边代价下的最短长度和可行顺序均值。超出支持数量时返回 `None`。结论适用于给定观测点及已检查的有向边代价。
-
-`examples/offline_audit.py` 使用构造输入。算法模块和两份测试来自原项目独立代码副本，发布时逐文件核对。`requirements.txt` 保留本次实际验证所用的 NumPy 和 SciPy 版本。
-
-## 完整系统的运行范围
-
-当前仓库的运行入口是离线示例与测试。完整 GUI、建图工作区、机器人端可执行文件、设备参数及其依赖由原项目维护，需要按现场版本安装与核对。新的设备与地图应完成环境检查、文件一致性核验和实机验证。
-
-现有流程依次进行地图与目标检查、生成任务配套、电脑侧复检、任务同步和狗端预检。现场执行保留定位质量检查、实时避障与人工接管。具体部署和运动操作应遵循机器人现场流程。
-
-## 成果与评价口径
-
-图片来自原项目汇报及验收素材，`asset-provenance.json` 保存相对来源和 SHA-256。各幅图片对应各自历史实验场次，原始图片保持逐字节一致。
-
-协议目标、设计阈值、离线计算结果和现场实测结果需要分别核对。评价规划耗时、路线优化比例或导航表现时，应给出地图、目标集合、初始条件、版本、设备和日志。本仓库首页以现有系统功能与真实画面呈现成果。
-
-## 架构图维护
-
-`architecture.drawio` 保存可编辑源文件，`../assets/architecture.svg` 供 README 直接展示。硬件、电脑端处理与机器人执行分组排列，主流程采用实线箭头，硬件支撑关系在图中注明。
-
-[回到项目首页](../README.md)
+[Back to the README](../README.md)

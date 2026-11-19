@@ -1,7 +1,7 @@
 FROM python:3.11-slim-bookworm
 
 LABEL org.opencontainers.image.source="https://github.com/walmfml88886666/go2-rule-based-inspection" \
-      org.opencontainers.image.description="Go2 Patrol offline route geometry and visit order demo"
+      org.opencontainers.image.description="Go2 Patrol offline route audit and synthetic grid simulation"
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \

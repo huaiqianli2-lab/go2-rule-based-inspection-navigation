@@ -8,7 +8,7 @@ import itertools
 import math
 
 MAX_EXACT_TARGETS = 8
-SIMPLE_SCENE_NOTE = '备注：场景较简单，当前停靠点下访问顺序可优化空间有限。'
+SIMPLE_SCENE_NOTE = 'Simple scene: the current stops leave limited room to improve the visit order.'
 
 
 def audit_visit_orders(distances, *, loop, sampled_average):
@@ -17,10 +17,10 @@ def audit_visit_orders(distances, *, loop, sampled_average):
     if not 1 <= count <= MAX_EXACT_TARGETS:
         return None
     if any(len(row) != count + 1 for row in distances):
-        raise ValueError('访问顺序距离矩阵不是方阵。')
+        raise ValueError('The visit-order distance matrix must be square.')
     values = [[float(x) for x in row] for row in distances]
     if any(math.isnan(x) or x < 0 for row in values for x in row):
-        raise ValueError('访问顺序距离包含负数或NaN。')
+        raise ValueError('Visit-order distances cannot be negative or NaN.')
     total = 0
     feasible = 0
     length_sum = 0.

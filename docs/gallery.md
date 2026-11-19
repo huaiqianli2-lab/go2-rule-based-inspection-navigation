@@ -1,45 +1,16 @@
-# 成果画廊
+# Field media
 
-本页按实验环节展示既有室内外巡检成果，保留原始画面。
+All field images and clips on the current README come from existing project records. The English point-cloud figures were rendered separately from historical corner clouds and stored mission plans. These visualizations show a top-down projection and a planned route, not measured robot motion. The published images provide visual context without distributing the raw point clouds or machine configuration.
 
-## 地图目标标注
+| Asset | Source | Presentation |
+| --- | --- | --- |
+| [Go2 EDU hardware](../assets/robot.jpg) | Project hardware photograph | Original 3840 × 2160 JPEG |
+| [Indoor recording](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/indoor-field.mp4) | Indoor first-person field recording | 12-second excerpt from 00:21, 1280 × 720 |
+| [Outdoor daylight recording](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/outdoor-day-field.mp4) | Outdoor first-person daylight recording | 12-second excerpt from 03:05, 1280 × 720 |
+| [Outdoor night recording](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/outdoor-night-field.mp4) | Outdoor first-person night recording | 12-second excerpt from 00:22, 1280 × 720 |
+| [Indoor map](../assets/indoor-field-map.png) | Indoor LiDAR corner cloud and stored mission plan | 22 planned observation stops |
+| [Outdoor map](../assets/outdoor-field-map.png) | Outdoor LiDAR corner cloud and stored mission plan | 8 planned observation stops |
 
-![语义目标标注](../assets/semantic-targets.png)
+The camera clips are silent and have no added motion or speed effects. Preview loops use the first few seconds of each clip. Map colors distinguish the planned route, marked targets, and the start/return position. For identity and integrity checks, see [asset provenance](asset-provenance.json). The separate [2D simulation](simulation.md) uses synthetic layouts.
 
-历史点云标注成果图，展示目标分布、编号和类别统计。
-
-## 室内外任务规划
-
-| 室内场景 | 室外场景 |
-| :---: | :---: |
-| ![室内规划](../assets/indoor-planning.png) | ![室外规划](../assets/outdoor-planning.png) |
-
-![三维规划](../assets/planning-3d.png)
-
-三维规划视图关联点云地图、语义目标与巡检路线。
-
-## 室内巡检
-
-![室内实时点云](../assets/indoor-live.png)
-
-巡检过程在点云地图上实时显示。
-
-## 室外日间与夜间巡检
-
-![日间巡检](../assets/outdoor-day.png)
-
-日间巡检中的目标照片回传。
-
-![夜间巡检](../assets/outdoor-night.png)
-
-夜间巡检中的目标照片回传。
-
-## 巡检结果
-
-| 室内巡检结果 | 室外巡检结果 |
-| :---: | :---: |
-| ![室内结果](../assets/indoor-report.png) | ![室外结果](../assets/outdoor-report.png) |
-
-结果界面关联运行路径、曲线、目标照片及相关记录。各图数值来自各自历史实验，评价时应核对对应地图、日志、目标集合与统计口径。
-
-[回到项目首页](../README.md)
+[Back to the README](../README.md)

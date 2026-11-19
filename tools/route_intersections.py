@@ -6,7 +6,7 @@ def iter_crossing_pairs(first,second=None):
     p=np.asarray(first,float);q=p if second is None else np.asarray(second,float)
     same=second is None
     if min(len(p),len(q))<2:return
-    if p.ndim!=2 or q.ndim!=2 or min(p.shape[1],q.shape[1])<2 or not np.isfinite(p).all() or not np.isfinite(q).all():raise ValueError('路线坐标无效')
+    if p.ndim!=2 or q.ndim!=2 or min(p.shape[1],q.shape[1])<2 or not np.isfinite(p).all() or not np.isfinite(q).all():raise ValueError('Invalid route coordinates')
     p=p[:,:2];q=q[:,:2]
     from scipy.spatial import cKDTree
     a_all=p[:-1];b_all=p[1:];c_all=q[:-1];d_all=q[1:]
@@ -65,7 +65,7 @@ def transverse_events(points):
     """
     raw=np.asarray(points,float)
     if len(raw)<2:return []
-    if raw.ndim!=2 or raw.shape[1]<2 or not np.isfinite(raw).all():raise ValueError('路线坐标无效')
+    if raw.ndim!=2 or raw.shape[1]<2 or not np.isfinite(raw).all():raise ValueError('Invalid route coordinates')
     p=[raw[0,:2]]
     for q in raw[1:,:2]:
         if np.linalg.norm(q-p[-1])>1e-8:p.append(q)
@@ -109,7 +109,7 @@ def repeated_length(points):
     """Extra travel on EXACT collinear overlapping segments, not near lanes."""
     p=np.asarray(points,float)
     if len(p)<2:return 0.
-    if p.ndim!=2 or p.shape[1]<2 or not np.isfinite(p).all():raise ValueError('路线坐标无效')
+    if p.ndim!=2 or p.shape[1]<2 or not np.isfinite(p).all():raise ValueError('Invalid route coordinates')
     groups={};total=0.
     for a,b in zip(p[:,:2],p[1:,:2]):
         v=b-a;length=float(np.linalg.norm(v))

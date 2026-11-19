@@ -26,6 +26,10 @@ jobs:
             --label "org.opencontainers.image.revision=$GITHUB_SHA" -t "$IMAGE:$VERSION" .
           docker run --rm --network none "$IMAGE:$VERSION" python -m unittest discover -s tests -v
           docker run --rm --network none "$IMAGE:$VERSION" > demo.json
+          for scene in indoor outdoor; do
+            docker run --rm --network none "$IMAGE:$VERSION" python -m examples.grid_simulation "$scene" > "$scene.json"
+          done
+          python3 -c 'import json; from pathlib import Path; assert [json.loads(Path(f"{s}.json").read_text())["grid_steps"] for s in ("indoor","outdoor")] == [76,82]'
           python3 -c 'import json; r=json.load(open("demo.json")); assert r["transverse_crossings"] == 1 and r["repeated_length"] == 2.0 and r["visit_order_audit"]["best_length_m"] == 23.0'
       - name: Push verified image
         env:

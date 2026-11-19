@@ -28,7 +28,7 @@ class VisitOrderAuditTests(unittest.TestCase):
             self.assertEqual(audit['loop'],loop)
 
     def test_only_proven_limited_space_gets_note(self):
-        self.assertIn('场景较简单',limited_order_note(self.metrics()))
+        self.assertIn('Simple scene',limited_order_note(self.metrics()))
         for key,value in (('improvement_vs_random_pct',20),('path_length_m',1),('target_count',53),
                           ('random_avg_length_m',100),('random_avg_length_m',math.nan)):
             metrics=self.metrics();metrics[key]=value
