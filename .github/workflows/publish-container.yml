@@ -26,6 +26,8 @@ jobs:
             --label "org.opencontainers.image.revision=$GITHUB_SHA" -t "$IMAGE:$VERSION" .
           docker run --rm --network none "$IMAGE:$VERSION" python -m unittest discover -s tests -v
           docker run --rm --network none "$IMAGE:$VERSION" > demo.json
+          docker run --rm --network none "$IMAGE:$VERSION" python -m examples.obstacle_replan > replan.json
+          python3 -c 'import json; r=json.load(open("replan.json")); assert (r["initial_route_steps"], r["replanned_mission_steps"]) == (25, 31)'
           for scene in indoor outdoor; do
             docker run --rm --network none "$IMAGE:$VERSION" python -m examples.grid_simulation "$scene" > "$scene.json"
           done

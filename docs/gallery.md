@@ -1,6 +1,14 @@
 # Field media
 
-All field images and clips on the current README come from existing project records. The English point-cloud figures were rendered separately from historical corner clouds and stored mission plans. These visualizations show a top-down projection and a planned route, not measured robot motion. The published images provide visual context without distributing the raw point clouds or machine configuration.
+## Indoor mission replay
+
+The replay combines the recorded path, the LiDAR corner cloud, and selected photographs from one indoor mission. The archive includes 10,195 pose samples over about 17 minutes and 22 inspection photo events. Each inspection photo's filename and byte size match its event record. Eight photos are displayed in the replay and appear at their logged capture times. The result is a 24-second, time-compressed reconstruction.
+
+[![Indoor mission replay still](../assets/indoor-mission-poster.jpg)](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.3.0/indoor-mission-replay.mp4)
+
+## First-person recordings and maps
+
+The first-person clips come from separate field runs. The point-cloud figures project historical corner clouds and stored mission plans onto the map plane. They show planned routes. The public images omit raw point clouds and machine configuration.
 
 | Asset | Source | Presentation |
 | --- | --- | --- |
@@ -11,6 +19,6 @@ All field images and clips on the current README come from existing project reco
 | [Indoor map](../assets/indoor-field-map.png) | Indoor LiDAR corner cloud and stored mission plan | 22 planned observation stops |
 | [Outdoor map](../assets/outdoor-field-map.png) | Outdoor LiDAR corner cloud and stored mission plan | 8 planned observation stops |
 
-The camera clips are silent and have no added motion or speed effects. Preview loops use the first few seconds of each clip. Map colors distinguish the planned route, marked targets, and the start/return position. For identity and integrity checks, see [asset provenance](asset-provenance.json). The separate [2D simulation](simulation.md) uses synthetic layouts.
+The camera clips are silent and have no added motion or speed effects. Preview loops use the first few seconds of each clip. Map colors distinguish the planned route, marked targets, and the start/return position. For identity and integrity checks, see [asset provenance](asset-provenance.json). The [planning demonstrations](simulation.md) use synthetic layouts.
 
 [Back to the README](../README.md)

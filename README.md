@@ -4,11 +4,21 @@
 
 **Rule-based indoor and outdoor inspection with the Unitree Go2 EDU.** The field system turns LiDAR maps and annotated targets into inspection routes, then ties robot trajectories, images, and logs back to each mission.
 
-**[Field demos](#field-demos)** · **[System architecture](#system-architecture)** · **[Simulation](#2d-simulation)** · **[Quick start](#quick-start)** · **[Downloads](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/latest)** · **[Discussions](https://github.com/walmfml88886666/go2-rule-based-inspection/discussions)**
+**[Field demos](#field-demos)** · **[3D replanning](#3d-obstacle-replanning)** · **[Architecture](#system-architecture)** · **[Quick start](#quick-start)** · **[Downloads](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/latest)** · **[Discussions](https://github.com/walmfml88886666/go2-rule-based-inspection/discussions)**
 
 ## Field demos
 
-These short loops come from existing first-person recordings. Click a preview to open the corresponding full-resolution 720p MP4. The videos are excerpts from separate runs.
+### Indoor mission replay
+
+[![Indoor mission replay showing the recorded route on a LiDAR map with photos from the same inspection](assets/indoor-mission-replay.webp)](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.3.0/indoor-mission-replay.mp4)
+
+A recorded indoor mission links the **measured trajectory** to **22 logged photo captures**. The time-compressed replay plots the route over the LiDAR map and shows eight photos at their recorded capture events.
+
+**[Full 1600 × 900 MP4](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.3.0/indoor-mission-replay.mp4)** · [High-resolution still](assets/indoor-mission-poster.jpg) · [Field media notes](docs/gallery.md)
+
+### First-person field recordings
+
+These previews open 720p excerpts from three separate field runs.
 
 | **Indoor patrol** | **Outdoor patrol · Day** | **Outdoor patrol · Night** |
 | :---: | :---: | :---: |
@@ -16,11 +26,19 @@ These short loops come from existing first-person recordings. Click a preview to
 
 ### From point cloud to inspection route
 
-The images below project historical LiDAR corner points, planned routes, and target-to-observation links onto the map plane. They show **planned routes**. The camera clips above show **field execution**. Open either map to inspect the 1600 × 1000 original.
+The images below project historical LiDAR corner points, planned routes, and target-to-observation links onto the map plane. The colored paths show the routes planned before each mission. Open either map to inspect the 1600 × 1000 original.
 
 | **Indoor · 22 planned stops** | **Outdoor · 8 planned stops** |
 | :---: | :---: |
 | [![Indoor point cloud and planned route](assets/indoor-field-map.png)](assets/indoor-field-map.png) | [![Outdoor point cloud and planned route](assets/outdoor-field-map.png)](assets/outdoor-field-map.png) |
+
+## 3D obstacle replanning
+
+[![A Go2 model takes a new route around an inserted obstacle beside a live view of the planner grid](assets/obstacle-replan-mujoco.webp)](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.3.0/obstacle-replan-mujoco.mp4)
+
+An obstacle appears in the aisle after six grid steps. A* recomputes the rest of the path and reaches the goal in **31 total grid steps**, up from 25 on the original plan. The scene renders a prescribed Go2 pose along the computed route in MuJoCo.
+
+**[Full 1600 × 900 MP4](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.3.0/obstacle-replan-mujoco.mp4)** · [High-resolution still](assets/obstacle-replan-poster.jpg) · [Run the planner](#quick-start) · [Scenario details](docs/simulation.md)
 
 ## System architecture
 
@@ -49,21 +67,22 @@ A lightweight 2D example runs A* between five fixed checkpoints in each of two s
 
 ## Quick start
 
-Run the grid example with Python 3.11 or a compatible Python 3 version. The example uses the standard library.
+Run the planners with Python 3.11 or a compatible Python 3 version. The examples use the standard library.
 
 ```bash
 git clone https://github.com/walmfml88886666/go2-rule-based-inspection.git
 cd go2-rule-based-inspection
 python3 -m examples.grid_simulation indoor
 python3 -m examples.grid_simulation outdoor
+python3 -m examples.obstacle_replan
 ```
 
-The [public Linux x86-64 image](https://github.com/walmfml88886666/go2-rule-based-inspection/pkgs/container/go2-rule-based-inspection) includes the route audit, grid simulator, and offline dependencies.
+The [public Linux x86-64 image](https://github.com/walmfml88886666/go2-rule-based-inspection/pkgs/container/go2-rule-based-inspection) includes the route audit, grid simulator, and obstacle-replanning example.
 
 ```bash
-image=ghcr.io/walmfml88886666/go2-rule-based-inspection:v0.2.0
+image=ghcr.io/walmfml88886666/go2-rule-based-inspection:v0.3.0
 docker run --rm --network none "$image"
-docker run --rm --network none "$image" python -m examples.grid_simulation outdoor
+docker run --rm --network none "$image" python -m examples.obstacle_replan
 ```
 
 <details>

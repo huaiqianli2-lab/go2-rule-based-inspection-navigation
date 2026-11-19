@@ -98,5 +98,45 @@
     "source": "Synthetic indoor and outdoor A* routes",
     "treatment": "Complete rendered simulation",
     "release_asset": true
+  },
+  {
+    "file": "assets/indoor-mission-replay.webp",
+    "sha256": "56a4803b23ef7c8e919370486f10b07277ffdb8c912367288bd2b0ed0090e02e",
+    "source": "One archived indoor mission with recorded positions, a LiDAR corner cloud, and capture events",
+    "treatment": "Animated preview. Time-compressed field replay."
+  },
+  {
+    "file": "assets/indoor-mission-poster.jpg",
+    "sha256": "7914033fbde7c6d4f078098719a28676eaf1d614827be3b62390974b69bbed4c",
+    "source": "One archived indoor mission with recorded positions, a LiDAR corner cloud, and capture events",
+    "treatment": "1600 × 900 frame. Time-compressed field replay."
+  },
+  {
+    "file": "indoor-mission-replay.mp4",
+    "sha256": "4ee467c54800babc49813c90a20566df97d81d762b425832839df0545a30ab6b",
+    "source": "One archived indoor mission with recorded positions, a LiDAR corner cloud, and capture events",
+    "treatment": "1600 × 900 video. Time-compressed field replay.",
+    "release_asset": true,
+    "release_tag": "v0.3.0"
+  },
+  {
+    "file": "assets/obstacle-replan-mujoco.webp",
+    "sha256": "8b9c36961b6e266de98b033de0ac9e83ff575115c15722a5185acae77ceaa0fe",
+    "source": "Synthetic occupancy-grid A* replan rendered with the MuJoCo Menagerie Go2 model",
+    "treatment": "Animated preview. Prescribed-pose visualization of the computed routes."
+  },
+  {
+    "file": "assets/obstacle-replan-poster.jpg",
+    "sha256": "12116a533ef7cc879668fd2f5acd8e4ce848c550defb00198c018e753476ecdc",
+    "source": "Synthetic occupancy-grid A* replan rendered with the MuJoCo Menagerie Go2 model",
+    "treatment": "1600 × 900 frame. Prescribed-pose visualization of the computed routes."
+  },
+  {
+    "file": "obstacle-replan-mujoco.mp4",
+    "sha256": "0891c1d5106e58a7925831476a13ae78c34401af2e35f2b489edccc53f94315f",
+    "source": "Synthetic occupancy-grid A* replan rendered with the MuJoCo Menagerie Go2 model",
+    "treatment": "1600 × 900 video. Prescribed-pose visualization of the computed routes.",
+    "release_asset": true,
+    "release_tag": "v0.3.0"
   }
 ]
