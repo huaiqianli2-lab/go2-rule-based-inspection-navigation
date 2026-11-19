@@ -67,6 +67,12 @@ The [Linux x86-64 package](https://github.com/walmfml88886666/go2-rule-based-ins
 
 The [route geometry module](tools/route_intersections.py) detects crossings and measures collinear retracing. The [visit-order audit](tools/visit_order_metrics.py) enumerates feasible orderings for small sets of fixed observation stops. The full field GUI, ROS workspace, vehicle configuration, deployment software, and raw site data are maintained with the original project.
 
+## Archived navigation comparison
+
+[![Indoor and outdoor comparison across the project stack, NavFn A* and NavFn Dijkstra](assets/archived-comparison.webp)](docs/navigation-comparison.md)
+
+Two scenes, three navigation profiles, and separate measures for planned distance, inspection stops and return. [Read the results and assumptions](docs/navigation-comparison.md).
+
 ## References and discussion
 
 Hardware and software references: [Unitree Go2](https://www.unitree.com/go2/) · [Unitree ROS 2](https://github.com/unitreerobotics/unitree_ros2) · [Unitree SDK 2](https://github.com/unitreerobotics/unitree_sdk2) · [Hesai ROS driver](https://github.com/HesaiTechnology/HesaiLidar_ROS_2.0) · [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM).

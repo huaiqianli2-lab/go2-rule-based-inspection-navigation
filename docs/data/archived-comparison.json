@@ -1,0 +1,81 @@
+{
+  "source_hashes": {
+    "geometry": "0558cfb58e27e2079d1b5433642c0a957aa82f35068f5e0b764fce75e17d44e5",
+    "gazebo": "269a9a7a4cb7a5a74b4c8f541bbb99160c64c4ce94e3f5d8ab8ad9c53a160cb9",
+    "mujoco_r2": "6ea340b1eb58c2f99fba2271766d2d880050685db398e08c8069ea10c292d5af"
+  },
+  "cases": [
+    {
+      "scene": "indoor_large",
+      "profile": "current",
+      "planned_m": 185.19,
+      "legs_found": 23,
+      "legs": 23,
+      "targets": 22,
+      "gazebo_completed": 4,
+      "mujoco_r2_completed": 22,
+      "mujoco_r2_return_reported": true,
+      "mujoco_r2_final_departure_offset_m": 0.402
+    },
+    {
+      "scene": "indoor_large",
+      "profile": "astar",
+      "planned_m": 206.94,
+      "legs_found": 23,
+      "legs": 23,
+      "targets": 22,
+      "gazebo_completed": 1,
+      "mujoco_r2_completed": 22,
+      "mujoco_r2_return_reported": false,
+      "mujoco_r2_final_departure_offset_m": 2.243
+    },
+    {
+      "scene": "indoor_large",
+      "profile": "dijkstra",
+      "planned_m": 205.83,
+      "legs_found": 23,
+      "legs": 23,
+      "targets": 22,
+      "gazebo_completed": 1,
+      "mujoco_r2_completed": 22,
+      "mujoco_r2_return_reported": false,
+      "mujoco_r2_final_departure_offset_m": 2.644
+    },
+    {
+      "scene": "outdoor_small",
+      "profile": "current",
+      "planned_m": 229.45,
+      "legs_found": 9,
+      "legs": 9,
+      "targets": 8,
+      "gazebo_completed": 0,
+      "mujoco_r2_completed": 8,
+      "mujoco_r2_return_reported": true,
+      "mujoco_r2_final_departure_offset_m": 0.362
+    },
+    {
+      "scene": "outdoor_small",
+      "profile": "astar",
+      "planned_m": 249.02,
+      "legs_found": 9,
+      "legs": 9,
+      "targets": 8,
+      "gazebo_completed": 0,
+      "mujoco_r2_completed": 2,
+      "mujoco_r2_return_reported": false,
+      "mujoco_r2_final_departure_offset_m": 54.344
+    },
+    {
+      "scene": "outdoor_small",
+      "profile": "dijkstra",
+      "planned_m": 247.52,
+      "legs_found": 9,
+      "legs": 9,
+      "targets": 8,
+      "gazebo_completed": 0,
+      "mujoco_r2_completed": 8,
+      "mujoco_r2_return_reported": true,
+      "mujoco_r2_final_departure_offset_m": 0.369
+    }
+  ]
+}
