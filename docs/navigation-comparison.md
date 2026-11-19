@@ -19,3 +19,11 @@ Two point-cloud-derived scenes were used to compare the project navigation stack
 - **Return and stop counts** measure different outcomes. All three indoor profiles reported every point, while only the project stack reported a completed return. The final offset is measured from the navigation departure pose and is separate from the program's return status.
 
 These are six conditional runs per simulation round. Repeated trials and a shared execution and recovery stack across all profiles would be needed to estimate reliability and isolate the effect of search choice. Field results are reported separately in the [gallery](gallery.md).
+
+## See how the six runs progressed
+
+[![Relative distance from the first recorded pose over time for each MuJoCo R2 run](../assets/archived-distance.png)](../assets/archived-distance.mp4?raw=1)
+
+[Play the 14-second comparison](../assets/archived-distance.mp4?raw=1) · [Download the derived trace data](data/archived-relative-distance.json)
+
+The time plot shows horizontal distance from the first recorded pose, sampled approximately every ten simulation seconds plus the last available sample. It does not show odometry length. The first record and the navigation departure reference in the table differ slightly. The outdoor A* trace remains far from its first pose when recording stops. The public plot contains scalar distances and timestamps with no site coordinates, point clouds, or imagery.

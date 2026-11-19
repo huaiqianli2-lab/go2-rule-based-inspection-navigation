@@ -65,12 +65,6 @@ A lightweight 2D example runs A* between five fixed checkpoints in each of two s
 
 **[Watch 720p MP4](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/grid-simulation.mp4)** · **[Scenario source](examples/grid_simulation.py)** · **[Simulation details](docs/simulation.md)**
 
-## Archived navigation comparison
-
-[![Indoor and outdoor comparison across the project stack, NavFn A* and NavFn Dijkstra](assets/archived-comparison.webp)](docs/navigation-comparison.md)
-
-Two scenes, three navigation profiles, and separate measures for planned distance, inspection stops and return. [Read the results and assumptions](docs/navigation-comparison.md).
-
 ## Quick start
 
 Run the planners with Python 3.11 or a compatible Python 3 version. The examples use the standard library.
@@ -105,6 +99,12 @@ python -m unittest discover -s tests -v
 </details>
 
 The [route geometry module](tools/route_intersections.py) detects crossings and measures collinear retracing. The [visit-order audit](tools/visit_order_metrics.py) enumerates feasible orderings for small sets of fixed observation stops. The full field GUI, ROS workspace, vehicle configuration, deployment software, and raw site data are maintained with the original project.
+
+## Archived navigation comparison
+
+[![Indoor and outdoor comparison across the project stack, NavFn A* and NavFn Dijkstra](assets/archived-comparison.webp)](docs/navigation-comparison.md)
+
+Two scenes, three navigation profiles, and separate measures for planned distance, inspection stops and return. [Read the results and assumptions](docs/navigation-comparison.md).
 
 ## References and discussion
 
