@@ -37,7 +37,7 @@ These are visual comparisons of rendering presets, including different display s
 
 The 3D scene tours retain cells with at least two returns in a 0.18 m voxel for display. The indoor cutaway removes points above the scene's fifth-percentile Z plus 1.9 m. Each scene is colored using its retained second to ninety-eighth percentile Z, with a numeric color legend. Planned XY paths and observation points are drawn as reference overlays on a horizontal plane.
 
-The paired patrol view uses all finite returns in its fixed scene context, while the local dynamics pane displays the original collision terrain with height colors. Mission results refer to the full recorded run. The visible excerpts remain indoor 2–13 s and outdoor 110–121 s at 1×.
+The paired patrol view uses finite returns in its fixed scene context, with the same fifth-percentile-Z-plus-1.9-m cutaway applied to the indoor view, while the local dynamics pane displays the original collision terrain with height colors. Mission results refer to the full recorded run. The visible excerpts remain indoor 2–13 s and outdoor 110–121 s at 1×.
 
 ## Reproduce the scene tours
 

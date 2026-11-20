@@ -259,25 +259,25 @@
   },
   {
     "file": "assets/slam-indoor-route.mp4",
-    "sha256": "7e3868e15d56b68ff5401f377fc53288554d25cb18e38a11ce7aaba6b08890ff",
+    "sha256": "d692913e3d3ea8508098292c42f14f399912288f2351c437205ab7376a1020f0",
     "source": "Indoor localization cloud and existing MuJoCo state archive",
     "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },
   {
     "file": "assets/slam-indoor-route.webp",
-    "sha256": "a57fcdd298aeb86201bfba719e02382eaf12e0f38b53967e2407ab242716aef3",
+    "sha256": "bdbf9e917280845175760adbc53b031dbadbbd40ba50207db70868799c571a2d",
     "source": "Indoor localization cloud and existing MuJoCo state archive",
     "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },
   {
     "file": "assets/slam-outdoor-route.mp4",
-    "sha256": "59c0e26e3868641ffe70d1b7fa40eb011167e28768f0d1f18c261dcda7f75cb6",
+    "sha256": "739d4f73df85a0a9a63d7d0de5122e27c8901a8d5da65a176b4e92cd671e6d33",
     "source": "Outdoor localization cloud and existing MuJoCo state archive",
     "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },
   {
     "file": "assets/slam-outdoor-route.webp",
-    "sha256": "196bc092ead2039d65c9c9fbe05e14a60d956ab82a9ce4af44cd1a02b2d05a05",
+    "sha256": "018e318aa6ff53e39cfb6f202eb56f8fedaaa56b07c482b78dcefb8f8e26a06c",
     "source": "Outdoor localization cloud and existing MuJoCo state archive",
     "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },

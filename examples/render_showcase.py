@@ -73,6 +73,8 @@ def main():
     up = np.cross(right, forward)
     rotation = np.array([right, up, -forward])
     cropped = ((cloud[:, :2] >= lower) & (cloud[:, :2] <= upper)).all(axis=1)
+    if args.scene == "indoor":
+        cropped &= cloud[:, 2] < height_limits[0] + 1.9
     projected_cloud = (cloud[cropped] - eye) @ rotation.T
     uv_bounds = projected_cloud[:, :2] / -projected_cloud[:, 2:]
     uv_low, uv_high = np.percentile(uv_bounds, [1, 99], axis=0)
@@ -184,7 +186,7 @@ def main():
 
         text(36, 30, f"{args.scene.capitalize()} inspection route", 46, WHITE, True)
         text(1240, 42, f"{t:.1f} s · MuJoCo", 31, WHITE, True)
-        text(36, 104, "3D  /  Measured scene and route", 27, WHITE, True)
+        text(36, 104, "3D  /  Indoor scan cutaway" if args.scene == "indoor" else "3D  /  Measured scene and route", 27, WHITE, True)
         text(694, 104, "3D  /  Go2 dynamics on scan-derived terrain", 27, WHITE, True)
         completed = int(stop_counts[i])
         stop = task["stops"][min(completed, len(task["stops"]) - 1)]
@@ -241,6 +243,7 @@ def main():
         for index, color in enumerate((colors * 255).astype(np.uint8)):
             x0 = 484 + 25 * index
             draw.rectangle((x0, 783, x0 + 24, 790), fill=tuple(color))
+        text(484, 794, f"{height_limits[0]:.1f} to {height_limits[1]:.1f} m", 15)
         text(694, 752, "Height-colored geometry · simulated Go2", 23, MINT, True)
         draw.line((36, 809, 1564, 809), fill="#405065", width=2)
         text(36, 833, f"Next stop · {stop['id']}  /  {np.linalg.norm(goal - xy):.1f} m", 26, AMBER, True)

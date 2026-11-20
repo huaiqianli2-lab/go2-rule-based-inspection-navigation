@@ -19,7 +19,7 @@ Rule-based LiDAR SLAM inspection with Unitree Go2 EDU. The system plans routes w
 | :---: | :---: |
 | [![Oblique orbit of the measured indoor scan with a display-only roof cutaway](assets/indoor-scene-tour.webp)](assets/indoor-scene-tour.mp4?raw=1) | [![Oblique orbit of the measured outdoor scan showing building facades, supports and vegetation](assets/outdoor-scene-tour.webp)](assets/outdoor-scene-tour.mp4?raw=1) |
 
-Height encodes measured map Z in metres. The orbit reveals the original scan geometry. The indoor display removes overhead points to expose walls and the inspection route. [Rendering methods and comparisons](docs/visual-comparison.md)
+Height encodes measured map Z in metres. The orbit reveals the original scan geometry. The indoor display removes overhead points to expose interior walls and room layout. [Rendering methods and comparisons](docs/visual-comparison.md)
 
 ## XT16 mapping calibration
 
