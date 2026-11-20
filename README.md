@@ -7,6 +7,8 @@ A supervised inspection workflow for Unitree Go2 EDU: measured LIO-SAM maps, dua
 ![MuJoCo 3.10.0](https://img.shields.io/badge/Simulation-MuJoCo%203.10.0-087e72)
 [![Repository rights and attribution](https://img.shields.io/badge/License-Rights%20notice-9a6240)](LICENSE)
 
+[Overview](#overview) · [Datasets](#datasets) · [Field demos](#field-demos) · [Simulation](#slam-map-physical-simulation) · [Acknowledgments](#acknowledgments) · [License](#license)
+
 ## Overview
 
 [![Integrated system workflow and measured indoor and outdoor maps with original routes and observation poses](assets/system-overview.png)](docs/system.md)
