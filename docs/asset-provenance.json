@@ -140,33 +140,51 @@
     "release_tag": "v0.3.0"
   },
   {
-    "file": "assets/go2-physics-patrol.webp",
-    "sha256": "9b97b4aa07753a1e347a9885d33b319af3aeaac61d62a3a1e65d79d2ac238177",
-    "source": "Synthetic workshop simulation; examples/physics_patrol.py and examples/render_patrol.py",
-    "treatment": "Short excerpts at 2x playback; the complete run is linked beside the preview"
+    "file": "assets/slam-indoor-capture.png",
+    "sha256": "7d8d64ea500921af756dcfdfbf77aa1d05f9afdbba0b16c44597d05172847138",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
   },
   {
-    "file": "assets/go2-physics-patrol.jpg",
-    "sha256": "6c4739e9716d91489dae924692dd9e0c011b6a7fde750aad13b441d7ea86b9bd",
-    "source": "Synthetic workshop simulation; examples/physics_patrol.py and examples/render_patrol.py",
-    "treatment": "Still from the first simulated inspection stop"
+    "file": "assets/slam-indoor.jpg",
+    "sha256": "57dcedad30d4984f45673e5c442a6b8ac8e970114e380059cd9ac261c4023ed8",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
   },
   {
-    "file": "assets/go2-physics-patrol.mp4",
-    "sha256": "1e14d0b0f71a58f71eea459d59e9ffd59a40027361f0905a37afb167acc6f173",
-    "source": "Synthetic workshop simulation; examples/physics_patrol.py and examples/render_patrol.py",
-    "treatment": "Full logged simulation, H.264 1600x900 at 25 fps and 2x playback"
+    "file": "assets/slam-indoor.mp4",
+    "sha256": "aebedf83006cab2b575eeb3b86c4ec017b86f284b9dea2843e03d945743a4e62",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
   },
   {
-    "file": "assets/simulated-capture-1.png",
-    "sha256": "dc2bdc6f001515f89c6c82fa76d03038677866ef151c92b8fe8cb8d271320026",
-    "source": "Synthetic workshop simulation; examples/physics_patrol.py and examples/render_patrol.py",
-    "treatment": "RGB frame from the recorded chassis camera pose at station 1"
+    "file": "assets/slam-indoor.webp",
+    "sha256": "5f2efd61c0eb669ad7934a19b327575d0ee97554c0633596df5ad440a556ffbe",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
   },
   {
-    "file": "assets/simulated-capture-2.png",
-    "sha256": "e35b90053f33bb09bbdc12185c8809ed3be4a326a2ec75ac66f1092557c7c201",
-    "source": "Synthetic workshop simulation; examples/physics_patrol.py and examples/render_patrol.py",
-    "treatment": "RGB frame from the recorded chassis camera pose at station 2"
+    "file": "assets/slam-outdoor-capture.png",
+    "sha256": "505cb9e018627472479fd2aba97ff481ff06899ffc45021a2e67ebf146d888f5",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
+  },
+  {
+    "file": "assets/slam-outdoor.jpg",
+    "sha256": "802ab9dd1a7cb14de5e48754340680659a41a6ef4f2b5a98d1cf41ea3899e471",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
+  },
+  {
+    "file": "assets/slam-outdoor.mp4",
+    "sha256": "f87a5aa31ffb051b46005a1c81e474324c9fbd246f7ff301c93e141e285b1263",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
+  },
+  {
+    "file": "assets/slam-outdoor.webp",
+    "sha256": "b643d7fa4238449a4f0f7df78b0e03c957295ba6213e5c88955a246354fc6f78",
+    "source": "Verified project SLAM terrain/obstacle archives and original task; docs/data/slam-physics-results.json",
+    "treatment": "Recorded physical state excerpts and virtual scan-geometry camera; no RGB texture or measured camera-to-body extrinsics"
   }
 ]
