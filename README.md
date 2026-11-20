@@ -1,11 +1,13 @@
-# Go2 Patrol: From LiDAR–Inertial Mapping to Rule-Based Quadruped Inspection
+# Go2 Patrol: Rule-Based Navigation for Intelligent Quadruped Inspection
 
-A supervised inspection workflow for Unitree Go2 EDU: measured LIO-SAM maps, dual-layer geometric constraints and Dijkstra routes, linked to recorded trajectories and inspection photographs.
+Rule-based quadruped navigation and inspection on Unitree Go2 EDU. The supervised workflow uses measured LIO-SAM maps, dual-layer geometric constraints and Dijkstra routes, linked to recorded trajectories and inspection photographs.
 
 ![ROS 2 Humble field stack](https://img.shields.io/badge/Field%20stack-ROS%202%20Humble-334b80)
 ![Python 3.11 audit](https://img.shields.io/badge/Route%20audit-Python%203.11-2776aa)
 ![MuJoCo 3.10.0](https://img.shields.io/badge/Simulation-MuJoCo%203.10.0-087e72)
 [![Repository rights and attribution](https://img.shields.io/badge/License-Rights%20notice-9a6240)](LICENSE)
+
+[Overview](#overview) · [Field demos](#field-demos) · [Simulation](#slam-map-physical-simulation) · [Datasets](#datasets) · [Route audit](#run-the-route-audit)
 
 ## Overview
 
@@ -76,7 +78,7 @@ Download the [indoor and outdoor datasets](datasets/). Each includes a metric XY
 
 ## SLAM-map physical simulation
 
-The enlarged 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Height-colored surface elements reveal nearby geometry; a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. These display elements do not replace the archived collision terrain. [Display methods and comparisons](docs/visual-comparison.md)
+The enlarged 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Fine, height-colored points with local display interpolation reveal nearby contours; a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. The collision terrain and archived robot states are used as recorded. [Display methods and comparisons](docs/visual-comparison.md)
 
 **Outdoor · 8/8 inspection stops and return**
 
