@@ -1,6 +1,6 @@
-# Go2 Patrol: Rule-Based Inspection with LiDAR SLAM and Unitree Go2 EDU
+# Go2 Patrol: From LiDAR–Inertial Mapping to Rule-Based Quadruped Inspection
 
-Rule-based LiDAR SLAM inspection with Unitree Go2 EDU. The system plans routes with Dijkstra and links each field run to its trajectory and inspection photos.
+A supervised inspection workflow for Unitree Go2 EDU: measured LIO-SAM maps, dual-layer geometric constraints and Dijkstra routes, linked to recorded trajectories and inspection photographs.
 
 ![ROS 2 Humble field stack](https://img.shields.io/badge/Field%20stack-ROS%202%20Humble-334b80)
 ![Python 3.11 audit](https://img.shields.io/badge/Route%20audit-Python%203.11-2776aa)
@@ -9,9 +9,7 @@ Rule-based LiDAR SLAM inspection with Unitree Go2 EDU. The system plans routes w
 
 ## Overview
 
-[![System architecture from XT16 and IMU acquisition through LIO-SAM, dual-map planning, Go2 execution and inspection records](assets/inspection-architecture.png)](docs/system.md)
-
-[![Indoor and outdoor height-colored LiDAR maps with original planned routes and observation poses](assets/slam-overview.jpg)](docs/system.md)
+[![Integrated system workflow and measured indoor and outdoor maps with original routes and observation poses](assets/system-overview.png)](docs/system.md)
 
 ### Measured scenes in 3D
 
@@ -41,7 +39,7 @@ The XT16 frame adaptation rotates Go2 IMU vectors from frame I into LiDAR frame 
 
 ## Navigation and line-of-sight layers
 
-[![Cross-section of one grid cell showing the two height bands and independent two-return occupancy tests](assets/navigation-sight-layers.png)](docs/mapping.md)
+[![Side elevation of three obstacle examples and their corresponding navigation and line-of-sight cell tests](assets/navigation-sight-layers.png)](docs/mapping.md)
 
 The planner estimates local ground from the point cloud and the nearest recorded mapping pose. Near the trajectory, a height ceiling filters canopy and overhead returns before the ground percentile is computed. Here $g_k=z_k-0.485$ m and $d_c$ is the horizontal distance from cell $c$ to that pose.
 
@@ -78,15 +76,15 @@ Download the [indoor and outdoor datasets](datasets/). Each includes a metric XY
 
 ## SLAM-map physical simulation
 
-The paired 3D views replay the same recorded MuJoCo states at 1× speed. A fixed oblique scan view shows the environment, Go2 heading and route. The local dynamics view shows the robot walking on the archived collision terrain, now height-colored. A mint marker identifies the robot, and the mint trail marks its recent simulated positions.
+The enlarged 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Height-colored surface elements reveal nearby geometry; a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. These display elements do not replace the archived collision terrain. [Display methods and comparisons](docs/visual-comparison.md)
 
 **Outdoor · 8/8 inspection stops and return**
 
-[![Synchronized outdoor measured 3D scene and height-colored MuJoCo view of Go2 walking](assets/slam-outdoor-route.webp)](assets/slam-outdoor-route.mp4?raw=1)
+[![Enlarged outdoor measured scene with the simulated Go2 and a synchronized mission-context inset](assets/slam-outdoor-route.webp)](assets/slam-outdoor-route.mp4?raw=1)
 
 **Indoor · 4/22 inspection stops before a contact-triggered safety stop**
 
-[![Synchronized indoor measured 3D scene and height-colored MuJoCo view of Go2 walking](assets/slam-indoor-route.webp)](assets/slam-indoor-route.mp4?raw=1)
+[![Enlarged indoor measured scene cutaway with the simulated Go2 and a synchronized mission-context inset](assets/slam-indoor-route.webp)](assets/slam-indoor-route.mp4?raw=1)
 
 ## Navigation comparison
 
