@@ -247,9 +247,9 @@
   },
   {
     "file": "assets/slam-overview.jpg",
-    "sha256": "45b90422e50c40941332b6946692e42f5ae012ba4c976454c5b1978106a3b4a1",
-    "source": "Original indoor and outdoor localization maps and task plans",
-    "treatment": "Height-colored map overview with original planned routes and observation poses."
+    "sha256": "cf93c3ebbf03748943d1e39863bf38e658be46906f18ac1cbc07f133f2e50599",
+    "source": "Published localization point clouds and original task geometry in datasets/",
+    "treatment": "Height-colored plan views with original planned routes, observation poses, and 5 m scale bars."
   },
   {
     "file": "assets/mapping-calibration-ab.jpg",
@@ -259,26 +259,38 @@
   },
   {
     "file": "assets/slam-indoor-route.mp4",
-    "sha256": "becb53fcfafcfb200750bda48b1e86e3ccb503cf655d751f347227bb88515673",
+    "sha256": "329d63ab774579932e84e9a8b0980f51b3dc48d93ea4c362838809746f56f53d",
     "source": "Indoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Fixed height-colored viewport showing the simulated heading and trace, stored next observation pose, and simultaneous dynamics close-up."
+    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
   },
   {
     "file": "assets/slam-indoor-route.webp",
-    "sha256": "3faf4a49f09e9d2d21cb8e59b7f973dc59d1de76cee2ee53e6021e99c1aef26c",
+    "sha256": "216c9b3c731476d41976e2b577cc08f90f11c19d3800e867ee69e9ad0e430ff9",
     "source": "Indoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Fixed height-colored viewport showing the simulated heading and trace, stored next observation pose, and simultaneous dynamics close-up."
+    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
   },
   {
     "file": "assets/slam-outdoor-route.mp4",
-    "sha256": "3d3c87d020bcbee91c329262fee26ae62f9c44385efeac629ca12ef2a8d38c0a",
+    "sha256": "514b2c23cb97090d702043fa0378ca1b26d93e1219fb70941325695ed6f7e2a5",
     "source": "Outdoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Fixed height-colored viewport showing the simulated heading and trace, stored next observation pose, and simultaneous dynamics close-up."
+    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
   },
   {
     "file": "assets/slam-outdoor-route.webp",
-    "sha256": "04bb6213d7a75ce9ab8895265a2fa7e233230876dc23a02d255f4bdc355d1fcf",
+    "sha256": "5c275c6369d1374fa6c4fe3f32568d2f6c5c947af34b496600a4fe0a0dc92eb3",
     "source": "Outdoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Fixed height-colored viewport showing the simulated heading and trace, stored next observation pose, and simultaneous dynamics close-up."
+    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
+  },
+  {
+    "file": "assets/inspection-architecture.svg",
+    "sha256": "84d6cb90681826d2efdc9406b9625f5b954a572c9ce54e2cd3ee7849031d1b4a",
+    "source": "Go2 Patrol project documentation",
+    "treatment": "Original diagram based on the field workflow in docs/system.md."
+  },
+  {
+    "file": "assets/navigation-sight-layers.svg",
+    "sha256": "4394a1b594242de0894643f58876dc070f330c08ce3ea670f412ef7175f00f40",
+    "source": "Go2 Patrol project documentation",
+    "treatment": "Original schematic based on grid pitch, occupancy bands, and thresholds in docs/mapping.md."
   }
 ]

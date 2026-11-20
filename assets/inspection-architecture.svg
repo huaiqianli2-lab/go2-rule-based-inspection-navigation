@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 366" role="img"><title>Go2 Patrol system architecture</title><desc>XT16 and IMU feed LIO-SAM. The map and operator targets feed dual map layers and Dijkstra planning. The mission runs on Go2 EDU and generates field evidence.</desc>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#59718c"/></marker></defs>
+<g font-family="Arial, Helvetica, sans-serif">
+<rect x="1" y="1" width="1198" height="364" rx="20" fill="#f4f7fb" stroke="#d4deea"/>
+<text x="29" y="46" font-size="32" fill="#142742" font-weight="700">From LiDAR–IMU mapping to supervised inspection</text>
+<rect x="28" y="112" width="216" height="224" rx="11" fill="white" stroke="#d4deea"/>
+<rect x="41" y="125" width="190" height="73" rx="7" fill="#eef4fa" stroke="none"/>
+<text x="43" y="223" font-size="15" fill="#216dcc" font-weight="700">ACQUISITION</text>
+<text x="43" y="253" font-size="24" fill="#142742" font-weight="700">XT16 + IMU</text>
+<text x="43" y="285" font-size="20" fill="#475e78" font-weight="400">Time-aligned scans</text>
+<text x="43" y="311" font-size="20" fill="#475e78" font-weight="400">and inertial readings</text>
+<path d="M245 159h13" fill="none" stroke="#59718c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M60 138q17 -9 36 0t36 0" fill="none" stroke="#216dcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60 150q17 -9 36 0t36 0" fill="none" stroke="#216dcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60 162q17 -9 36 0t36 0" fill="none" stroke="#216dcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60 174q17 -9 36 0t36 0" fill="none" stroke="#216dcc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M140 163h15l9 -16l14 34l11 -20h18" fill="none" stroke="#087c6b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="259" y="112" width="216" height="224" rx="11" fill="white" stroke="#d4deea"/>
+<rect x="272" y="125" width="190" height="73" rx="7" fill="#eef4fa" stroke="none"/>
+<text x="274" y="223" font-size="15" fill="#216dcc" font-weight="700">MAPPING</text>
+<text x="274" y="253" font-size="24" fill="#142742" font-weight="700">LIO-SAM</text>
+<text x="274" y="285" font-size="20" fill="#475e78" font-weight="400">3D point cloud</text>
+<text x="274" y="311" font-size="20" fill="#475e78" font-weight="400">and mapping poses</text>
+<path d="M476 159h13" fill="none" stroke="#59718c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<circle cx="304.4453762972177" cy="172.465108583898" r="1.45" fill="#216dcc"/>
+<circle cx="414.92552765742727" cy="174.43174411877038" r="1.45" fill="#087c6b"/>
+<circle cx="315.27045151225667" cy="168.02932765529684" r="1.45" fill="#c79037"/>
+<circle cx="379.85683423372166" cy="157.40336945766475" r="1.45" fill="#216dcc"/>
+<circle cx="335.39022866484964" cy="186.86595059025538" r="1.45" fill="#087c6b"/>
+<circle cx="305.05524350471967" cy="184.12455584068536" r="1.45" fill="#c79037"/>
+<circle cx="416.94283761189905" cy="164.67630071410048" r="1.45" fill="#216dcc"/>
+<circle cx="316.409301577548" cy="176.25150688741667" r="1.45" fill="#087c6b"/>
+<circle cx="414.2401955748373" cy="182.589671845561" r="1.45" fill="#c79037"/>
+<circle cx="292.8444197014897" cy="174.88626559895678" r="1.45" fill="#216dcc"/>
+<circle cx="337.53729249525423" cy="176.72291536192006" r="1.45" fill="#087c6b"/>
+<circle cx="409.62329529214225" cy="186.80845978393506" r="1.45" fill="#c79037"/>
+<circle cx="396.6447736618087" cy="169.07241670738543" r="1.45" fill="#216dcc"/>
+<circle cx="401.1195834202952" cy="165.26306214418375" r="1.45" fill="#087c6b"/>
+<circle cx="336.7731326798708" cy="174.67529102102992" r="1.45" fill="#c79037"/>
+<circle cx="423.93001928906534" cy="171.0721996564514" r="1.45" fill="#216dcc"/>
+<circle cx="370.53579416873595" cy="157.1148375241931" r="1.45" fill="#087c6b"/>
+<circle cx="379.2421248647039" cy="179.8539788044343" r="1.45" fill="#c79037"/>
+<circle cx="373.0213497682726" cy="183.3347541393835" r="1.45" fill="#216dcc"/>
+<circle cx="342.3027187057316" cy="173.24578783928897" r="1.45" fill="#087c6b"/>
+<circle cx="315.5362924427353" cy="150.59226678296193" r="1.45" fill="#c79037"/>
+<circle cx="421.2501181065595" cy="177.3922593245734" r="1.45" fill="#216dcc"/>
+<circle cx="413.5052045876284" cy="168.00151802584938" r="1.45" fill="#087c6b"/>
+<circle cx="358.67115901038034" cy="176.67438889194318" r="1.45" fill="#c79037"/>
+<circle cx="384.6343146317247" cy="184.36714351741907" r="1.45" fill="#216dcc"/>
+<circle cx="369.0417962488155" cy="168.2651394560861" r="1.45" fill="#087c6b"/>
+<circle cx="373.49267770412393" cy="179.61069437035513" r="1.45" fill="#c79037"/>
+<circle cx="289.8715631090729" cy="184.59317416580402" r="1.45" fill="#216dcc"/>
+<circle cx="389.28085290154576" cy="156.20395303937894" r="1.45" fill="#087c6b"/>
+<circle cx="354.59013941485097" cy="155.18421936848304" r="1.45" fill="#c79037"/>
+<circle cx="348.28848101564824" cy="180.46035312629877" r="1.45" fill="#216dcc"/>
+<circle cx="319.6581025622937" cy="165.89204681167976" r="1.45" fill="#087c6b"/>
+<circle cx="404.60348296814243" cy="151.22186571552362" r="1.45" fill="#c79037"/>
+<circle cx="402.28362028709057" cy="167.97656308203895" r="1.45" fill="#216dcc"/>
+<circle cx="412.60034814718375" cy="179.547816371935" r="1.45" fill="#087c6b"/>
+<circle cx="319.40937713892015" cy="145.31682894134013" r="1.45" fill="#c79037"/>
+<circle cx="313.26315664632773" cy="153.2829747131895" r="1.45" fill="#216dcc"/>
+<circle cx="394.03186745142347" cy="159.80440581615727" r="1.45" fill="#087c6b"/>
+<circle cx="311.8931505916785" cy="175.74773052837926" r="1.45" fill="#c79037"/>
+<circle cx="417.89280591333886" cy="181.43461932923108" r="1.45" fill="#216dcc"/>
+<circle cx="369.74021727429914" cy="149.36736784046153" r="1.45" fill="#087c6b"/>
+<circle cx="399.4948952809062" cy="180.33718333954295" r="1.45" fill="#c79037"/>
+<circle cx="307.4074495219482" cy="183.13410168599793" r="1.45" fill="#216dcc"/>
+<circle cx="378.1049457571838" cy="156.13301433130968" r="1.45" fill="#087c6b"/>
+<circle cx="385.0698818570287" cy="186.12703374172222" r="1.45" fill="#c79037"/>
+<circle cx="426.61109281713766" cy="168.48682732135546" r="1.45" fill="#216dcc"/>
+<circle cx="338.7637395554614" cy="153.84047669996153" r="1.45" fill="#087c6b"/>
+<circle cx="328.47819626212595" cy="174.54578636470205" r="1.45" fill="#c79037"/>
+<circle cx="357.46426683826934" cy="184.10614717224698" r="1.45" fill="#216dcc"/>
+<circle cx="376.44794255984317" cy="169.39091766954184" r="1.45" fill="#087c6b"/>
+<circle cx="373.1005660722185" cy="156.80456241423514" r="1.45" fill="#c79037"/>
+<circle cx="319.45664859895993" cy="161.36937686560617" r="1.45" fill="#216dcc"/>
+<circle cx="348.88638681458997" cy="169.67539012230833" r="1.45" fill="#087c6b"/>
+<circle cx="357.46276979047536" cy="179.06490602203147" r="1.45" fill="#c79037"/>
+<circle cx="320.08619825437626" cy="172.0316748250139" r="1.45" fill="#216dcc"/>
+<circle cx="343.81887947972973" cy="180.54186933965735" r="1.45" fill="#087c6b"/>
+<circle cx="355.25780005506806" cy="154.26045791761626" r="1.45" fill="#c79037"/>
+<circle cx="326.8160880427965" cy="178.90361155098034" r="1.45" fill="#216dcc"/>
+<circle cx="362.69541444781254" cy="163.30793245858405" r="1.45" fill="#087c6b"/>
+<circle cx="375.8949642804078" cy="159.41605509203046" r="1.45" fill="#c79037"/>
+<circle cx="345.80468080041703" cy="149.89957150861426" r="1.45" fill="#216dcc"/>
+<circle cx="432.0061139129861" cy="161.56386591611752" r="1.45" fill="#087c6b"/>
+<circle cx="348.95768186032836" cy="182.81859033575947" r="1.45" fill="#c79037"/>
+<circle cx="343.9341422238461" cy="186.4014564791023" r="1.45" fill="#216dcc"/>
+<circle cx="405.3163998020287" cy="168.20693078518096" r="1.45" fill="#087c6b"/>
+<circle cx="324.8137641681013" cy="146.28059483902953" r="1.45" fill="#c79037"/>
+<circle cx="367.72464342645986" cy="168.77863634627653" r="1.45" fill="#216dcc"/>
+<circle cx="315.3894463274761" cy="150.7200580083008" r="1.45" fill="#087c6b"/>
+<circle cx="361.41452782743966" cy="158.87900916594091" r="1.45" fill="#c79037"/>
+<circle cx="403.37598513721264" cy="155.11215864718213" r="1.45" fill="#216dcc"/>
+<circle cx="311.4879850493496" cy="171.13448721243626" r="1.45" fill="#087c6b"/>
+<circle cx="407.18774086331723" cy="164.40925290263974" r="1.45" fill="#c79037"/>
+<circle cx="382.0909101622003" cy="164.50995140281216" r="1.45" fill="#216dcc"/>
+<circle cx="305.66442757797086" cy="160.30671030169495" r="1.45" fill="#087c6b"/>
+<circle cx="314.5685416949109" cy="164.2395532621133" r="1.45" fill="#c79037"/>
+<circle cx="342.42356501386814" cy="162.0187183424966" r="1.45" fill="#216dcc"/>
+<circle cx="397.71701503356365" cy="159.4431407501262" r="1.45" fill="#087c6b"/>
+<circle cx="315.6040447979524" cy="159.21880476302135" r="1.45" fill="#c79037"/>
+<circle cx="359.3060798960442" cy="158.54035000943674" r="1.45" fill="#216dcc"/>
+<circle cx="392.71386117882014" cy="150.50768873619694" r="1.45" fill="#087c6b"/>
+<circle cx="414.54829169019837" cy="163.63368748257125" r="1.45" fill="#c79037"/>
+<circle cx="386.86221869176876" cy="181.80237336558557" r="1.45" fill="#216dcc"/>
+<circle cx="430.4917883179181" cy="165.50948806680023" r="1.45" fill="#087c6b"/>
+<circle cx="317.2401822280822" cy="167.4357308585376" r="1.45" fill="#c79037"/>
+<circle cx="417.75087684819397" cy="184.9372108611911" r="1.45" fill="#216dcc"/>
+<circle cx="359.102276762559" cy="170.43720360994334" r="1.45" fill="#087c6b"/>
+<circle cx="326.3398807941053" cy="155.98180194266072" r="1.45" fill="#c79037"/>
+<circle cx="325.6975446262936" cy="181.79673946864875" r="1.45" fill="#216dcc"/>
+<circle cx="404.9892988808713" cy="173.3142711465909" r="1.45" fill="#087c6b"/>
+<circle cx="376.4899167501775" cy="161.78104080762068" r="1.45" fill="#c79037"/>
+<circle cx="343.12188526531986" cy="177.6285205599028" r="1.45" fill="#216dcc"/>
+<circle cx="337.25914161100735" cy="153.4523610168698" r="1.45" fill="#087c6b"/>
+<circle cx="326.2860637722756" cy="164.0978563531087" r="1.45" fill="#c79037"/>
+<circle cx="338.85964307587994" cy="155.44561585750125" r="1.45" fill="#216dcc"/>
+<circle cx="361.47469241914473" cy="183.35952802400456" r="1.45" fill="#087c6b"/>
+<circle cx="388.35668506950253" cy="168.96732152102032" r="1.45" fill="#c79037"/>
+<circle cx="300.20076868723777" cy="171.00554725232683" r="1.45" fill="#216dcc"/>
+<circle cx="313.11904960729964" cy="167.4943757369491" r="1.45" fill="#087c6b"/>
+<circle cx="314.9454019495907" cy="163.54871492746514" r="1.45" fill="#c79037"/>
+<circle cx="388.96176396380645" cy="175.36556713990117" r="1.45" fill="#216dcc"/>
+<circle cx="432.7624701245749" cy="161.72778492952318" r="1.45" fill="#087c6b"/>
+<circle cx="410.17677556265204" cy="158.4391990563033" r="1.45" fill="#c79037"/>
+<circle cx="333.24909381886636" cy="179.22311339784935" r="1.45" fill="#216dcc"/>
+<circle cx="384.13365900695436" cy="176.77897314580224" r="1.45" fill="#087c6b"/>
+<circle cx="300.3870914114352" cy="177.93882111823322" r="1.45" fill="#c79037"/>
+<circle cx="396.692370013576" cy="183.08317214904423" r="1.45" fill="#216dcc"/>
+<circle cx="365.0794498504952" cy="148.85528225582908" r="1.45" fill="#087c6b"/>
+<circle cx="295.7791847354987" cy="178.1730413460277" r="1.45" fill="#c79037"/>
+<circle cx="307.8002460355339" cy="153.87125818635084" r="1.45" fill="#216dcc"/>
+<circle cx="314.80443951351225" cy="177.80745142593014" r="1.45" fill="#087c6b"/>
+<circle cx="304.4846009617586" cy="173.14783608276935" r="1.45" fill="#c79037"/>
+<circle cx="335.29481803238417" cy="160.22491256616493" r="1.45" fill="#216dcc"/>
+<circle cx="315.2373478711147" cy="186.10752804027226" r="1.45" fill="#087c6b"/>
+<circle cx="421.31904115709295" cy="158.54332151136688" r="1.45" fill="#c79037"/>
+<circle cx="351.9371972908165" cy="170.68846909935056" r="1.45" fill="#216dcc"/>
+<circle cx="355.32517022636307" cy="175.12032693089557" r="1.45" fill="#087c6b"/>
+<circle cx="332.9037716401793" cy="161.34280779962342" r="1.45" fill="#c79037"/>
+<circle cx="387.8557395620048" cy="161.4916348068457" r="1.45" fill="#216dcc"/>
+<circle cx="321.35259084779676" cy="165.73732305874194" r="1.45" fill="#087c6b"/>
+<circle cx="430.5233274509144" cy="160.11513918481737" r="1.45" fill="#c79037"/>
+<circle cx="328.40869137926194" cy="151.13793947434914" r="1.45" fill="#216dcc"/>
+<circle cx="405.33121513483076" cy="187.24981660460867" r="1.45" fill="#087c6b"/>
+<circle cx="396.98330347520465" cy="181.7706180095865" r="1.45" fill="#c79037"/>
+<circle cx="387.3958061263533" cy="157.31273604604553" r="1.45" fill="#216dcc"/>
+<circle cx="368.9914081945249" cy="160.98295671358804" r="1.45" fill="#087c6b"/>
+<circle cx="338.3766527475007" cy="185.440944807941" r="1.45" fill="#c79037"/>
+<circle cx="367.4477014710179" cy="172.44329606876082" r="1.45" fill="#216dcc"/>
+<circle cx="375.02527545774285" cy="170.38748116764134" r="1.45" fill="#087c6b"/>
+<circle cx="380.02955855890644" cy="162.7287560528973" r="1.45" fill="#c79037"/>
+<circle cx="312.8944672884338" cy="151.95870320016056" r="1.45" fill="#216dcc"/>
+<circle cx="347.61994481852923" cy="175.4866148773144" r="1.45" fill="#087c6b"/>
+<circle cx="351.0344789550524" cy="165.21219371607458" r="1.45" fill="#c79037"/>
+<circle cx="338.09885896744737" cy="166.97940898690678" r="1.45" fill="#216dcc"/>
+<circle cx="357.1141682034589" cy="184.0095798170001" r="1.45" fill="#087c6b"/>
+<circle cx="422.09836131681794" cy="164.59663875409734" r="1.45" fill="#c79037"/>
+<circle cx="399.96901206313674" cy="172.10471110517295" r="1.45" fill="#216dcc"/>
+<circle cx="372.1468341472248" cy="175.93605631434096" r="1.45" fill="#087c6b"/>
+<circle cx="398.857719290568" cy="167.34815922930585" r="1.45" fill="#c79037"/>
+<circle cx="335.9475196757572" cy="159.49714941666122" r="1.45" fill="#216dcc"/>
+<circle cx="421.2670101235054" cy="161.81309668402946" r="1.45" fill="#087c6b"/>
+<circle cx="400.6172803664647" cy="161.16232438553521" r="1.45" fill="#c79037"/>
+<circle cx="407.05670247885837" cy="181.7877069642331" r="1.45" fill="#216dcc"/>
+<circle cx="332.67470173757636" cy="156.73262197708914" r="1.45" fill="#087c6b"/>
+<circle cx="364.0522162746303" cy="178.4593858697334" r="1.45" fill="#c79037"/>
+<circle cx="376.17049507863044" cy="190.03348879863347" r="1.45" fill="#216dcc"/>
+<circle cx="401.1578215307154" cy="161.4182879579609" r="1.45" fill="#087c6b"/>
+<circle cx="361.55251648281256" cy="174.20268723169056" r="1.45" fill="#c79037"/>
+<circle cx="366.30160567995244" cy="162.5582666878024" r="1.45" fill="#216dcc"/>
+<circle cx="338.91095000983927" cy="168.56451981754657" r="1.45" fill="#087c6b"/>
+<circle cx="315.088722106127" cy="151.97045592774876" r="1.45" fill="#c79037"/>
+<circle cx="366.64962561222006" cy="169.87609737094309" r="1.45" fill="#216dcc"/>
+<circle cx="351.4169706338477" cy="169.71203761920728" r="1.45" fill="#087c6b"/>
+<circle cx="332.4214744829206" cy="179.49241434407853" r="1.45" fill="#c79037"/>
+<circle cx="378.82804364067624" cy="178.71372581763507" r="1.45" fill="#216dcc"/>
+<circle cx="370.22123403812384" cy="153.87536284723143" r="1.45" fill="#087c6b"/>
+<circle cx="434.2411417134593" cy="164.86981489921772" r="1.45" fill="#c79037"/>
+<circle cx="403.69339663590415" cy="167.16313895728092" r="1.45" fill="#216dcc"/>
+<circle cx="420.24616435475286" cy="155.63936072469028" r="1.45" fill="#087c6b"/>
+<circle cx="401.57506736541086" cy="169.33706694244975" r="1.45" fill="#c79037"/>
+<circle cx="420.1225878549767" cy="163.51757329802098" r="1.45" fill="#216dcc"/>
+<path d="M294 183l43 -13l32 3l51 -26" fill="none" stroke="#142742" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="490" y="112" width="216" height="224" rx="11" fill="white" stroke="#d4deea"/>
+<rect x="503" y="125" width="190" height="73" rx="7" fill="#eef4fa" stroke="none"/>
+<text x="505" y="223" font-size="15" fill="#087c6b" font-weight="700">PLANNING</text>
+<text x="505" y="253" font-size="24" fill="#142742" font-weight="700">Dual map layers</text>
+<text x="505" y="285" font-size="20" fill="#475e78" font-weight="400">Navigation and sight</text>
+<text x="505" y="311" font-size="20" fill="#475e78" font-weight="400">Dijkstra grid routes</text>
+<path d="M707 159h13" fill="none" stroke="#59718c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M524 182l48 -13l35 6l54 -17l-36 -7l-50 13Z" fill="none" stroke="#216dcc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M524 165l48 -13l35 6l54 -17l-36 -7l-50 13Z" fill="none" stroke="#087c6b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="721" y="112" width="216" height="224" rx="11" fill="white" stroke="#d4deea"/>
+<rect x="734" y="125" width="190" height="73" rx="7" fill="#eef4fa" stroke="none"/>
+<text x="736" y="223" font-size="15" fill="#087c6b" font-weight="700">EXECUTION</text>
+<text x="736" y="253" font-size="24" fill="#142742" font-weight="700">Go2 EDU</text>
+<text x="736" y="285" font-size="20" fill="#475e78" font-weight="400">Localize and walk</text>
+<text x="736" y="311" font-size="20" fill="#475e78" font-weight="400">Capture at each stop</text>
+<path d="M938 159h13" fill="none" stroke="#59718c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="783" y="144" width="80" height="20" rx="6" fill="#142742" stroke="none"/>
+<rect x="856" y="140" width="18" height="14" rx="3" fill="#087c6b" stroke="none"/>
+<path d="M785 160l-8 15l10 9" fill="none" stroke="#142742" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M837 160l-8 15l10 9" fill="none" stroke="#142742" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M798 152l-8 15l10 9" fill="none" stroke="#142742" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M853 152l-8 15l10 9" fill="none" stroke="#142742" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="952" y="112" width="216" height="224" rx="11" fill="white" stroke="#d4deea"/>
+<rect x="965" y="125" width="190" height="73" rx="7" fill="#eef4fa" stroke="none"/>
+<text x="967" y="223" font-size="15" fill="#a74a12" font-weight="700">FIELD EVIDENCE</text>
+<text x="967" y="253" font-size="24" fill="#142742" font-weight="700">Run records</text>
+<text x="967" y="285" font-size="20" fill="#475e78" font-weight="400">Trajectory, images</text>
+<text x="967" y="311" font-size="20" fill="#475e78" font-weight="400">and event timestamps</text>
+<rect x="1000" y="140" width="56" height="42" rx="4" fill="white" stroke="#a74a12"/>
+<path d="M1006 178l15 -14l11 10l12 -13l7 17" fill="none" stroke="#a74a12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1071 148h47" fill="none" stroke="#475e78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1071 161h47" fill="none" stroke="#475e78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1071 174h47" fill="none" stroke="#475e78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="508" y="65" width="181" height="30" rx="6" fill="#d9f1ea" stroke="none"/>
+<text x="523" y="86" font-size="16" fill="#087c6b" font-weight="700">Operator target labels</text>
+<path d="M600 96v14" fill="none" stroke="#59718c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g></svg>
