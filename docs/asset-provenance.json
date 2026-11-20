@@ -259,27 +259,27 @@
   },
   {
     "file": "assets/slam-indoor-route.mp4",
-    "sha256": "329d63ab774579932e84e9a8b0980f51b3dc48d93ea4c362838809746f56f53d",
+    "sha256": "d692913e3d3ea8508098292c42f14f399912288f2351c437205ab7376a1020f0",
     "source": "Indoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
+    "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },
   {
     "file": "assets/slam-indoor-route.webp",
-    "sha256": "216c9b3c731476d41976e2b577cc08f90f11c19d3800e867ee69e9ad0e430ff9",
+    "sha256": "bdbf9e917280845175760adbc53b031dbadbbd40ba50207db70868799c571a2d",
     "source": "Indoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
+    "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },
   {
     "file": "assets/slam-outdoor-route.mp4",
-    "sha256": "514b2c23cb97090d702043fa0378ca1b26d93e1219fb70941325695ed6f7e2a5",
+    "sha256": "739d4f73df85a0a9a63d7d0de5122e27c8901a8d5da65a176b4e92cd671e6d33",
     "source": "Outdoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
+    "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },
   {
     "file": "assets/slam-outdoor-route.webp",
-    "sha256": "5c275c6369d1374fa6c4fe3f32568d2f6c5c947af34b496600a4fe0a0dc92eb3",
+    "sha256": "018e318aa6ff53e39cfb6f202eb56f8fedaaa56b07c482b78dcefb8f8e26a06c",
     "source": "Outdoor localization cloud and existing MuJoCo state archive",
-    "treatment": "Synchronized 2D route and wide 3D MuJoCo views at 1× from archived states. A 3D locator and ground trace show recorded simulated positions."
+    "treatment": "Synchronized fixed oblique measured point cloud and local height-colored MuJoCo replay from unchanged archived states."
   },
   {
     "file": "assets/inspection-architecture.svg",
@@ -292,5 +292,65 @@
     "sha256": "4394a1b594242de0894643f58876dc070f330c08ce3ea670f412ef7175f00f40",
     "source": "Go2 Patrol project documentation",
     "treatment": "Original schematic based on grid pitch, occupancy bands, and thresholds in docs/mapping.md."
+  },
+  {
+    "file": "assets/inspection-architecture.png",
+    "sha256": "763dcb64fb04b96d4827735ec9bf77937af54633d4f45592fdada5a27fb16b2f",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/navigation-sight-layers.png",
+    "sha256": "b23f449f11b763a6464291b28cbab01afc7a3e8d40da1475a3e5cb9df716ff4c",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/indoor-scene-3d.png",
+    "sha256": "39c8be62a039058b40896a7e11379e62f7727353c9b6bbffc4998778ef42a07a",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/outdoor-scene-3d.png",
+    "sha256": "0ccdd4c3cb707c799759f7421ddaba36ea4be153c91ca083442ee635095f5651",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/indoor-scene-tour.mp4",
+    "sha256": "9d23c4f08cc3e638612e445b6b0756c9b65b28af18a6d5ee6498bc84869d3f43",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/indoor-scene-tour.webp",
+    "sha256": "cf198f42d786fced566508d7f0c41ebcbefc284bf879cf4ee12ab368100f4815",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/outdoor-scene-tour.mp4",
+    "sha256": "a1cd3edb0e6f3b29712f5b116cac70480a25d7edd3b9cc6f17e1abb97bafa900",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/outdoor-scene-tour.webp",
+    "sha256": "ee3125cea4facb32ca1d47239ad1f376d265edfe970522b5e5d9a4a7770e603b",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/scene-render-comparison.jpg",
+    "sha256": "80a59e30978915b89a5dd17b79dac98cff5238cc7dfbae8ec69db5b9e85e6cc8",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
+  },
+  {
+    "file": "assets/vtk-render-comparison.jpg",
+    "sha256": "6917e7a55e3c7cecb34cfe576bd7c47b18187d3febf33c65f2dff0a07122c0f0",
+    "source": "Project SLAM localization maps and task geometry; docs/visual-comparison.md",
+    "treatment": "Original scientific visualization or diagram. Display processing and renderer comparisons are described in docs/visual-comparison.md."
   }
 ]
