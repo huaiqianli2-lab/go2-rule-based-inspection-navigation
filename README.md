@@ -1,4 +1,4 @@
-# Go2 Patrol
+# Go2 Patrol: Rule-Based Inspection with LiDAR SLAM and Unitree Go2 EDU
 
 Rule-based LiDAR SLAM inspection with Unitree Go2 EDU. The system plans routes with Dijkstra and links each field run to its trajectory and inspection photos.
 
@@ -9,7 +9,9 @@ Rule-based LiDAR SLAM inspection with Unitree Go2 EDU. The system plans routes w
 
 ## Overview
 
-[![Indoor and outdoor height-colored LiDAR maps with planned routes, observation poses and the inspection workflow](assets/slam-overview.jpg)](docs/system.md)
+[![System architecture from XT16 and IMU acquisition through LIO-SAM, dual-map planning, Go2 execution and inspection records](assets/inspection-architecture.svg)](docs/system.md)
+
+[![Indoor and outdoor height-colored LiDAR maps with original planned routes and observation poses](assets/slam-overview.jpg)](docs/system.md)
 
 ## XT16 mapping calibration
 
@@ -30,6 +32,8 @@ The XT16 frame adaptation rotates Go2 IMU vectors from frame I into LiDAR frame 
 ```
 
 ## Navigation and line-of-sight layers
+
+[![Cross-section of one grid cell showing the two height bands and independent two-return occupancy tests](assets/navigation-sight-layers.svg)](docs/mapping.md)
 
 The planner estimates local ground from the point cloud and the nearest recorded mapping pose. Near the trajectory, a height ceiling filters canopy and overhead returns before the ground percentile is computed. Here $g_k=z_k-0.485$ m and $d_c$ is the horizontal distance from cell $c$ to that pose.
 
@@ -66,15 +70,15 @@ Download the [indoor and outdoor datasets](datasets/). Each includes a metric XY
 
 ## SLAM-map physical simulation
 
-The Go2 follows the original inspection routes on LiDAR-derived terrain in MuJoCo. The fixed maps show Go2 heading, driven path, active route and the next observation pose. The insets show the same moments at 1× speed.
+The paired views replay the same recorded MuJoCo states at 1× speed. The fixed 2D map shows Go2 heading, the driven path and the active plan to the next observation pose. The wider oblique 3D view shows the simulated robot walking through LiDAR-derived terrain. A mint marker identifies the robot, and the mint trail marks its recent simulated positions.
 
 **Outdoor · 8/8 inspection stops and return**
 
-[![Close view of Go2 walking on the outdoor SLAM map](assets/slam-outdoor-route.webp)](assets/slam-outdoor-route.mp4?raw=1)
+[![Synchronized outdoor 2D route and wide 3D MuJoCo view of Go2 walking](assets/slam-outdoor-route.webp)](assets/slam-outdoor-route.mp4?raw=1)
 
 **Indoor · 4/22 inspection stops before a contact-triggered safety stop**
 
-[![Close view of Go2 walking on the indoor SLAM map](assets/slam-indoor-route.webp)](assets/slam-indoor-route.mp4?raw=1)
+[![Synchronized indoor 2D route and wide 3D MuJoCo view of Go2 walking](assets/slam-indoor-route.webp)](assets/slam-indoor-route.mp4?raw=1)
 
 ## Navigation comparison
 
@@ -86,3 +90,13 @@ The Go2 follows the original inspection routes on LiDAR-derived terrain in MuJoC
 python -m pip install -r requirements.txt
 python -m examples.offline_audit
 ```
+
+## Acknowledgments
+
+- [Unitree Robotics](https://support.unitree.com/home/zh/developer/about_Go2) for the official Go2 developer documentation.
+- [Hesai Technology](https://www.hesaitech.com/product_downloads/xt32-16/) for the official XT16 LiDAR documentation.
+- [University of Electronic Science and Technology of China (UESTC)](https://en.uestc.edu.cn/) for providing equipment and resource support.
+
+## License
+
+The [LICENSE](LICENSE) file describes rights and attribution for the code, documentation, datasets and media. It does not grant a general right to modify or redistribute those materials. See the notice for dataset evaluation and reuse terms. Third-party components remain governed by their respective upstream licenses.

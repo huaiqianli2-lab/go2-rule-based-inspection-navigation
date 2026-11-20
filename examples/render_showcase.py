@@ -1,4 +1,4 @@
-"""Render a close follow-camera excerpt from the archived SLAM-map runs."""
+"""Render synchronized route and 3D views from the archived SLAM-map runs."""
 
 import argparse
 import json
@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from .render_slam import BG, WHITE, MINT, AMBER, font
 from tools.point_cloud import HEIGHT_COLORS, map_view, read_xyz
-from .slam_patrol import SCENES, build_model, input_file, load_inputs
+from .slam_patrol import SCENES, build_model, ground, input_file, load_inputs
 
 
 def main():
@@ -21,7 +21,7 @@ def main():
     p.add_argument("--ffmpeg", type=Path, required=True)
     p.add_argument("--preview", action="store_true")
     args = p.parse_args()
-    task, _, _ = load_inputs(args.inputs, args.scene)
+    task, terrain, _ = load_inputs(args.inputs, args.scene)
     summary = json.loads((args.run / "mission.json").read_text())
     states = np.load(args.run / "states.npz")
     times = states["times"]
@@ -36,7 +36,7 @@ def main():
     # The large outdoor map otherwise clips a close camera through the terrain.
     model.vis.map.znear = 0.04 / model.stat.extent
     data = mj.MjData(model)
-    main = mj.Renderer(model, 310, 500, max_geom=100000)
+    renderer = mj.Renderer(model, 584, 870, max_geom=100000)
     options = mj.MjvOption()
     options.geomgroup[3] = False
     options.sitegroup[:] = False
@@ -44,22 +44,33 @@ def main():
     # retain the original geometry and parameters in the separate simulation.
     for g in range(model.ngeom):
         if model.geom(g).name.startswith("obstacle_"):
-            model.geom_rgba[g, 3] = 0.5
+            model.geom_rgba[g, 3] = 0.42
     cloud = read_xyz(input_file(args.inputs, SCENES[args.scene][-1]))
     # Freeze the map viewport for the whole clip. The position marker moves
     # across measured returns and the real goal remains on screen.
-    selected_stops = np.unique(states["completed"][keep])
+    qpos = states["qpos"]
+    stop_counts = states["completed"]
+    selected_stops = np.unique(stop_counts[keep])
     goals = np.array(
         [[task["stops"][j]["observe"][axis] for axis in "xy"] for j in selected_stops]
     )
-    segment = np.vstack([states["qpos"][keep, :2], goals])
+    segment = np.vstack([qpos[keep, :2], goals])
     bounds = (segment.min(axis=0) - 3.5, segment.max(axis=0) + 3.5)
     limits = np.percentile(cloud[:, 2], [8, 94])
-    rgb, project, scale = map_view(cloud, bounds, (1000, 662), limits, point_radius=1)
+    rgb, project, scale = map_view(cloud, bounds, (620, 584), limits, point_radius=1)
     map_base = Image.fromarray(rgb)
     path = np.array(task["planned_path"])
     camera = mj.MjvCamera()
     camera.type = mj.mjtCamera.mjCAMERA_FREE
+    # Drape the recorded base XY trace onto the simulated terrain.
+    surface = {key: terrain[key] for key in ("origin", "resolution", "ground")}
+    trace_start = max(0, keep[0] - 175)
+    trace_xy = qpos[trace_start : keep[-1] + 1, :2]
+    trace_xyz = np.column_stack(
+        [trace_xy, [ground(surface, xy) + 0.045 for xy in trace_xy]]
+    )
+    mint = np.array([0.24, 0.96, 0.77, 1.0], dtype=np.float32)
+    identity = np.eye(3).ravel()
     output = args.run / f"slam-{args.scene}-route.mp4"
     temporary = args.run / f"slam-{args.scene}.route.partial.mp4"
     command = [
@@ -96,16 +107,34 @@ def main():
     poster = keep[len(keep) // 2]
     for number, i in enumerate(keep):
         t = float(times[i])
-        xy = states["qpos"][i, :2]
-        data.qpos[:] = states["qpos"][i]
+        xy = qpos[i, :2]
+        data.qpos[:] = qpos[i]
         mj.mj_forward(model, data)
-        # Keep a stable world orientation so the scan moves continuously past
-        # the robot through turns. A close view makes individual steps visible.
-        camera.lookat[:] = data.qpos[:3] + [0, 0, -0.12]
-        camera.distance = 1.8
-        camera.azimuth = 210
-        camera.elevation = -50
-        main.update_scene(data, camera=camera, scene_option=options)
+        # Keep a fixed azimuth through turns. The low oblique camera shows
+        # nearby obstacle heights and the robot's displacement across the terrain.
+        camera.lookat[:] = data.qpos[:3] + [0.3, -0.15, 0.24]
+        camera.distance = 4.0
+        camera.azimuth = 215 if args.scene == "outdoor" else 210
+        camera.elevation = -37
+        renderer.update_scene(data, camera=camera, scene_option=options)
+        scene = renderer.scene
+        recent = list(range(max(0, i - 175), i, 5)) + [i]
+        for previous, current in zip(recent, recent[1:]):
+            start_xyz, end_xyz = trace_xyz[np.array([previous, current]) - trace_start]
+            if np.linalg.norm(end_xyz - start_xyz) < 0.015:
+                continue
+            geom = scene.geoms[scene.ngeom]
+            mj.mjv_initGeom(geom, mj.mjtGeom.mjGEOM_CAPSULE, np.zeros(3), np.zeros(3), identity, mint)
+            mj.mjv_connector(geom, mj.mjtGeom.mjGEOM_CAPSULE, 0.025, start_xyz, end_xyz)
+            scene.ngeom += 1
+        # Place a locator above the simulated base so the robot remains easy
+        # to spot when the camera looks across an obstacle.
+        locator = data.qpos[:3] + [0, 0, 0.49]
+        mj.mjv_initGeom(
+            scene.geoms[scene.ngeom], mj.mjtGeom.mjGEOM_SPHERE,
+            np.full(3, 0.055), locator, identity, mint,
+        )
+        scene.ngeom += 1
         image = Image.new("RGB", (1600, 900), BG)
         draw = ImageDraw.Draw(image)
 
@@ -113,8 +142,10 @@ def main():
             draw.text((x, y), s, font=font(n, bold), fill=color)
 
         text(36, 30, f"{args.scene.capitalize()} inspection route", 46, WHITE, True)
-        text(1070, 42, f"{t:.1f} s · MuJoCo", 31, WHITE, True)
-        completed = int(states["completed"][i])
+        text(1240, 42, f"{t:.1f} s · MuJoCo", 31, WHITE, True)
+        text(36, 104, "2D  /  Route and heading", 27, WHITE, True)
+        text(694, 104, "3D  /  Go2 on LiDAR-derived terrain", 27, WHITE, True)
+        completed = int(stop_counts[i])
         stop = task["stops"][min(completed, len(task["stops"]) - 1)]
         goal = np.array([stop["observe"][axis] for axis in "xy"])
         panel = map_base.copy()
@@ -124,7 +155,7 @@ def main():
         map_draw.line(
             [tuple(v) for v in project(np.vstack([leg, goal]))], fill=AMBER, width=6
         )
-        trace = project(states["qpos"][: i + 1, :2])
+        trace = project(qpos[: i + 1, :2])
         if len(trace) > 1:
             map_draw.line([tuple(v) for v in trace], fill=MINT, width=5)
         gx, gy = project(goal)
@@ -132,7 +163,7 @@ def main():
             (gx - 12, gy - 12, gx + 12, gy + 12), fill=AMBER, outline=BG, width=3
         )
         map_draw.text(
-            (min(gx + 18, 810), max(18, gy - 38)),
+            (min(gx + 18, 440), max(18, gy - 38)),
             "NEXT STOP",
             font=font(24, True),
             fill=AMBER,
@@ -160,33 +191,26 @@ def main():
             stroke_fill=BG,
         )
         metre = 2 * scale
-        map_draw.line((28, 620, 28 + metre, 620), fill=WHITE, width=4)
-        map_draw.text((28, 627), "2 m", font=font(20), fill=WHITE)
-        image.paste(panel, (36, 118))
-        text(40, 802, "Go2 heading", 26, WHITE, True)
-        text(268, 802, "Driven", 26, MINT, True)
-        text(419, 802, "Active plan", 26, AMBER, True)
-        text(669, 802, "LiDAR height · low → high", 23)
+        map_draw.line((28, 537, 28 + metre, 537), fill=WHITE, width=4)
+        map_draw.text((28, 544), "2 m", font=font(20), fill=WHITE)
+        image.paste(panel, (36, 147))
+        image.paste(Image.fromarray(renderer.render()), (694, 147))
+        text(36, 752, "Go2 heading", 23, WHITE, True)
+        text(211, 752, "Driven", 23, MINT, True)
+        text(320, 752, "Active plan", 23, AMBER, True)
+        text(482, 752, "LiDAR height", 20)
         for index, color in enumerate(HEIGHT_COLORS):
-            x0 = 672 + 53 * index
-            draw.rectangle((x0, 839, x0 + 52, 849), fill=tuple(color))
-        text(1060, 115, "Go2 dynamics", 25, WHITE, True)
-        image.paste(Image.fromarray(main.render()), (1058, 156))
-        text(1060, 503, f"Next stop · {stop['id']}", 38, AMBER, True)
-        text(1060, 566, f"{np.linalg.norm(goal - xy):.1f} m straight-line", 28)
+            x0 = 484 + 25 * index
+            draw.rectangle((x0, 783, x0 + 24, 790), fill=tuple(color))
+        text(694, 752, "Mint marker · Go2 position   /   Mint trail · recent path", 23, MINT, True)
+        draw.line((36, 809, 1564, 809), fill="#405065", width=2)
+        text(36, 833, f"Next stop · {stop['id']}  /  {np.linalg.norm(goal - xy):.1f} m", 26, AMBER, True)
         returned = summary["return_completed"]
         reached = summary["completed_inspection_targets"]
         total = summary["required_inspection_targets"]
-        text(1060, 675, "FULL MISSION", 23, WHITE, True)
-        text(
-            1060,
-            716,
-            f"{reached}/{total} inspection stops",
-            34,
-            MINT if returned else AMBER,
-            True,
-        )
-        text(1060, 772, "Returned to start" if returned else "Safety stop", 29)
+        outcome = "returned to start" if returned else "contact-triggered safety stop"
+        text(694, 833, f"Full mission · {reached}/{total} stops · {outcome}", 26,
+             MINT if returned else AMBER, True)
         if i == poster:
             image.save(args.run / f"slam-{args.scene}.jpg", quality=93)
         if args.preview:
@@ -195,6 +219,7 @@ def main():
             proc.stdin.write(image.tobytes())
         if number % 250 == 0:
             print(args.scene, "render", number, len(keep), flush=True)
+    renderer.close()
     if proc is not None:
         proc.stdin.close()
         if proc.wait():

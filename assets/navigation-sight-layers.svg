@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 443" role="img"><title>Navigation and line-of-sight masks</title><desc>Schematic side view of a 0.15 metre cell. Height bands above estimated ground count returns independently. At least two in-band returns flag a cell.</desc>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#59718c"/></marker></defs>
+<g font-family="Arial, Helvetica, sans-serif">
+<rect x="1" y="1" width="1198" height="441" rx="20" fill="#f4f7fb" stroke="#d4deea"/>
+<text x="29" y="47" font-size="32" fill="#142742" font-weight="700">Two obstacle masks from one point cloud</text>
+<rect x="27" y="68" width="620" height="347" rx="10" fill="white" stroke="#d4deea"/>
+<text x="51" y="100" font-size="23" fill="#142742" font-weight="700">Cell cross-section</text>
+<text x="51" y="126" font-size="17" fill="#475e78" font-weight="400">Relative height above estimated local ground</text>
+<rect x="264" y="151" width="320" height="102" rx="0" fill="#ffecd9" stroke="none"/>
+<rect x="264" y="274" width="320" height="37" rx="0" fill="#d9eafd" stroke="none"/>
+<path d="M264 149V334H584V149" fill="none" stroke="#475e78" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="144" y="154" font-size="17" fill="#475e78" font-weight="400">2.20 m</text>
+<path d="M235 151H584" fill="none" stroke="#b2c0cf" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="144" y="256" font-size="17" fill="#475e78" font-weight="400">0.90 m</text>
+<path d="M235 253H584" fill="none" stroke="#b2c0cf" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="144" y="277" font-size="17" fill="#475e78" font-weight="400">0.6296 m</text>
+<path d="M235 274H584" fill="none" stroke="#b2c0cf" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="144" y="314" font-size="17" fill="#475e78" font-weight="400">0.16 m</text>
+<path d="M235 311H584" fill="none" stroke="#b2c0cf" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="144" y="337" font-size="17" fill="#475e78" font-weight="400">0 m</text>
+<path d="M235 324H584" fill="none" stroke="#b2c0cf" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M263 324h321" fill="none" stroke="#087c6b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="284" y="349" font-size="19" fill="#087c6b" font-weight="700">Estimated local ground</text>
+<path d="M264 380h320m-320 -7v14m320 -14v14" fill="none" stroke="#475e78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="365" y="400" font-size="18" fill="#475e78" font-weight="400">0.15 m cell</text>
+<circle cx="364" cy="320" r="4" fill="#8394a8"/>
+<circle cx="415" cy="322" r="4" fill="#8394a8"/>
+<circle cx="538" cy="320" r="4" fill="#8394a8"/>
+<circle cx="313" cy="328" r="4" fill="#8394a8"/>
+<circle cx="387" cy="144" r="4" fill="#8394a8"/>
+<circle cx="464" cy="262" r="4" fill="#8394a8"/>
+<circle cx="527" cy="265" r="4" fill="#8394a8"/>
+<circle cx="375" cy="298" r="6" fill="#216dcc"/>
+<circle cx="425" cy="285" r="6" fill="#216dcc"/>
+<circle cx="442" cy="192" r="6" fill="#a74a12"/>
+<circle cx="493" cy="215" r="6" fill="#a74a12"/>
+<rect x="705" y="83" width="467" height="138" rx="10" fill="white" stroke="#d4deea"/>
+<rect x="719" y="97" width="435" height="31" rx="5" fill="#ffecd9" stroke="none"/>
+<text x="733" y="119" font-size="22" fill="#a74a12" font-weight="700">Line-of-sight mask</text>
+<text x="733" y="154" font-size="20" fill="#475e78" font-weight="400">0.90 &lt; relative height &lt; 2.20 m</text>
+<text x="733" y="180" font-size="20" fill="#142742" font-weight="700">Flag cell if ≥ 2 returns fall in this band</text>
+<text x="733" y="206" font-size="18" fill="#475e78" font-weight="400">Screen candidate viewing poses</text>
+<rect x="705" y="237" width="467" height="138" rx="10" fill="white" stroke="#d4deea"/>
+<rect x="719" y="251" width="435" height="31" rx="5" fill="#d9eafd" stroke="none"/>
+<text x="733" y="273" font-size="22" fill="#216dcc" font-weight="700">Navigation mask</text>
+<text x="733" y="308" font-size="20" fill="#475e78" font-weight="400">0.16 &lt; relative height &lt; 0.6296 m</text>
+<text x="733" y="334" font-size="20" fill="#142742" font-weight="700">Flag cell if ≥ 2 returns fall in this band</text>
+<text x="733" y="360" font-size="18" fill="#475e78" font-weight="400">Check clearance along the route</text>
+<path d="M584 200h75v-50h43" fill="none" stroke="#59718c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M584 292h118" fill="none" stroke="#59718c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="704" y="404" font-size="18" fill="#475e78" font-weight="400">Schematic · band heights drawn to scale</text>
+</g></svg>

@@ -30,7 +30,7 @@ At each original observation pose, a capture request requires 0.60 s of consecut
 
 ## Route previews
 
-The README previews use continuous 11-second excerpts at 1× from the recorded physics state arrays: indoor at 2–13 s and outdoor at 110–121 s. Use the same arguments with `python -m examples.render_showcase` to render these views. The fixed map uses all finite returns from the source localization cloud. Each visible point footprint is rendered up to three pixels wide for readability. Colors encode map Z at the highest displayed return. The overlay shows the actual simulated trace and heading, the planned waypoint leg, and the next observation pose. The result panel summarizes the full recorded mission.
+The README previews use continuous 11-second excerpts at 1× from the recorded physics state arrays: indoor at 2–13 s and outdoor at 110–121 s. Use the same arguments with `python -m examples.render_showcase` to render these views. The fixed map uses all finite returns from the source localization cloud. Each visible point footprint is rendered up to three pixels wide for readability. Colors encode map Z at the highest displayed return. The overlay shows the actual simulated trace and heading, the planned waypoint leg, and the next observation pose. The oblique 3D camera uses the same state at each frame. A mint marker identifies the simulated Go2 and a ground trace shows its recent motion. The result strip summarizes the full recorded mission.
 
 [Indoor route excerpt](../assets/slam-indoor-route.mp4?raw=1) · [Outdoor route excerpt](../assets/slam-outdoor-route.mp4?raw=1)
 
