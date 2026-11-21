@@ -34,6 +34,6 @@ The [maps](gallery.md) visualize the stored route and target poses for two histo
 
 The [SVG overview](../assets/architecture.svg) and [editable draw.io source](architecture.drawio) show the roles of the desktop and robot hardware. Solid edges show the mission flow. Dashed edges show onboard hardware services.
 
-The [integrated overview](../assets/system-overview.png) combines the workflow and both measured route maps on a single canvas. Its [draw.io master](system-overview.drawio) embeds the map panels and retains editable labels, modules and arrows. The separate [planning-layer master](navigation-sight-principle.drawio) illustrates the independent per-cell height-band tests.
+The [integrated overview](../assets/system-overview.png) combines the workflow and both measured route maps on a single canvas. Its [draw.io master](system-overview.drawio) embeds the map panels and retains editable labels, modules and arrows, with individually selectable projected vector faces. The separate [planning-layer master](navigation-sight-principle.drawio) illustrates the independent per-cell height-band tests in 3D, followed by candidate observation-pose screening. [The implementation notes](mapping.md#observation-pose-selection) describe trajectory-first selection and relaxed fallback stages.
 
 [Back to the README](../README.md)

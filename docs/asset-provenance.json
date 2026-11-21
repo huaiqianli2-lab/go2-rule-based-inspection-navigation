@@ -109,13 +109,13 @@
     "file": "assets/indoor-mission-poster.jpg",
     "sha256": "8152d36ede7f94a17a96bb3bb01afe0d1c9d37ea82877f3ba7f37f9010f15a36",
     "source": "One archived indoor mission with recorded positions, a LiDAR corner cloud, and capture events",
-    "treatment": "1600 \u00d7 900 frame. Time-compressed field replay."
+    "treatment": "1600 × 900 frame. Time-compressed field replay."
   },
   {
     "file": "indoor-mission-replay.mp4",
     "sha256": "4ee467c54800babc49813c90a20566df97d81d762b425832839df0545a30ab6b",
     "source": "One archived indoor mission with recorded positions, a LiDAR corner cloud, and capture events",
-    "treatment": "1600 \u00d7 900 video. Time-compressed field replay.",
+    "treatment": "1600 × 900 video. Time-compressed field replay.",
     "release_asset": true,
     "release_tag": "v0.3.0"
   },
@@ -129,13 +129,13 @@
     "file": "assets/obstacle-replan-poster.jpg",
     "sha256": "12116a533ef7cc879668fd2f5acd8e4ce848c550defb00198c018e753476ecdc",
     "source": "Synthetic occupancy-grid A* replan rendered with the MuJoCo Menagerie Go2 model",
-    "treatment": "1600 \u00d7 900 frame. Prescribed-pose visualization of the computed routes."
+    "treatment": "1600 × 900 frame. Prescribed-pose visualization of the computed routes."
   },
   {
     "file": "obstacle-replan-mujoco.mp4",
     "sha256": "0891c1d5106e58a7925831476a13ae78c34401af2e35f2b489edccc53f94315f",
     "source": "Synthetic occupancy-grid A* replan rendered with the MuJoCo Menagerie Go2 model",
-    "treatment": "1600 \u00d7 900 video. Prescribed-pose visualization of the computed routes.",
+    "treatment": "1600 × 900 video. Prescribed-pose visualization of the computed routes.",
     "release_asset": true,
     "release_tag": "v0.3.0"
   },
@@ -147,9 +147,9 @@
   },
   {
     "file": "assets/slam-indoor.jpg",
-    "sha256": "d2aa37007f86bb5654b52b7b86b7dde7a690884be37e9b311d6dbef7e1482fa3",
+    "sha256": "6306864da516a1e5044c387799bf109d6f28de9083dcacd40f549c9415c3e8af",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Fine display points interpolated locally between measured returns. Height coloring and a wider chase view show the archived Go2 poses."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   },
   {
     "file": "assets/slam-indoor.mp4",
@@ -171,9 +171,9 @@
   },
   {
     "file": "assets/slam-outdoor.jpg",
-    "sha256": "7460d01fd0bce4eeb9c87f18b8cb263a4f562b27344710dc6ffc84c83fb663e7",
+    "sha256": "8ded1f60514115568e4074608e66b28a5982f5a2e670af5f89aadb3e5579afb0",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Fine display points interpolated locally between measured returns. Height coloring and a wider chase view show the archived Go2 poses."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   },
   {
     "file": "assets/slam-outdoor.mp4",
@@ -198,7 +198,7 @@
     "file": "assets/slam-indoor-walk.mp4",
     "sha256": "eefab5f22c20ba66ea11e67d9944d1c15e856cee88f87137fee2225998c965f8",
     "source": "Indoor physics state archive in docs/data/slam-physics-results.json",
-    "treatment": "Continuous 11-second close follow view at 1\u00d7, rendered by examples/render_showcase.py."
+    "treatment": "Continuous 11-second close follow view at 1×, rendered by examples/render_showcase.py."
   },
   {
     "file": "assets/field-exterior-indoor.webp",
@@ -211,7 +211,7 @@
     "file": "assets/slam-indoor-walk.webp",
     "sha256": "ecffa24f7d4c3e416d81b082e24870fa415d8da49d21b520066b638359323116",
     "source": "Indoor physics state archive in docs/data/slam-physics-results.json",
-    "treatment": "Continuous 11-second close follow view at 1\u00d7, rendered by examples/render_showcase.py."
+    "treatment": "Continuous 11-second close follow view at 1×, rendered by examples/render_showcase.py."
   },
   {
     "file": "assets/field-exterior-outdoor.mp4",
@@ -224,7 +224,7 @@
     "file": "assets/slam-outdoor-walk.mp4",
     "sha256": "b8f067eb40bad3683b77d5ca110d960c162f879c23bcbced48269182d48af5b0",
     "source": "Outdoor physics state archive in docs/data/slam-physics-results.json",
-    "treatment": "Continuous 11-second close follow view at 1\u00d7, rendered by examples/render_showcase.py."
+    "treatment": "Continuous 11-second close follow view at 1×, rendered by examples/render_showcase.py."
   },
   {
     "file": "assets/field-exterior-outdoor.webp",
@@ -237,7 +237,7 @@
     "file": "assets/slam-outdoor-walk.webp",
     "sha256": "12a46c342007fbab3263c01b30b873b6ad9cd171bd12eb268150eda39ade34b4",
     "source": "Outdoor physics state archive in docs/data/slam-physics-results.json",
-    "treatment": "Continuous 11-second close follow view at 1\u00d7, rendered by examples/render_showcase.py."
+    "treatment": "Continuous 11-second close follow view at 1×, rendered by examples/render_showcase.py."
   },
   {
     "file": "assets/indoor-mission-replay.mp4",
@@ -259,27 +259,27 @@
   },
   {
     "file": "assets/slam-indoor-route.mp4",
-    "sha256": "b913a0f17ae30481f23ebbec75f6915ec98c5d6980b94709953e9c17726a1da1",
+    "sha256": "58b434283ac1d5c88b0851b877afc9b22dde688132569e4443c262a48b9589b1",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Fine display points interpolated locally between measured returns. Height coloring and a wider chase view show the archived Go2 poses."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   },
   {
     "file": "assets/slam-indoor-route.webp",
-    "sha256": "a2f35cf85f0e5358130a799c5c62ef133b19a31c8cafd521fd00f5695b1f08a8",
+    "sha256": "5b91f61ff3938147a8afa85c23ba48f92399bcbcf966c21c554f2e49cf360e3d",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Fine display points interpolated locally between measured returns. Height coloring and a wider chase view show the archived Go2 poses."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   },
   {
     "file": "assets/slam-outdoor-route.mp4",
-    "sha256": "9bd706649ef6bd9c0c7f70e7cfb14205974062df609ab98c71782c8b7da8192b",
+    "sha256": "83565f03c8fab82d84350ecabed0ebe97bf7e795188dd7b114f1ac5ff6634e64",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Fine display points interpolated locally between measured returns. Height coloring and a wider chase view show the archived Go2 poses."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   },
   {
     "file": "assets/slam-outdoor-route.webp",
-    "sha256": "a3282cb924d8fe040f1bf0b420d79efed75ccd6e71cf9a0e2ff4a105b8009a17",
+    "sha256": "5e9327b6965aa5fc02eb6f0d7859a03ae622582ff5c9a9dbe9bb60f0b291d4f6",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Fine display points interpolated locally between measured returns. Height coloring and a wider chase view show the archived Go2 poses."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   },
   {
     "file": "assets/inspection-architecture.svg",
@@ -289,9 +289,9 @@
   },
   {
     "file": "assets/navigation-sight-layers.svg",
-    "sha256": "6ace13de3d61dde83c9b403711a92eb025f29bc366b550f8a42c008decdd2aeb",
-    "source": "Original planner height bands and independent two-return tests",
-    "treatment": "Height cross-section aligned with per-cell return counts for the two masks."
+    "sha256": "922ff263924644e14133de131abd150d5cc1f8a003922c6fc786a23aa6fa987f",
+    "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
+    "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
   },
   {
     "file": "assets/inspection-architecture.png",
@@ -301,9 +301,9 @@
   },
   {
     "file": "assets/navigation-sight-layers.png",
-    "sha256": "e1d92b4468c3d8c61e78eaa98dfd2d1401c01e099b1f1f7a49b15c279d1264f0",
-    "source": "Original planner height bands and independent two-return tests",
-    "treatment": "Height cross-section aligned with per-cell return counts for the two masks."
+    "sha256": "672502414ce0dc153b5a98ba2dc26f1d2443622da0f59f49effcf000cd30ac15",
+    "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
+    "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
   },
   {
     "file": "assets/indoor-scene-3d.png",
@@ -355,15 +355,15 @@
   },
   {
     "file": "assets/system-overview.png",
-    "sha256": "3eadb14270148734c45e88564cf0408884199650348b4fe834bfa665a0d2f62a",
-    "source": "Published metric LiDAR datasets and original route JSON; existing supervised project workflow",
-    "treatment": "Editable light-background workflow with measured plan views, planned routes and observation poses."
+    "sha256": "5ef9bdbd9f76cc36a9cbf418c360f54195d481440477e9daa54782e1dcf78a14",
+    "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
+    "treatment": "Four colored workflow cards with original isometric process sketches; measured map-Z-colored panels, planned routes and observation poses."
   },
   {
     "file": "assets/system-overview.svg",
-    "sha256": "666069f4636dd336f5875e9b8f04f4a001dd9c9a7ad558cc1437b7790375e1bd",
-    "source": "Published metric LiDAR datasets and original route JSON; existing supervised project workflow",
-    "treatment": "Editable light-background workflow with measured plan views, planned routes and observation poses."
+    "sha256": "6ae857ecd0b75e2f7dc19bb6ce3a2aa5f364d71a01a39ccf1b8eaae34b897eae",
+    "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
+    "treatment": "Four colored workflow cards with original isometric process sketches; measured map-Z-colored panels, planned routes and observation poses."
   },
   {
     "file": "assets/patrol-display-comparison.jpg",
@@ -379,14 +379,20 @@
   },
   {
     "file": "docs/system-overview.drawio",
-    "sha256": "7fdd753279e1cb0aece391ff3de0e2d4814b0a76293a0b18429f0a197964cca1",
-    "source": "Published metric LiDAR datasets and original route JSON; existing supervised project workflow",
-    "treatment": "Editable light-background workflow with measured plan views, planned routes and observation poses."
+    "sha256": "aed6ecf2d22a2f41f2b73c785f139e82eca9eb7237e85f5d3eb08592ede2e637",
+    "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
+    "treatment": "Four colored workflow cards with original isometric process sketches; measured map-Z-colored panels, planned routes and observation poses."
   },
   {
     "file": "docs/navigation-sight-principle.drawio",
-    "sha256": "517c397fae8752974cb819eb3c6752b5d9411a7fb76f4af2995f98c711d05138",
-    "source": "Original planner height bands and independent two-return tests",
-    "treatment": "Height cross-section aligned with per-cell return counts for the two masks."
+    "sha256": "fbf09b3406753ce55a65ed89a19bdfb1e67912265ced5408c11123d7511c29a7",
+    "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
+    "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
+  },
+  {
+    "file": "assets/patrol-camera-comparison.jpg",
+    "sha256": "667455abaea98eaaeccd3a9bdd99c90ad3f330090f261366d36fd36930e7aa10",
+    "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   }
 ]

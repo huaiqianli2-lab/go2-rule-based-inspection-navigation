@@ -205,7 +205,10 @@ def main():
                 )
                 d.line((1310 + k, 934, 1310 + k, 945), fill=rgb)
             d.text(
-                (1308, 949), "0                  2 (clipped)", font=font(24), fill=WHITE
+                (1308, 949),
+                f"0                  {renderer.height_span:g} (clipped)",
+                font=font(24),
+                fill=WHITE,
             )
             full = f"{summary['completed_inspection_targets']}/{summary['required_inspection_targets']} stops"
             outcome = (
@@ -261,6 +264,10 @@ def main():
                 interpolation_plane_tolerance_m=0.023,
                 edl_weight=0.15,
                 pca_neighbors=12,
+                camera_offset_m=renderer.camera_offset.tolist(),
+                camera_vertical_fov_deg=renderer.camera_fov,
+                display_radius_m=renderer.display_radius_m,
+                display_upper_height_m=2.0 if args.scene == "indoor" else 8.0,
                 displayed_time_s=[float(times[keep[0]]), float(times[keep[-1]])],
             ),
             indent=2,

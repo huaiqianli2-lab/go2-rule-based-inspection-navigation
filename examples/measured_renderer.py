@@ -18,15 +18,22 @@ PALETTE = ["#a6afb6", "#4fb9cf", "#2c9c9a", "#dfb554", "#cb6548"]
 
 class MeasuredRenderer:
     def __init__(self, model, cloud, poses, scene, size=(1740, 870)):
+        self.camera_offset = np.array(
+            [-4.5, -5.3, 3.8] if scene == "indoor" else [-5.6, -6.4, 4.8]
+        )
+        self.camera_fov = 42 if scene == "indoor" else 46
+        self.display_radius_m = 20 if scene == "indoor" else 27
         self.model, self.scene, self.size = model, scene, size
         center = np.median(poses[:, :2], axis=0)
-        radius = 17 + np.max(np.linalg.norm(poses[:, :2] - center, axis=1))
-        local = cloud[np.linalg.norm(cloud[:, :2] - center, axis=1) < radius]
-        self.floor = float(np.percentile(local[:, 2], 8))
-        self.height_span = 2.0
+        excursion = np.max(np.linalg.norm(poses[:, :2] - center, axis=1))
+        distances = np.linalg.norm(cloud[:, :2] - center, axis=1)
+        # Preserve the previous reference while including a wider display neighborhood.
+        self.floor = float(np.percentile(cloud[distances < 17 + excursion, 2], 8))
+        local = cloud[distances < self.display_radius_m + excursion]
+        self.height_span = 2.0 if scene == "indoor" else 6.0
         local = local[
             (local[:, 2] > self.floor - 0.3)
-            & (local[:, 2] < self.floor + (2.0 if scene == "indoor" else 4.5))
+            & (local[:, 2] < self.floor + (2.0 if scene == "indoor" else 8.0))
         ]
         points = vtk.vtkPoints()
         points.SetData(numpy_to_vtk(np.ascontiguousarray(local), deep=True))
@@ -149,7 +156,7 @@ class MeasuredRenderer:
             mesh_mapper.SetInputConnection(mesh_normals.GetOutputPort())
             mesh_actor = vtk.vtkActor()
             mesh_actor.SetMapper(mesh_mapper)
-            mesh_actor.GetProperty().SetColor(0.75, 0.78, 0.82)
+            mesh_actor.GetProperty().SetColor(0.85, 0.88, 0.92)
             mesh_actor.GetProperty().SetSpecular(0.35)
             mesh_actor.GetProperty().SetSpecularPower(25)
             matrix = vtk.vtkMatrix4x4()
@@ -214,8 +221,8 @@ class MeasuredRenderer:
         self.trace_poly.Modified()
         camera = self.renderer.GetActiveCamera()
         camera.SetFocalPoint(*(data.qpos[:3] + [0, 0, 0.1]))
-        camera.SetPosition(*(data.qpos[:3] + np.array([-0.7, -0.8, 0.6]) * 4.9))
-        camera.SetViewAngle(34)
+        camera.SetPosition(*(data.qpos[:3] + self.camera_offset))
+        camera.SetViewAngle(self.camera_fov)
         camera.SetViewUp(0, 0, 1)
         camera.SetClippingRange(0.03, 1000)
         self.renderer.SetPass(self.edl)
