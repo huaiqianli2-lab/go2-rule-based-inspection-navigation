@@ -280,147 +280,86 @@ def robot(f, x, y, color=PURPLE, s=1):
     f.rect(x - 19 * s, y - 34 * s, 14 * s, 12 * s, "#617a98", r=2)
 
 
-def go2_pose(f, p, xy, name, scale=1.3):
-    """Grounded orthographic Go2 mesh; camera anchor is illustrative, not calibration."""
+def go2_pose(f, p, xy, name, scale=1.55):
+    """Same orthographic basis and uniform scale as the surrounding scene."""
     meta = json.loads((R / "assets/diagram-robot/anchors.json").read_text())[name]
-    # Match the projected basis of iso(): horizontal and vertical norms differ slightly.
-    sx = math.sqrt(1.5) * 100 * scale / meta["pixels_per_m"]
-    sy = math.sqrt(1 + 2 * 0.43**2) * 100 * scale / meta["pixels_per_m"]
+    k = 100 * scale / meta["pixels_per_m"]
     origin = p(*xy, 0)
     ox, oy = meta["origin_px"]
-    f.image(origin[0] - ox*sx, origin[1] - oy*sy, 600*sx, 600*sy,
+    f.image(origin[0]-ox*k, origin[1]-oy*k, 600*k, 600*k,
             Image.open(R / f"assets/diagram-robot/{name}.png"))
-    return origin + (np.array(meta["camera_px"]) - [ox, oy]) * [sx, sy]
+    return origin + (np.array(meta["camera_px"]) - [ox, oy]) * k
+
+
+def route_image(scene, size):
+    mission = json.loads((R / "datasets" / f"{scene}-route.json").read_text())
+    cloud = read_xyz(R / "datasets" / f"{scene}.pcd")
+    route = np.asarray(mission["planned_xy_m"])
+    stops = np.asarray([a["observe_xyz_m"][:2] for a in mission["stops"] if a["type"] == "inspection"])
+    if scene == "indoor":
+        cloud = cloud[:, [1,0,2]] * [1,-1,1]
+        route = route[:, [1,0]] * [1,-1]
+        stops = stops[:, [1,0]] * [1,-1]
+    limits = np.percentile(cloud[:,2], [5,95])
+    rgb, proj, scale = map_view(cloud, (route.min(0)-2, route.max(0)+2), size, limits,
+                               point_radius=0, background=(16,31,48))
+    im = Image.fromarray(rgb); d = ImageDraw.Draw(im)
+    d.line(list(map(tuple,proj(route))), fill="white", width=8)
+    d.line(list(map(tuple,proj(route))), fill="#16d7b4", width=4)
+    for xx,yy in proj(stops):
+        d.ellipse((xx-4,yy-4,xx+4,yy+4),fill="#ffb65b",outline="white",width=1)
+    y=size[1]-25
+    d.rectangle((10,y-10,30+5*scale,y+22),fill="#101f30")
+    d.line((20,y,20+5*scale,y),fill="white",width=3)
+    d.text((20,y+2),"5 m",font=ImageFont.truetype("DejaVuSans.ttf",17),fill="white")
+    return im, limits
 
 
 def overview():
-    f = Figure("system-overview", 1600, 1370)
-    f.text(42, 62, "From LiDAR survey to inspection route", 48, bold=True)
-    f.text(
-        44, 106, "Measured maps  /  geometric rules  /  supervised inspection", 25, MUT
-    )
-    # Nested dataflow: explicit parallel masks, candidate branches and mission outputs.
-    def box(x, y, w, h, title, detail, col=BLUE, fill="white"):
-        f.rect(x, y, w, h, fill, "#d8e1eb", 10)
-        f.rect(x, y, 5, h, col, r=2)
-        title_size = 23
-        while ImageFont.truetype("DejaVuSans-Bold.ttf", title_size).getlength(title) > w - 36:
-            title_size -= 1
-        f.text(x + 15, y + 30, title, title_size, col, True)
-        if detail:
-            f.text(x + 15, y + 60, detail, 19, MUT)
-
-    for x, w, title, col in [(42, 352, "01  Map the scene", BLUE),
-                              (430, 720, "02  Rule-based planning", TEAL),
-                              (1186, 372, "03  Execute & record", PURPLE)]:
-        f.rect(x, 145, w, 548, "white", "#d8e1eb", 16)
-        f.rect(x, 145, w, 7, col, r=3)
-        f.text(x + 18, 190, title, 28, col, True)
-    box(62, 215, 312, 79, "XT16 LiDAR + IMU", "Recorded survey data")
-    box(62, 322, 312, 79, "LIO-SAM", "Point cloud + trajectory")
-    box(62, 429, 312, 79, "Estimate local ground", "Ground-relative heights")
-    box(62, 570, 312, 89, "Operator annotations", "Inspection target positions", AMBER, "#fff8ed")
-    for y in [294, 401]:
-        f.line([(218, y + 4), (218, y + 25)], BLUE, 2, arrow=True)
-    # Two independent masks share ground-relative heights.
-    box(450, 215, 294, 80, "LOS obstacle mask", "Upper height band", AMBER, "#fff8ed")
-    box(800, 215, 330, 80, "NAV obstacle mask", "Low band + inflation", TEAL, "#edf8f8")
-    f.line([(374, 466), (400, 466), (400, 255), (448, 255)], BLUE, 2, arrow=True)
-    f.line([(400, 255), (400, 204), (965, 204), (965, 214)], BLUE, 2, arrow=True)
-    box(450, 343, 294, 86, "Trajectory candidates", "Range · LOS* · elevation", TEAL)
-    box(800, 343, 330, 86, "Grid fallback (if none)", "Ring / spiral · NAV · LOS* · FOV", TEAL)
-    f.line([(744, 386), (798, 386)], MUT, 2, True, True)
-
-    # LOS feeds both candidate branches; NAV has separate grid and route ports.
-    f.line([(597, 295), (597, 341)], AMBER, 2, arrow=True)
-    f.line([(597, 315), (820, 315), (820, 341)], AMBER, 2, arrow=True)
-    f.line([(965, 295), (965, 341)], TEAL, 2, arrow=True)
-    f.line([(965, 305), (1140, 305), (1140, 548), (1132, 548)],
-           TEAL, 2, arrow=True)
-    # The trajectory is an input distinct from navigation-mask filtering.
-    f.circle(400, 360, 4, "white")
-    f.line([(374, 360), (412, 360), (412, 386), (448, 386)], BLUE, 2, arrow=True)
-    f.line([(374, 615), (420, 615), (420, 420), (448, 420)], AMBER, 2, arrow=True)
-    box(450, 478, 294, 88, "Observation poses", "XYZ · yaw · elevation", TEAL, "#edf8f8")
-    box(800, 478, 330, 88, "Dijkstra leg paths", "NAV graph · visit order", AMBER)
-    for x in [597, 965]:
-        f.line([(x, 429), (x, 454), (597, 454), (597, 476)], TEAL, 2, arrow=True)
-    f.line([(744, 522), (798, 522)], TEAL, 2, arrow=True)
-    f.text(453, 613, "* LOS can be relaxed; invalid poses need review.", 21, FG)
-    f.text(453, 650, "Trajectory candidates do not recheck NAV clearance.", 21, FG)
-    box(1206, 215, 332, 80, "Bundle + preflight", "Map · poses · waypoints", PURPLE)
-    box(1206, 343, 332, 86, "Navigate to each pose", "Capture target images", PURPLE)
-    box(1206, 478, 332, 88, "Return to start", "Photos · trajectory · logs", PURPLE, "#f3effb")
-    f.line([(1130, 522), (1166, 522), (1166, 255), (1204, 255)], PURPLE, 2.5, arrow=True)
-    for y, endy in [(295, 341), (429, 476)]:
-        f.line([(1372, y + 3), (1372, endy)], PURPLE, 2, arrow=True)
-    f.text(1208, 615, "Supervised run", 22, PURPLE, True)
-    f.text(1208, 650, "Go2 EDU + camera", 18, MUT)
-    go2_pose(f, iso((1490, 666), 0.75), (0, 0), "selected", 0.75)
-    f.text(46, 737, "Measured scenes below  /  planned routes and observation stops", 24, MUT)
-    for i, scene in enumerate(["indoor", "outdoor"]):
-        x = 42 + 786 * i
-        f.rect(x, 771, 730, 524, "white", "#d8e1eb", 16)
-        mission = json.loads((R / "datasets" / f"{scene}-route.json").read_text())
-        cloud = read_xyz(R / "datasets" / f"{scene}.pcd")
-        route = np.asarray(mission["planned_xy_m"])
-        stops = np.asarray(
-            [
-                a["observe_xyz_m"][:2]
-                for a in mission["stops"]
-                if a["type"] == "inspection"
-            ]
-        )
-        if scene == "indoor":
-            cloud = cloud[:, [1, 0, 2]] * [1, -1, 1]
-            route = route[:, [1, 0]] * [1, -1]
-            stops = stops[:, [1, 0]] * [1, -1]
-        limits = np.percentile(cloud[:, 2], [5, 95])
-        rgb, proj, scale = map_view(
-            cloud,
-            (route.min(0) - 2, route.max(0) + 2),
-            (694, 378),
-            limits,
-            point_radius=0,
-            background=(16, 31, 48),
-        )
-        im = Image.fromarray(rgb)
-        d = ImageDraw.Draw(im)
-        d.line(list(map(tuple, proj(route))), fill="white", width=8)
-        d.line(list(map(tuple, proj(route))), fill="#16d7b4", width=4)
-        for xx, yy in proj(stops):
-            d.ellipse(
-                (xx - 4, yy - 4, xx + 4, yy + 4),
-                fill="#ffb65b",
-                outline="white",
-                width=1,
-            )
-        d.rectangle((10, 333, 125, 375), fill="#101f30")
-        d.line((20, 343, 20 + 5 * scale, 343), fill="white", width=3)
-        d.text(
-            (20, 349),
-            "5 m",
-            font=ImageFont.truetype("DejaVuSans.ttf", 23),
-            fill="white",
-        )
-        f.text(x + 20, 814, scene.title(), 31, bold=True)
-        f.text(x + 710, 813, f"{len(stops)} planned stops", 25, TEAL, True, "end")
-        f.image(x + 18, 834, 694, 378, im)
-        f.text(x + 22, 1253, "Map Z (m)", 21, MUT)
-        for k in range(180):
-            t = k / 179 * 4
-            j = min(3, int(t))
-            c = (
-                HEIGHT_COLORS[j] * (1 - (t - j)) + HEIGHT_COLORS[j + 1] * (t - j)
-            ).astype(int)
-            f.rect(x + 157 + k, 1238, 1.2, 13, "#%02x%02x%02x" % tuple(c))
-        f.text(x + 150, 1280, f"{limits[0]:.1f}", 22, MUT)
-        f.text(x + 320, 1280, f"{limits[1]:.1f}", 22, MUT)
-    f.line([(52, 1334), (106, 1334)], TEAL, 5)
-    f.text(119, 1342, "Planned route", 23)
-    f.circle(374, 1334, 7, AMBER)
-    f.text(391, 1342, "Observation pose", 23)
-    f.text(890, 1342, "Maps: measured  ·  Routes: planned", 23, MUT)
+    from PIL import ImageOps
+    f = Figure("system-overview",1800,1190)
+    f.rect(0,0,1800,1190,"white")
+    f.text(32,57,"Rule-based navigation for quadruped inspection",43,bold=True)
+    f.text(34,93,"Survey the scene  /  select observation poses  /  navigate, photograph and return",23,MUT)
+    def tag(x,y,letter,title):
+        f.rect(x,y,33,32,FG,r=3); f.text(x+16.5,y+24,letter,23,"white",True,"middle")
+        f.text(x+45,y+25,title,25,FG,True)
+    def fit(name,x,y,w,h,frame=0):
+        im=Image.open(R/"assets"/name)
+        if frame: im.seek(frame)
+        im=im.convert("RGB")
+        f.image(x,y,w,h,ImageOps.fit(im,(int(w),int(h))))
+    tag(32,119,"A","Outdoor field demonstration")
+    fit("outdoor-day-field.webp",32,162,1030,636)
+    # Separate exterior viewpoint is a genuine field clip, not an inserted robot.
+    fit("field-exterior-outdoor.webp",52,547,300,230)
+    f.rect(52,751,300,26,"#142b43")
+    f.text(63,770,"Separate exterior view",17,"white")
+    tag(1088,119,"B","Measured scene · planned route")
+    im,limits=route_image("outdoor",(680,210));f.image(1088,162,680,210,im)
+    f.text(1090,399,"8 observation stops + return",21,TEAL,True)
+    f.text(1768,399,f"Z: {limits[0]:.1f} to {limits[1]:.1f} m",18,MUT,False,"end")
+    for k in range(110):
+        t=k/109*4; j=min(3,int(t)); c=(HEIGHT_COLORS[j]*(1-(t-j))+HEIGHT_COLORS[j+1]*(t-j)).astype(int)
+        f.rect(1450+k,386,1.2,12,"#%02x%02x%02x"%tuple(c))
+    tag(1088,423,"C","Inspection navigation pipeline")
+    workflow=Image.open(R/"assets/figure-panels/inspection-workflow.png")
+    f.image(1082,464,692,344,workflow)
+    # Each field/map pair documents a scene; no time synchronization is asserted.
+    panels=[(32,"D","Indoor · field","field-exterior-indoor.webp"),
+            (478,"E","Indoor · 22 planned stops",None),
+            (924,"F","Indoor · measured 3D","indoor-scene-3d.png"),
+            (1370,"G","Outdoor · measured 3D","outdoor-scene-3d.png")]
+    for x,letter,title,name in panels:
+        tag(x,824,letter,title)
+        if name is None:
+            im,_=route_image("indoor",(398,234));f.image(x,869,398,234,im)
+        else: fit(name,x,869,398,234,45 if letter=="D" else 0)
+    f.line([(34,1131),(94,1131)],TEAL,4)
+    f.text(106,1138,"Planned route",20)
+    f.circle(304,1131,6,AMBER);f.text(320,1138,"Observation pose",20)
+    f.text(595,1138,"Field clips, scan maps and plans are separate evidence views.",20,MUT)
+    f.text(34,1171,"Geometry-based planning · Operator-annotated targets · Supervised execution · No detection or recognition module",20,MUT)
     f.save("system-overview")
 
 
@@ -486,68 +425,62 @@ def principle():
     f.text(79, 726, "NAV   0.16 < h < 0.6296 m", 25, TEAL, True)
     f.rect(65, 748, 680, 43, "#fff0dc", r=6)
     f.text(79, 777, "LOS   0.90 < h < 2.20 m", 25, AMBER, True)
-    # Grounded Go2 meshes at the three candidate base poses.
-    # The target is deliberately above the illustrative front-camera anchors.
-    p = iso((1178, 335), 1.3)
-    grid(f, p, 9, 30, ny=6)
-    poses = [(55, 147, "clearance", "A", RED),
-             (242, 85, "blocked", "B", RED),
-             (15, 20, "selected", "C", TEAL)]
-    # Ground-level projections show the XY-mask sampling separately from elevation.
-    f.line([p(15,20,2), p(130,25,2)], TEAL, 1.7, True)
-    floor_hit = p(242+(130-242)*(85-64)/(85-25), 64, 2)
-    f.line([p(242,85,2), floor_hit], RED, 1.7, True)
-    f.line([floor_hit, p(130,25,2)], "#9dabbc", 1.4, True)
-    # Obstacles occlude floor-level projections instead of having lines painted on faces.
-    cube(f, p, 190, 50, 0, 24, 14, 105, "#91a3bb")
-    cube(f, p, 31, 113, 0, 28, 26, 28, TEAL)
-    f.line([floor_hit+[-5,-5], floor_hit+[5,5]], RED, 2)
-    f.line([floor_hit+[-5,5], floor_hit+[5,-5]], RED, 2)
-    anchors = {}
-    for x, y, name, letter, col in poses:
-        ring = [p(x + 28*math.cos(t), y + 28*math.sin(t), 1)
-                for t in np.linspace(0, 2*math.pi, 48)]
-        f.poly(ring, col, "none", 0.09)
-        f.line(ring, col, 1.5, True)
-        anchors[letter] = go2_pose(f, p, (x, y), name)
-        # The yaw arrow lies on the ground and points toward the target.
-        d = np.array([130-x, 25-y], float); d /= np.linalg.norm(d)
-        f.line([p(x+d[0]*31, y+d[1]*31, 2), p(x+d[0]*54, y+d[1]*54, 2)], col, 2, arrow=True)
-        label = p(x-5, y+38, 0)
-        f.circle(*label, 13, col, "white")
-        f.text(label[0], label[1]+6, letter, 18, "white", True, "middle")
-    target = p(130, 25, 125)
-    # B's camera-to-target segment intersects the tall obstacle at y=64.
-    meta = json.loads((R / "assets/diagram-robot/anchors.json").read_text())["blocked"]
-    local = np.array(meta["camera_local_m"])*100 + [242, 85, 0]
-    t = (64-local[1])/(25-local[1])
-    hit3 = local + t*(np.array([130,25,125])-local)
-    hit = p(*hit3)
-    f.line([anchors["B"], hit], RED, 3.5, True)
-    f.line([hit, target], "#9dabbc", 2, True)
-    f.line([anchors["C"], target], TEAL, 3.5, arrow=True)
-    # Horizontal reference and angle arc originate at the attached camera point.
-    cam = anchors["C"]
-    d = (target-cam); d /= np.linalg.norm(d)
-    base = p(45,21.3,31.84)-p(15,20,31.84); base /= np.linalg.norm(base)
-    f.line([cam, cam+base*65], TEAL, 1.5, True)
-    lo, hi = math.atan2(d[1],d[0]), math.atan2(base[1],base[0])
-    arc = [cam+29*np.array([math.cos(t),math.sin(t)]) for t in np.linspace(lo,hi,20)]
-    f.line(arc, TEAL, 1.8)
-    f.text(cam[0]+38, cam[1]+7, "θ", 22, TEAL, True)
-    for letter, col in [("B", RED), ("C", TEAL)]:
-        f.circle(*anchors[letter], 5, col, "white")
-    f.line([hit + [-7,-7], hit + [7,7]], RED, 3)
-    f.line([hit + [-7,7], hit + [7,-7]], RED, 3)
-    f.line([p(130,25,0), target], AMBER, 1.5, True)
-    f.circle(*p(130,25,0), 5, "white", AMBER)
-    f.circle(*target, 10, AMBER, "white")
-    f.text(target[0]+19, target[1]-8, "Target", 23, AMBER, True)
-    f.text(818, 595, "Go2 camera → elevated target (schematic)", 22, TEAL, True)
-    f.text(818, 631, "Ground: yaw + XY mask   /   θ: elevation only", 20, MUT)
-    f.text(818, 677, "A   Grid candidate: NAV clearance rejected", 24, RED, True)
-    f.text(818, 720, "B   Candidate: LOS-mask check rejected", 24, RED, True)
-    f.text(818, 763, "C   Selected: position + yaw + elevation", 24, TEAL, True)
+    # The mesh and all geometry share the VTK orthographic projection exactly.
+    metas=json.loads((R/"assets/diagram-robot/anchors.json").read_text())
+    basis=np.asarray(metas["selected"]["projection_basis_px"]).T/metas["selected"]["pixels_per_m"]
+    scale=1.45
+    def p(x,y,z=0): return np.array([1060,600])+basis@np.array([x,y,z])*scale
+    f.poly([p(-20,-100),p(380,-100),p(380,200),p(-20,200)],"#edf2f7","#cbd7e4")
+    for x in range(0,381,40): f.line([p(x,-100),p(x,200)],"#d0dce8",1)
+    for y in range(-100,201,40): f.line([p(-20,y),p(380,y)],"#d0dce8",1)
+    target3=np.array([140,-80,120.])
+    target=p(*target3)
+    # Clearance buffer is deliberately more conservative than the physical body.
+    poses=[(90,40,"clearance","A",RED),(340,0,"blocked","B",RED),(20,150,"selected","C",TEAL)]
+    for x,y,name,letter,col in poses:
+        ring=[p(x+55*math.cos(t),y+55*math.sin(t),.5) for t in np.linspace(0,2*math.pi,64)]
+        f.poly(ring,col,"none",.06);f.line(ring,col,1.4,True)
+    def scene_box(x,y,w,d,h,col):
+        # Camera lies in (-X,-Y): draw the two near faces, then the top.
+        a,b,c,e=[p(x,y),p(x+w,y),p(x+w,y+d),p(x,y+d)]
+        aa,bb,cc,ee=[p(x,y,h),p(x+w,y,h),p(x+w,y+d,h),p(x,y+d,h)]
+        f.poly([a,b,bb,aa],col,"white",.85)
+        f.poly([a,e,ee,aa],col,"white",.7)
+        f.poly([aa,bb,cc,ee],col,"white")
+    scene_box(210,-53,35,16,115,"#8d9fb3")
+    scene_box(135,48,25,20,30,TEAL)
+    anchors={}
+    for x,y,name,letter,col in poses:
+        anchors[letter]=go2_pose(f,p,(x,y),name,scale)
+        d=(target3[:2]-[x,y]);d/=np.linalg.norm(d)
+        f.line([p(x+d[0]*38,y+d[1]*38,1),p(x+d[0]*66,y+d[1]*66,1)],col,2,arrow=True)
+        q=p(x-15,y+40,0);f.circle(*q,14,col,"white");f.text(q[0],q[1]+6,letter,18,"white",True,"middle")
+    cam3=np.array(metas["blocked"]["camera_local_m"])*100+[340,0,0]
+    t=(245-cam3[0])/(target3[0]-cam3[0]);hit3=cam3+t*(target3-cam3);hit=p(*hit3)
+    f.line([anchors["B"],hit],RED,3,True);f.line([hit,target],"#a1afbd",2,True)
+    f.line([hit+[-7,-7],hit+[7,7]],RED,3);f.line([hit+[-7,7],hit+[7,-7]],RED,3)
+    f.line([anchors["C"],target],TEAL,3.5,arrow=True)
+    # Horizontal forward reference: fixed camera is not mechanically pitched.
+    c3=np.array(metas["selected"]["camera_local_m"])*100+[20,150,0]
+    horizontal=p(140,-80,c3[2]);v=horizontal-anchors["C"];v/=np.linalg.norm(v)
+    f.line([anchors["C"],anchors["C"]+v*95],TEAL,1.5,True)
+    ray=target-anchors["C"]; ray/=np.linalg.norm(ray)
+    lo,hi=np.arctan2(ray[1],ray[0]),np.arctan2(v[1],v[0])
+    arc=[anchors["C"]+44*np.array([np.cos(t),np.sin(t)]) for t in np.linspace(lo,hi,24)]
+    f.line(arc,TEAL,1.8)
+    q=anchors["C"]+np.array([87,-49])
+    f.rect(q[0]-14,q[1]-20,28,29,"white",r=5)
+    f.text(q[0],q[1]+3,"θ",25,TEAL,True,"middle")
+    for letter,col in [("B",RED),("C",TEAL)]:f.circle(*anchors[letter],4,col,"white")
+    f.line([p(140,-80,0),target],AMBER,1.5,True)
+    floor_target=p(140,-80,0)
+    f.circle(*floor_target,6,"white",AMBER)
+    f.text(floor_target[0]+18,floor_target[1]+12,"Target XY",20,AMBER,True)
+    f.circle(*target,10,AMBER,"white");f.text(target[0]-65,target[1]-24,"Target",23,AMBER,True)
+    f.text(818,665,"A   Rejected: conservative NAV clearance margin",23,RED,True)
+    f.text(818,710,"B   Rejected: blocked XY sight mask",23,RED,True)
+    f.text(818,755,"C   Selected: position + yaw + viewing elevation",23,TEAL,True)
+    f.text(818,793,"Ground arrows: yaw toward Target XY. Camera anchors: illustrative.",18,MUT)
     # Combined pipeline kept large enough to read in a GitHub README.
     yy = 851
     for x, w, col, title, detail in [
@@ -572,7 +505,7 @@ def principle():
     f.text(
         44,
         1050,
-        "Schematic only, not to scale. Below threshold does not establish safe passage or a clear view.",
+        "Illustrative geometry, uncalibrated optics. Below threshold does not establish safe passage or a clear view.",
         23,
         MUT,
     )
