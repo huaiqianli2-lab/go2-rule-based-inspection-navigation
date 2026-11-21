@@ -291,7 +291,7 @@ def go2_pose(f, p, xy, name, scale=1.55):
     return origin + (np.array(meta["camera_px"]) - [ox, oy]) * k
 
 
-def route_image(scene, size):
+def route_image(scene, size, stop_radius=6):
     mission = json.loads((R / "datasets" / f"{scene}-route.json").read_text())
     cloud = read_xyz(R / "datasets" / f"{scene}.pcd")
     route = np.asarray(mission["planned_xy_m"])
@@ -307,7 +307,7 @@ def route_image(scene, size):
     d.line(list(map(tuple,proj(route))), fill="white", width=8)
     d.line(list(map(tuple,proj(route))), fill="#16d7b4", width=4)
     for xx,yy in proj(stops):
-        d.ellipse((xx-4,yy-4,xx+4,yy+4),fill="#ffb65b",outline="white",width=1)
+        d.ellipse((xx-stop_radius,yy-stop_radius,xx+stop_radius,yy+stop_radius),fill="#ffb65b",outline="white",width=2)
     y=size[1]-25
     d.rectangle((10,y-10,30+5*scale,y+22),fill="#101f30")
     d.line((20,y,20+5*scale,y),fill="white",width=3)
@@ -329,19 +329,19 @@ def overview():
         if frame: im.seek(frame)
         im=im.convert("RGB")
         f.image(x,y,w,h,ImageOps.fit(im,(int(w),int(h))))
-    tag(32,119,"A","Outdoor field demonstration")
-    fit("outdoor-day-field.webp",32,162,1030,636)
-    # Separate exterior viewpoint is a genuine field clip, not an inserted robot.
-    fit("field-exterior-outdoor.webp",52,547,300,230)
-    f.rect(52,751,300,26,"#142b43")
-    f.text(63,770,"Separate exterior view",17,"white")
-    tag(1088,119,"B","Measured scene · planned route")
-    im,limits=route_image("outdoor",(680,210));f.image(1088,162,680,210,im)
-    f.text(1090,399,"8 observation stops + return",21,TEAL,True)
-    f.text(1768,399,f"Z: {limits[0]:.1f} to {limits[1]:.1f} m",18,MUT,False,"end")
+    tag(32,119,"A","Outdoor route on the measured map")
+    im, limits = route_image("outdoor", (1030, 590), stop_radius=9)
+    f.image(32, 162, 1030, 590, im)
+    f.text(34, 789, "8 planned observation stops + return", 24, TEAL, True)
+    f.text(1062, 789, f"Map height: {limits[0]:.1f} to {limits[1]:.1f} m", 20, MUT, False, "end")
     for k in range(110):
         t=k/109*4; j=min(3,int(t)); c=(HEIGHT_COLORS[j]*(1-(t-j))+HEIGHT_COLORS[j+1]*(t-j)).astype(int)
-        f.rect(1450+k,386,1.2,12,"#%02x%02x%02x"%tuple(c))
+        f.rect(655+k, 775, 1.2, 12, "#%02x%02x%02x" % tuple(c))
+    tag(1088,119,"B","Outdoor field footage")
+    fit("field-exterior-outdoor.webp",1088,162,332,218)
+    fit("outdoor-day-field.webp",1436,162,332,218)
+    f.text(1088, 406, "Exterior view of Go2", 19, MUT)
+    f.text(1436, 406, "Onboard view", 19, MUT)
     tag(1088,423,"C","Inspection navigation pipeline")
     workflow=Image.open(R/"assets/figure-panels/inspection-workflow.png")
     f.image(1082,464,692,344,workflow)
@@ -419,10 +419,10 @@ def principle():
             f.circle(*p(44, 60, zz), 5, TEAL, "white")
         for zz in ([143, 160] if los else []):
             f.circle(*p(44, 60, zz), 5, AMBER, "white")
-        f.text(cx, 626, f"NAV   {nav} returns", 22, TEAL, bool(nav), "middle")
+        f.text(cx, 626, f"Clearance: {nav} returns", 18, TEAL, bool(nav), "middle")
         f.text(cx, 663, f"LOS   {los} returns", 22, AMBER, bool(los), "middle")
     f.rect(65, 697, 680, 43, "#e4f3f3", r=6)
-    f.text(79, 726, "NAV   0.16 < h < 0.6296 m", 25, TEAL, True)
+    f.text(79, 726, "Clearance   0.16 < h < 0.6296 m", 25, TEAL, True)
     f.rect(65, 748, 680, 43, "#fff0dc", r=6)
     f.text(79, 777, "LOS   0.90 < h < 2.20 m", 25, AMBER, True)
     # The mesh and all geometry share the VTK orthographic projection exactly.
@@ -468,16 +468,13 @@ def principle():
     lo,hi=np.arctan2(ray[1],ray[0]),np.arctan2(v[1],v[0])
     arc=[anchors["C"]+44*np.array([np.cos(t),np.sin(t)]) for t in np.linspace(lo,hi,24)]
     f.line(arc,TEAL,1.8)
-    q=anchors["C"]+np.array([87,-49])
-    f.rect(q[0]-14,q[1]-20,28,29,"white",r=5)
-    f.text(q[0],q[1]+3,"θ",25,TEAL,True,"middle")
     for letter,col in [("B",RED),("C",TEAL)]:f.circle(*anchors[letter],4,col,"white")
     f.line([p(140,-80,0),target],AMBER,1.5,True)
     floor_target=p(140,-80,0)
     f.circle(*floor_target,6,"white",AMBER)
     f.text(floor_target[0]+18,floor_target[1]+12,"Target XY",20,AMBER,True)
     f.circle(*target,10,AMBER,"white");f.text(target[0]-65,target[1]-24,"Target",23,AMBER,True)
-    f.text(818,665,"A   Rejected: conservative NAV clearance margin",23,RED,True)
+    f.text(818,665,"A   Rejected: conservative clearance margin",23,RED,True)
     f.text(818,710,"B   Rejected: blocked XY sight mask",23,RED,True)
     f.text(818,755,"C   Selected: position + yaw + viewing elevation",23,TEAL,True)
     f.text(818,793,"Ground arrows: yaw toward Target XY. Camera anchors: illustrative.",18,MUT)
@@ -485,7 +482,7 @@ def principle():
     yy = 851
     for x, w, col, title, detail in [
         (42, 360, BLUE, "Candidate positions", "Trajectory first; grid fallback"),
-        (445, 360, TEAL, "Geometry checks", "Range + LOS; NAV on grid"),
+        (445, 360, TEAL, "Geometry checks", "Range, LOS, grid clearance"),
         (848, 360, AMBER, "Camera checks", "Elevation within vertical FOV"),
         (1251, 307, PURPLE, "Observation pose", "XYZ + yaw + elevation"),
     ]:
@@ -512,7 +509,7 @@ def principle():
     f.text(
         44,
         1090,
-        "Uncalibrated camera anchors; LOS checks XY masks, not 3D rays. Fallbacks can relax LOS.",
+        "Line of sight (LOS) uses a planar mask. FOV = field of view. Some fallbacks relax LOS.",
         22,
         MUT,
     )

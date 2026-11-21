@@ -17,11 +17,11 @@
         <mxCell id="targets" value="Target annotations" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#f3f6f8;strokeColor=#cad7e0;strokeWidth=1.5;spacing=6;">
           <mxGeometry as="geometry" x="10" y="240" width="185" height="74" />
         </mxCell>
-        <mxCell id="nav" value="NAV" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
-          <mxGeometry as="geometry" x="205" y="30" width="135" height="60" />
+        <mxCell id="nav" value="Navigation&lt;br&gt;mask" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="194" y="30" width="155" height="66" />
         </mxCell>
-        <mxCell id="los" value="LOS" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
-          <mxGeometry as="geometry" x="20" y="30" width="135" height="60" />
+        <mxCell id="los" value="XY LOS mask" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="12" y="30" width="162" height="66" />
         </mxCell>
         <mxCell id="search" value="Candidate search" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
           <mxGeometry as="geometry" x="55" y="135" width="250" height="64" />
@@ -65,10 +65,10 @@
         <mxCell id="e_capture" edge="1" parent="1" source="mission" target="capture" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#b37b29;dashed=0;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="pose_note" value="Range · XY LOS · FOV" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
-          <mxGeometry as="geometry" x="310" y="226" width="260" height="38" />
+        <mxCell id="pose_note" value="Range · XY LOS&lt;br&gt;Vertical FOV" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="305" y="222" width="270" height="49" />
         </mxCell>
-        <mxCell id="scope" value="Trajectory first; NAV checked on grid fallback&lt;br&gt;LOS can be relaxed" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=24;fontColor=#163743;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
+        <mxCell id="scope" value="Trajectory first; clearance checked in grid fallback&lt;br&gt;LOS: line of sight · FOV: field of view · Some fallbacks relax LOS" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
           <mxGeometry as="geometry" x="10" y="384" width="870" height="66" />
         </mxCell>
       </root>
