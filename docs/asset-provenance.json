@@ -289,9 +289,9 @@
   },
   {
     "file": "assets/navigation-sight-layers.svg",
-    "sha256": "1ca2c1c1450931e9e8c4fea78a472f291c44e65a1920d281135a79ec7b5a0917",
+    "sha256": "1e90ae97d25dbfbec5b633ecd5a49cae0193cd0d102edc5bcddf4f354367dbdc",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
-    "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
+    "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
   {
     "file": "assets/inspection-architecture.png",
@@ -301,9 +301,9 @@
   },
   {
     "file": "assets/navigation-sight-layers.png",
-    "sha256": "d0b9440ce0da8b98dc30f7517b50e55246da94c33056e199cf27cabc21c7d0a9",
+    "sha256": "d73772d7f114c62a23457bf70fb152e5d380a0f412324a3a457af62b34ae6245",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
-    "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
+    "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
   {
     "file": "assets/indoor-scene-3d.png",
@@ -355,15 +355,15 @@
   },
   {
     "file": "assets/system-overview.png",
-    "sha256": "5ef9bdbd9f76cc36a9cbf418c360f54195d481440477e9daa54782e1dcf78a14",
+    "sha256": "b451f5f8f0eec82b9fd56909fa2dad9fda5203039ab537dd8e947497a13f9ed0",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
-    "treatment": "Four colored workflow cards with original isometric process sketches; measured map-Z-colored panels, planned routes and observation poses."
+    "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
   {
     "file": "assets/system-overview.svg",
-    "sha256": "6ae857ecd0b75e2f7dc19bb6ce3a2aa5f364d71a01a39ccf1b8eaae34b897eae",
+    "sha256": "e800825518af2cd02f22fa0b440be367dc9480b677acf82d5239121cb9a0f29e",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
-    "treatment": "Four colored workflow cards with original isometric process sketches; measured map-Z-colored panels, planned routes and observation poses."
+    "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
   {
     "file": "assets/patrol-display-comparison.jpg",
@@ -379,20 +379,50 @@
   },
   {
     "file": "docs/system-overview.drawio",
-    "sha256": "aed6ecf2d22a2f41f2b73c785f139e82eca9eb7237e85f5d3eb08592ede2e637",
+    "sha256": "b882df9db4dc22437166c423b09f4c66069ae5ae42a9388da022fd81dbc96a8c",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
-    "treatment": "Four colored workflow cards with original isometric process sketches; measured map-Z-colored panels, planned routes and observation poses."
+    "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
   {
     "file": "docs/navigation-sight-principle.drawio",
-    "sha256": "ec678fb4e70acc294fe2f823bb1a6daf1561e55be182d18fdb82398393cd5164",
+    "sha256": "6d457be7a17a002ffe9eb91349737d20590968a1d77647fb27abd1e500b41b7b",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
-    "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
+    "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
   {
     "file": "assets/patrol-camera-comparison.jpg",
     "sha256": "58c91b8d42f44a1524ba304f8ebea56810c8b3a4f2b035ecb0cde86811492c16",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
     "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent. Outdoor lowest height color is dark slate for robot contrast; recent-path radius 0.035 m. Comparison headings identify the different outdoor height scales."
+  },
+  {
+    "file": "assets/diagram-robot/LICENSE",
+    "sha256": "7e2dfda59b98e38d123f539b59ecb637ffd8908d19e09f7765884a309f010d40",
+    "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
+    "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
+  },
+  {
+    "file": "assets/diagram-robot/anchors.json",
+    "sha256": "04cabfdcf2bc870fb01bdc1d1e3ba34d56fda61aa644a031424119db330df6a0",
+    "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
+    "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
+  },
+  {
+    "file": "assets/diagram-robot/blocked.png",
+    "sha256": "d648e489c80bb4d869d781ad5aecad8a0b505c11f80cbc4c592b508c8adb3642",
+    "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
+    "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
+  },
+  {
+    "file": "assets/diagram-robot/clearance.png",
+    "sha256": "929b4dd44f978c4664c366816ac06e8eea12ea0c1ceaf5f7c817b8a4e26ac1d7",
+    "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
+    "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
+  },
+  {
+    "file": "assets/diagram-robot/selected.png",
+    "sha256": "33af004d47c193ea8c73b658895ba18c436b01c3e3496905fd132becce6e2c43",
+    "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
+    "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
   }
 ]

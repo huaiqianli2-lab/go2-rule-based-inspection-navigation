@@ -81,12 +81,12 @@ def render(model_path, output):
             mj.mj_resetDataKeyframe(model, data, 0)
             data.qpos[3:7] = [np.cos(yaw/2), 0, 0, np.sin(yaw/2)]
             mj.mj_forward(model, data)
-            # In this Go2 model the sphere collision geoms are its four feet.
-            feet = [data.geom_xpos[g, 2] - model.geom_size[g, 0]
-                    for g in range(model.ngeom)
-                    if model.geom_type[g] == mj.mjtGeom.mjGEOM_SPHERE]
-            if len(feet) != 4:
-                raise ValueError("Expected four spherical Go2 foot collision geoms")
+            foot_ids = [mj.mj_name2id(model, mj.mjtObj.mjOBJ_GEOM, name)
+                        for name in ("FL", "FR", "RL", "RR")]
+            if any(g < 0 or model.geom_type[g] != mj.mjtGeom.mjGEOM_SPHERE
+                   for g in foot_ids):
+                raise ValueError("Expected named spherical Go2 foot collision geoms")
+            feet = [data.geom_xpos[g, 2] - model.geom_size[g, 0] for g in foot_ids]
             data.qpos[2] -= min(feet)
             mj.mj_forward(model, data)
             for geom, matrix in actors:
