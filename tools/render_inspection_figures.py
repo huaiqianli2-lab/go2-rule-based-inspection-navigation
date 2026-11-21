@@ -313,11 +313,17 @@ def overview():
     f.line([(597, 295), (597, 315), (965, 315), (965, 341)], TEAL, 2, arrow=True)
     f.line([(965, 295), (965, 325), (730, 325), (730, 341)], AMBER, 2, arrow=True)
     f.line([(965, 325), (1113, 325), (1113, 341)], AMBER, 2, arrow=True)
+    # NAV also constrains the route graph; distinct input port from the pose output.
+    f.line([(597, 295), (597, 305), (1140, 305), (1140, 548), (1132, 548)],
+           TEAL, 2, arrow=True)
+    # A small bridge keeps the crossing distinct from a merge with LOS.
+    f.circle(965, 305, 4, "white")
+    f.line([(965, 295), (965, 325)], AMBER, 2)
     # The trajectory is an input distinct from navigation-mask filtering.
     f.line([(374, 360), (412, 360), (412, 386), (448, 386)], BLUE, 2, arrow=True)
     f.line([(374, 615), (420, 615), (420, 447), (597, 447), (597, 431)], AMBER, 2, arrow=True)
     box(450, 478, 294, 88, "Observation poses", "XYZ · yaw · elevation", TEAL, "#edf8f8")
-    box(800, 478, 330, 88, "Dijkstra leg paths", "Leg costs → visit order", AMBER)
+    box(800, 478, 330, 88, "Dijkstra leg paths", "NAV graph · visit order", AMBER)
     for x in [597, 965]:
         f.line([(x, 429), (x, 454), (597, 454), (597, 476)], TEAL, 2, arrow=True)
     f.line([(744, 522), (798, 522)], TEAL, 2, arrow=True)
@@ -329,8 +335,9 @@ def overview():
     f.line([(1130, 522), (1166, 522), (1166, 255), (1204, 255)], PURPLE, 2.5, arrow=True)
     for y, endy in [(295, 341), (429, 476)]:
         f.line([(1372, y + 3), (1372, endy)], PURPLE, 2, arrow=True)
-    f.text(1208, 615, "Supervised field workflow", 22, PURPLE, True)
-    f.text(1208, 650, "Image capture at target viewpoints", 18, MUT)
+    f.text(1208, 615, "Supervised run", 22, PURPLE, True)
+    f.text(1208, 650, "Go2 EDU + camera", 18, MUT)
+    go2_pose(f, iso((1490, 666), 0.75), (0, 0), "selected", 0.75)
     f.text(46, 737, "Measured scenes below  /  planned routes and observation stops", 24, MUT)
     for i, scene in enumerate(["indoor", "outdoor"]):
         x = 42 + 786 * i
@@ -469,6 +476,9 @@ def principle():
     poses = [(55, 147, "clearance", "A", RED),
              (147, 144, "blocked", "B", RED),
              (15, 20, "selected", "C", TEAL)]
+    # Ground-level projections show the XY-mask sampling separately from elevation.
+    f.line([p(15,20,2), p(130,25,2)], TEAL, 1.7, True)
+    f.line([p(147,144,2), p(130,25,2)], RED, 1.7, True)
     anchors = {}
     for x, y, name, letter, col in poses:
         ring = [p(x + 28*math.cos(t), y + 28*math.sin(t), 1)
@@ -492,6 +502,15 @@ def principle():
     f.line([anchors["B"], hit], RED, 3.5, True)
     f.line([hit, target], "#9dabbc", 2, True)
     f.line([anchors["C"], target], TEAL, 3.5, arrow=True)
+    # Horizontal reference and angle arc originate at the attached camera point.
+    cam = anchors["C"]
+    d = (target-cam); d /= np.linalg.norm(d)
+    base = p(45,21.3,31.84)-p(15,20,31.84); base /= np.linalg.norm(base)
+    f.line([cam, cam+base*65], TEAL, 1.5, True)
+    lo, hi = math.atan2(d[1],d[0]), math.atan2(base[1],base[0])
+    arc = [cam+29*np.array([math.cos(t),math.sin(t)]) for t in np.linspace(lo,hi,20)]
+    f.line(arc, TEAL, 1.8)
+    f.text(cam[0]+38, cam[1]+7, "θ", 22, TEAL, True)
     for letter, col in [("B", RED), ("C", TEAL)]:
         f.circle(*anchors[letter], 5, col, "white")
     f.line([hit + [-7,-7], hit + [7,7]], RED, 3)
@@ -500,16 +519,16 @@ def principle():
     f.circle(*p(130,25,0), 5, "white", AMBER)
     f.circle(*target, 10, AMBER, "white")
     f.text(target[0]+19, target[1]-8, "Target", 23, AMBER, True)
-    f.text(818, 595, "Go2 front camera → elevated target", 22, TEAL, True)
-    f.text(818, 631, "Ground arrow: yaw   /   rising ray: elevation", 20, MUT)
+    f.text(818, 595, "Go2 camera → elevated target (schematic)", 22, TEAL, True)
+    f.text(818, 631, "Ground: yaw + XY LOS   /   θ: camera elevation", 20, MUT)
     f.text(818, 677, "A   Grid candidate: NAV clearance rejected", 24, RED, True)
     f.text(818, 720, "B   Candidate: LOS-mask check rejected", 24, RED, True)
     f.text(818, 763, "C   Selected: position + yaw + elevation", 24, TEAL, True)
     # Combined pipeline kept large enough to read in a GitHub README.
     yy = 851
     for x, w, col, title, detail in [
-        (42, 360, BLUE, "Candidate positions", "Recorded trajectory first"),
-        (445, 360, TEAL, "Geometry checks", "Navigation + sight + distance"),
+        (42, 360, BLUE, "Candidate positions", "Trajectory first; grid fallback"),
+        (445, 360, TEAL, "Geometry checks", "Range + LOS; NAV on grid"),
         (848, 360, AMBER, "Camera checks", "Elevation within vertical FOV"),
         (1251, 307, PURPLE, "Observation pose", "XYZ + yaw + elevation"),
     ]:
