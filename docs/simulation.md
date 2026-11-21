@@ -17,7 +17,7 @@ python3 -m examples.obstacle_replan > replan.json
 
 The computation runs offline and emits both paths, the obstacle bounds, and the replanning cell. The video was rendered in MuJoCo 3.10.0 using the [Unitree Go2 model from MuJoCo Menagerie](https://github.com/google-deepmind/mujoco_menagerie/tree/370c43965323c0944b433b202aac5058b5f907a9/unitree_go2). See the [upstream model license](https://github.com/google-deepmind/mujoco_menagerie/blob/370c43965323c0944b433b202aac5058b5f907a9/unitree_go2/LICENSE). The render sets the model pose along the route at each frame. It has zero physics integration steps and uses a scripted obstacle event in place of sensor detection.
 
-[Full 1600 × 900 MP4](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.3.0/obstacle-replan-mujoco.mp4) · [High-resolution still](../assets/obstacle-replan-poster.jpg)
+[Full 1600 × 900 MP4](https://github.com/walmfml88886666/go2-rule-based-inspection-navigation/releases/download/v0.3.0/obstacle-replan-mujoco.mp4) · [High-resolution still](../assets/obstacle-replan-poster.jpg)
 
 ## Round-trip inspections in 2D
 
@@ -37,4 +37,4 @@ python3 -m examples.grid_simulation outdoor > outdoor-route.json
 
 Each JSON result contains the obstacles, ordered stops, arrival indices, and the complete cell-by-cell route. The program checks obstacle clearance, adjacency, stop order, and return to start before returning the result. A grid step is one cell transition, with no physical unit or speed assigned.
 
-[Download the 720p simulation](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/grid-simulation.mp4) · [Back to the README](../README.md)
+[Download the 720p simulation](https://github.com/walmfml88886666/go2-rule-based-inspection-navigation/releases/download/v0.2.0/grid-simulation.mp4) · [Back to the README](../README.md)

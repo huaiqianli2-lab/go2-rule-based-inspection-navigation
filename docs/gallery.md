@@ -13,9 +13,9 @@ The first-person clips come from separate field runs. The point-cloud figures pr
 | Asset | Source | Presentation |
 | --- | --- | --- |
 | [Go2 EDU hardware](../assets/robot.jpg) | Project hardware photograph | Original 3840 × 2160 JPEG |
-| [Indoor recording](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/indoor-field.mp4) | Indoor first-person field recording | 12-second excerpt from 00:21, 1280 × 720 |
-| [Outdoor daylight recording](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/outdoor-day-field.mp4) | Outdoor first-person daylight recording | 12-second excerpt from 03:05, 1280 × 720 |
-| [Outdoor night recording](https://github.com/walmfml88886666/go2-rule-based-inspection/releases/download/v0.2.0/outdoor-night-field.mp4) | Outdoor first-person night recording | 12-second excerpt from 00:22, 1280 × 720 |
+| [Indoor recording](https://github.com/walmfml88886666/go2-rule-based-inspection-navigation/releases/download/v0.2.0/indoor-field.mp4) | Indoor first-person field recording | 12-second excerpt from 00:21, 1280 × 720 |
+| [Outdoor daylight recording](https://github.com/walmfml88886666/go2-rule-based-inspection-navigation/releases/download/v0.2.0/outdoor-day-field.mp4) | Outdoor first-person daylight recording | 12-second excerpt from 03:05, 1280 × 720 |
+| [Outdoor night recording](https://github.com/walmfml88886666/go2-rule-based-inspection-navigation/releases/download/v0.2.0/outdoor-night-field.mp4) | Outdoor first-person night recording | 12-second excerpt from 00:22, 1280 × 720 |
 | [Indoor map](../assets/indoor-field-map.png) | Indoor LiDAR corner cloud and stored mission plan | 22 planned observation stops |
 | [Outdoor map](../assets/outdoor-field-map.png) | Outdoor LiDAR corner cloud and stored mission plan | 8 planned observation stops |
 

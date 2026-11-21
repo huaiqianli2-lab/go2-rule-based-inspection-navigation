@@ -1,4 +1,4 @@
-# Go2 Patrol: Rule-Based Navigation for Intelligent Quadruped Inspection
+# Go2 Patrol: Rule-Based Navigation for Indoor and Outdoor Quadruped Inspection
 
 Rule-based quadruped navigation and inspection on Unitree Go2 EDU. The supervised workflow uses measured LIO-SAM maps, dual-layer geometric constraints and Dijkstra routes, linked to recorded trajectories and inspection photographs.
 
