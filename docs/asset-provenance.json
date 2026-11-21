@@ -520,5 +520,17 @@
     "source": "Existing public project field media, measured maps and plans; docs/visual-comparison.md",
     "treatment": "Original multi-panel composition or explanatory geometry, not a new field result. Content-specific publication copy.",
     "sha256": "9719c94521e3d4f97103ac0961a9dc3623e3ae0fd8fe0147b3b322fd8a3b32e6"
+  },
+  {
+    "file": "assets/slam-indoor-stop.jpg",
+    "sha256": "bb06956ca2b1950cbfa7577350fb00f2a82b4b22a480613788782cbc56213696",
+    "source": "Archived indoor states, verified map and physics inputs, and docs/data/slam-physics-results.json",
+    "treatment": "Two pre-trigger poses re-rendered with a closer display camera and a separate log-based event card."
+  },
+  {
+    "file": "assets/field-obstacle-response.jpg",
+    "sha256": "ac4f59ce577e202d67f6c858430ee6da073632fc74f92982f0ae8aba92dcabf6",
+    "source": "Timestamp-matched onboard archives and controller logs identified in docs/data/field-obstacle-response.json",
+    "treatment": "Selected existing indoor field stills laid out with relative timestamps and logged branch decisions."
   }
 ]

@@ -45,7 +45,7 @@ The 3D scene tours retain cells with at least two returns in a 0.18 m voxel for 
 
 ## Enlarged patrol view
 
-The main viewport now combines the original finite XYZ measurements with the Go2 visual meshes posed from each saved MuJoCo state. A fixed oblique mission-context inset shows the same timestamp, driven trace and next observation pose. The excerpts remain indoor 2–13 s and outdoor 110–121 s, at 1×; the full recorded outcomes remain 4/22 before a contact-triggered stop and 8/8 with return.
+The main viewport now combines the original finite XYZ measurements with the Go2 visual meshes posed from each saved MuJoCo state. A fixed oblique mission-context inset shows the same timestamp, driven trace and next observation pose. The excerpts remain indoor 2–13 s and outdoor 110–121 s, at 1×; the full recorded outcomes remain 4/22 before a contact-triggered stop and 8/8 with return. The indoor clip ends long before the logged stop at 193.258 s. See [the final saved poses and controller event](obstacle-response.md#contact-stop-in-the-indoor-simulation) and the separate field response sequences.
 
 The local display renders small depth-tested points on a dark background. It inserts display samples along edges and within local triangles using nearby measured returns. A candidate neighbor must be within 0.23 m, with similar surface orientation and an offset within 0.023 m of both tangent planes. PCA normals use 12 neighbors. The extra points are display interpolation and the original returns remain in the view. The widened indoor and outdoor views contain 601,118 and 1,749,085 display samples, respectively; these counts include interpolation, not additional measurements. The color ramp encodes height above the display ground reference.
 
