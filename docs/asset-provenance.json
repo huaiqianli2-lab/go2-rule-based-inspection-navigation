@@ -355,13 +355,13 @@
   },
   {
     "file": "assets/system-overview.png",
-    "sha256": "190991377587185f3b473fa1ea8a0c2e2bfa571f81860bc3fccc750da108b4ec",
+    "sha256": "25b297e5ada079a63cea831986f8e7ff529e671ceec349e2f7c70078e4240ce0",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
   {
     "file": "assets/system-overview.svg",
-    "sha256": "4771d405149683cb8131c0f98f0405ee2cd6c4bc62e178dba741a405ee485d9b",
+    "sha256": "d9d5e34b6fb06f8675754eb978d6e4639e86a093b0c0354a281dd617ac660e3c",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
@@ -379,7 +379,7 @@
   },
   {
     "file": "docs/system-overview.drawio",
-    "sha256": "f853be9a717dd34ccee5fd75b04d256cbf8196efa3fea037a530bc727d661a6c",
+    "sha256": "0e613b272961958429053b5cd250c26a32a824ad60d185e80196cab0c48b9afa",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },

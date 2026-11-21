@@ -287,7 +287,10 @@ def overview():
     def box(x, y, w, h, title, detail, col=BLUE, fill="white"):
         f.rect(x, y, w, h, fill, "#d8e1eb", 10)
         f.rect(x, y, 5, h, col, r=2)
-        f.text(x + 15, y + 30, title, 23, col, True)
+        title_size = 23
+        while ImageFont.truetype("DejaVuSans-Bold.ttf", title_size).getlength(title) > w - 36:
+            title_size -= 1
+        f.text(x + 15, y + 30, title, title_size, col, True)
         if detail:
             f.text(x + 15, y + 60, detail, 19, MUT)
 
