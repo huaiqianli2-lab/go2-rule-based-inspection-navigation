@@ -8,9 +8,9 @@
 
 ## Planning layers
 
-![Layers](../assets/navigation-sight-layers-06c330cc59a2.png)
+![Layers](../assets/navigation-sight-layers-82272f821bae.png)
 
-[Editable draw.io master](navigation-sight-principle.drawio) · [SVG export](../assets/navigation-sight-layers-47e146a134ff.svg)
+[Editable draw.io master](navigation-sight-principle.drawio) · [SVG export](../assets/navigation-sight-layers-c607d67fb7bd.svg)
 
 Three illustrative 3D columns show a low barrier, a higher obstruction and a tall obstacle inside separate translucent NAV and LOS height volumes. The right-hand diagram shows candidate poses rejected by stance clearance or a blocked sight check, alongside a selected viewing direction. The floor footprints and vertical projection lines are schematic; scene distances and mesh dimensions use a common projection scale. Each band uses strict endpoints and an independent threshold of at least two returns. A below-threshold count does not establish traversability or visibility by itself. [The selection notes](mapping.md#observation-pose-selection) explain trajectory-first candidates, camera checks and relaxed fallback stages. Three grounded Go2 mesh renders show rejected grid candidate A, LOS-rejected candidate B and selected pose C. Ground arrows show yaw. The rising camera-to-target lines begin at illustrative front-camera anchors attached to the robot bodies; the target is above them. These anchors are explanatory, not calibrated camera extrinsics. The implementation checks an XY ray through the height-band mask, not a 3D optical ray.
 

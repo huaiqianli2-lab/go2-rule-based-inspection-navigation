@@ -19,8 +19,8 @@ def segment_hits_box(a,b,low,high):
 def main():
     metadata=json.loads((R/'assets/diagram-robot/anchors.json').read_text())
     target=np.array([1.4,-.8,1.2])
-    bases={'clearance':np.array([.9,.4,0]),'blocked':np.array([2.4,1.3,0]),'selected':np.array([.2,1.5,0])}
-    boxes=[(np.array([1.85,.25,0]),np.array([2.20,.41,1.15])),(np.array([1.35,.48,0]),np.array([1.60,.68,.30]))]
+    bases={'clearance':np.array([.9,.4,0]),'blocked':np.array([3.4,0,0]),'selected':np.array([.2,1.5,0])}
+    boxes=[(np.array([2.10,-.53,0]),np.array([2.45,-.37,1.15])),(np.array([1.35,.48,0]),np.array([1.60,.68,.30]))]
     for name,m in metadata.items():
         base=bases[name];wanted=target[:2]-base[:2];wanted/=np.linalg.norm(wanted)
         assert np.allclose(m['forward_xy'],wanted,atol=1e-10),name

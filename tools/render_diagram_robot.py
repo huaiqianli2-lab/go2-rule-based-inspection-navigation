@@ -69,7 +69,7 @@ def render(model_path, output):
         renderer.AddActor(actor)
         actors.append((geom, matrix))
     camera = renderer.GetActiveCamera()
-    camera.SetPosition(-2, -2, 1.72)
+    camera.SetPosition(-2, -2, 1.0)
     camera.SetFocalPoint(0, 0, 0)
     camera.SetViewUp(0, 0, 1)
     camera.ParallelProjectionOn()
@@ -77,7 +77,7 @@ def render(model_path, output):
     output.mkdir(parents=True, exist_ok=True)
     metadata = {}
     try:
-        for name, direction in {"selected": (120, -230), "blocked": (-100, -210),
+        for name, direction in {"selected": (120, -230), "blocked": (-200, -80),
                                 "clearance": (50, -120)}.items():
             yaw = np.arctan2(direction[1], direction[0])
             mj.mj_resetDataKeyframe(model, data, 0)

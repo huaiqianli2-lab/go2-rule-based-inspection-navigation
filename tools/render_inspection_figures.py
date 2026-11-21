@@ -422,28 +422,35 @@ def principle():
     # The mesh and all geometry share the VTK orthographic projection exactly.
     metas=json.loads((R/"assets/diagram-robot/anchors.json").read_text())
     basis=np.asarray(metas["selected"]["projection_basis_px"]).T/metas["selected"]["pixels_per_m"]
-    scale=1.55
-    def p(x,y,z=0): return np.array([1135,600])+basis@np.array([x,y,z])*scale
-    f.poly([p(-20,-80),p(280,-80),p(280,200),p(-20,200)],"#edf2f7","#cbd7e4")
-    for x in range(0,281,40): f.line([p(x,-80),p(x,200)],"#d0dce8",1)
-    for y in range(-80,201,40): f.line([p(-20,y),p(280,y)],"#d0dce8",1)
+    scale=1.45
+    def p(x,y,z=0): return np.array([1060,600])+basis@np.array([x,y,z])*scale
+    f.poly([p(-20,-100),p(380,-100),p(380,200),p(-20,200)],"#edf2f7","#cbd7e4")
+    for x in range(0,381,40): f.line([p(x,-100),p(x,200)],"#d0dce8",1)
+    for y in range(-100,201,40): f.line([p(-20,y),p(380,y)],"#d0dce8",1)
     target3=np.array([140,-80,120.])
     target=p(*target3)
     # Clearance buffer is deliberately more conservative than the physical body.
-    poses=[(90,40,"clearance","A",RED),(240,130,"blocked","B",RED),(20,150,"selected","C",TEAL)]
+    poses=[(90,40,"clearance","A",RED),(340,0,"blocked","B",RED),(20,150,"selected","C",TEAL)]
     for x,y,name,letter,col in poses:
         ring=[p(x+55*math.cos(t),y+55*math.sin(t),.5) for t in np.linspace(0,2*math.pi,64)]
         f.poly(ring,col,"none",.06);f.line(ring,col,1.4,True)
-    cube(f,p,185,25,0,35,16,115,"#8d9fb3")
-    cube(f,p,135,48,0,25,20,30,TEAL)
+    def scene_box(x,y,w,d,h,col):
+        # Camera lies in (-X,-Y): draw the two near faces, then the top.
+        a,b,c,e=[p(x,y),p(x+w,y),p(x+w,y+d),p(x,y+d)]
+        aa,bb,cc,ee=[p(x,y,h),p(x+w,y,h),p(x+w,y+d,h),p(x,y+d,h)]
+        f.poly([a,b,bb,aa],col,"white",.85)
+        f.poly([a,e,ee,aa],col,"white",.7)
+        f.poly([aa,bb,cc,ee],col,"white")
+    scene_box(210,-53,35,16,115,"#8d9fb3")
+    scene_box(135,48,25,20,30,TEAL)
     anchors={}
     for x,y,name,letter,col in poses:
         anchors[letter]=go2_pose(f,p,(x,y),name,scale)
         d=(target3[:2]-[x,y]);d/=np.linalg.norm(d)
         f.line([p(x+d[0]*38,y+d[1]*38,1),p(x+d[0]*66,y+d[1]*66,1)],col,2,arrow=True)
         q=p(x-15,y+40,0);f.circle(*q,14,col,"white");f.text(q[0],q[1]+6,letter,18,"white",True,"middle")
-    cam3=np.array(metas["blocked"]["camera_local_m"])*100+[240,130,0]
-    t=(41-cam3[1])/(target3[1]-cam3[1]);hit3=cam3+t*(target3-cam3);hit=p(*hit3)
+    cam3=np.array(metas["blocked"]["camera_local_m"])*100+[340,0,0]
+    t=(245-cam3[0])/(target3[0]-cam3[0]);hit3=cam3+t*(target3-cam3);hit=p(*hit3)
     f.line([anchors["B"],hit],RED,3,True);f.line([hit,target],"#a1afbd",2,True)
     f.line([hit+[-7,-7],hit+[7,7]],RED,3);f.line([hit+[-7,7],hit+[7,-7]],RED,3)
     f.line([anchors["C"],target],TEAL,3.5,arrow=True)
@@ -454,7 +461,7 @@ def principle():
     f.text(anchors["C"][0]+60,anchors["C"][1]-5,"θ",22,TEAL,True)
     for letter,col in [("B",RED),("C",TEAL)]:f.circle(*anchors[letter],4,col,"white")
     f.line([p(140,-80,0),target],AMBER,1.5,True)
-    f.circle(*target,10,AMBER,"white");f.text(target[0]+16,target[1]-8,"Target",23,AMBER,True)
+    f.circle(*target,10,AMBER,"white");f.text(target[0]-65,target[1]-24,"Target",23,AMBER,True)
     f.text(818,665,"A   Rejected: conservative NAV clearance margin",23,RED,True)
     f.text(818,710,"B   Rejected: blocked XY sight mask",23,RED,True)
     f.text(818,755,"C   Selected: position + yaw + viewing elevation",23,TEAL,True)
@@ -483,7 +490,7 @@ def principle():
     f.text(
         44,
         1050,
-        "Schematic only, not to scale. Below threshold does not establish safe passage or a clear view.",
+        "Illustrative geometry, uncalibrated optics. Below threshold does not establish safe passage or a clear view.",
         23,
         MUT,
     )
