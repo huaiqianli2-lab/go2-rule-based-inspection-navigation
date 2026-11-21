@@ -1,0 +1,51 @@
+{
+  "scope": "Two independent indoor field episodes. Times are relative to each episode's controller near_collision_stop event. Labels are controller decisions, not ground-truth motion annotations.",
+  "episodes": [
+    {
+      "name": "dynamic",
+      "title": "Clearance returned · wait, then continue",
+      "log": "events_20260908_041740.jsonl",
+      "log_sha256": "319109717a0bf08d258cb2a03a127a905326a9c3c80c300f55b191f2f95acf71",
+      "onboard_archive": "cam_20260908_041705.tar",
+      "events": [
+        {"t_s": 0.0, "event": "near_collision_stop"},
+        {"t_s": 2.03, "event": "near_hold"},
+        {"t_s": 2.44, "event": "near_judge_dynamic"},
+        {"t_s": 2.44, "event": "near_collision_cleared"},
+        {"t_s": 7.68, "event": "nav_arrived"}
+      ],
+      "frames": [
+        {"file": "dynamic-1.jpg", "t_s": -0.027, "label": "Near stop"},
+        {"file": "dynamic-2.jpg", "t_s": 1.221, "label": "Controller holding"},
+        {"file": "dynamic-3.jpg", "t_s": 2.426, "label": "Near clearance event"},
+        {"file": "dynamic-5.jpg", "t_s": 4.085, "label": "Continuing"}
+      ],
+      "outcome": "Controller classified the obstruction as dynamic at +2.44 s and reached the same waypoint."
+    },
+    {
+      "name": "static",
+      "title": "Blockage persisted · back up, then bypass",
+      "log": "events_20260908_193224.jsonl",
+      "log_sha256": "6d96742fd55268e1742aea1606509b53a720d675002c91b3d1c0722a399ab548",
+      "onboard_archive": "cam_20260908_193151.tar",
+      "events": [
+        {"t_s": 0.0, "event": "near_collision_stop"},
+        {"t_s": 2.01, "event": "near_hold"},
+        {"t_s": 3.02, "event": "near_judge_static"},
+        {"t_s": 3.02, "event": "backoff_start"},
+        {"t_s": 3.79, "event": "backoff_done", "moved_m": 0.06},
+        {"t_s": 3.8, "event": "bypass_start", "side": "right"},
+        {"t_s": 11.79, "event": "bypass_done", "moved_m": 0.81, "reached": true},
+        {"t_s": 11.79, "event": "near_collision_cleared"},
+        {"t_s": 17.46, "event": "nav_arrived"}
+      ],
+      "frames": [
+        {"file": "static-1.jpg", "t_s": 0.008, "label": "Near stop"},
+        {"file": "static-3.jpg", "t_s": 3.045, "label": "Static decision"},
+        {"file": "static-4.jpg", "t_s": 3.779, "label": "Backoff"},
+        {"file": "static-6.jpg", "t_s": 7.010, "label": "Right bypass"}
+      ],
+      "outcome": "Backed up 0.06 m, bypassed to the right (0.81 m logged), then reached the same waypoint."
+    }
+  ]
+}
