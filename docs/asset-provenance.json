@@ -355,13 +355,13 @@
   },
   {
     "file": "assets/system-overview.png",
-    "sha256": "08295b2f372e361f31ae2b7fb5fd9413eaf8159ecaa3d1e2099177bc87da32a3",
+    "sha256": "4035df5a6065394dfea2a2e41f0d2a0287a6833b6f59b5c06dab5ce4ab3c0ca2",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Scientific multi-panel composition of separate published field and measured-map evidence with a native draw.io workflow; no synchronization assertion."
   },
   {
     "file": "assets/system-overview.svg",
-    "sha256": "8831664829f479f31dadd0b3a3fce22ae5fe85c29c46f46ee070a8a77bab0b23",
+    "sha256": "95f299bc5938e49ad322c770a4a91378953278f9c4e4a4d1d70d710eecc3e0d9",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Scientific multi-panel composition of separate published field and measured-map evidence with a native draw.io workflow; no synchronization assertion."
   },
@@ -379,7 +379,7 @@
   },
   {
     "file": "docs/system-overview.drawio",
-    "sha256": "3a5b4c4a54437699b6070c261f54b031c22f92cf8cb1ce6851492abdf7e7049d",
+    "sha256": "39207581eb258abc2b2fd92f71aeecd377077c2950bf80f9a75c1dc39d675cb0",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Scientific multi-panel composition of separate published field and measured-map evidence with a native draw.io workflow; no synchronization assertion."
   },
@@ -456,18 +456,6 @@
     "sha256": "c6c30bbcd0fc98de1ed07d4236bb315704559b038eb6241b5d367dcb6bae9e1f"
   },
   {
-    "file": "assets/system-overview-08295b2f372e.png",
-    "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
-    "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
-    "sha256": "08295b2f372e361f31ae2b7fb5fd9413eaf8159ecaa3d1e2099177bc87da32a3"
-  },
-  {
-    "file": "assets/system-overview-8831664829f4.svg",
-    "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
-    "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
-    "sha256": "8831664829f479f31dadd0b3a3fce22ae5fe85c29c46f46ee070a8a77bab0b23"
-  },
-  {
     "file": "docs/inspection-workflow.drawio",
     "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
     "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
@@ -484,5 +472,17 @@
     "source": "Published project maps, target poses and Menagerie Go2 mesh; docs/visual-comparison.md",
     "treatment": "Original figure or native draw.io workflow; illustrative camera anchors, not calibrated extrinsics.",
     "sha256": "c607d67fb7bd1d4bd91d664d97286c9bff0f661b3419ce31152ca2d8b2fb1f22"
+  },
+  {
+    "file": "assets/system-overview-4035df5a6065.png",
+    "source": "Existing public project field media, measured maps and plans; docs/visual-comparison.md",
+    "treatment": "Original multi-panel composition or explanatory geometry, not a new field result. Content-specific publication copy.",
+    "sha256": "4035df5a6065394dfea2a2e41f0d2a0287a6833b6f59b5c06dab5ce4ab3c0ca2"
+  },
+  {
+    "file": "assets/system-overview-95f299bc5938.svg",
+    "source": "Existing public project field media, measured maps and plans; docs/visual-comparison.md",
+    "treatment": "Original multi-panel composition or explanatory geometry, not a new field result. Content-specific publication copy.",
+    "sha256": "95f299bc5938e49ad322c770a4a91378953278f9c4e4a4d1d70d710eecc3e0d9"
   }
 ]

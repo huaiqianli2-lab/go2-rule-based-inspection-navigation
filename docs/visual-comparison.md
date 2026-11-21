@@ -2,9 +2,9 @@
 
 ## System architecture
 
-![Integrated workflow and measured maps](../assets/system-overview-08295b2f372e.png)
+![Integrated workflow and measured maps](../assets/system-overview-4035df5a6065.png)
 
-[Editable composition](system-overview.drawio) · [Native workflow master](inspection-workflow.drawio) · [SVG export](../assets/system-overview-8831664829f4.svg)
+[Editable composition](system-overview.drawio) · [Native workflow master](inspection-workflow.drawio) · [SVG export](../assets/system-overview-95f299bc5938.svg)
 
 ## Planning layers
 

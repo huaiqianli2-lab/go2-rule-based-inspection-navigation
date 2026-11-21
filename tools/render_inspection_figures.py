@@ -324,8 +324,10 @@ def overview():
     def tag(x,y,letter,title):
         f.rect(x,y,33,32,FG,r=3); f.text(x+16.5,y+24,letter,23,"white",True,"middle")
         f.text(x+45,y+25,title,25,FG,True)
-    def fit(name,x,y,w,h):
-        im=Image.open(R/"assets"/name).convert("RGB")
+    def fit(name,x,y,w,h,frame=0):
+        im=Image.open(R/"assets"/name)
+        if frame: im.seek(frame)
+        im=im.convert("RGB")
         f.image(x,y,w,h,ImageOps.fit(im,(int(w),int(h))))
     tag(32,119,"A","Outdoor field demonstration")
     fit("outdoor-day-field.webp",32,162,1030,636)
@@ -335,20 +337,21 @@ def overview():
     f.text(63,770,"Separate exterior view",17,"white")
     tag(1088,119,"B","Measured scene · planned route")
     im,limits=route_image("outdoor",(680,210));f.image(1088,162,680,210,im)
-    f.text(1090,399,"8 observation stops + return to start",21,TEAL,True)
+    f.text(1090,399,"8 observation stops + return",21,TEAL,True)
+    f.text(1768,399,f"Map Z: {limits[0]:.1f} to {limits[1]:.1f} m",19,MUT,False,"end")
     tag(1088,423,"C","Inspection navigation pipeline")
     workflow=Image.open(R/"assets/figure-panels/inspection-workflow.png")
     f.image(1082,464,692,330,workflow)
     # Each field/map pair documents a scene; no time synchronization is asserted.
     panels=[(32,"D","Indoor · field","field-exterior-indoor.webp"),
-            (478,"E","Indoor · planned route",None),
+            (478,"E","Indoor · 22 planned stops",None),
             (924,"F","Outdoor · field","field-exterior-outdoor.webp"),
             (1370,"G","Outdoor · measured 3D","outdoor-scene-3d.png")]
     for x,letter,title,name in panels:
         tag(x,824,letter,title)
         if name is None:
             im,_=route_image("indoor",(398,234));f.image(x,869,398,234,im)
-        else: fit(name,x,869,398,234)
+        else: fit(name,x,869,398,234,45 if letter=="F" else 0)
     f.line([(34,1131),(94,1131)],TEAL,4)
     f.text(106,1138,"Planned route",20)
     f.circle(304,1131,6,AMBER);f.text(320,1138,"Observation pose",20)
