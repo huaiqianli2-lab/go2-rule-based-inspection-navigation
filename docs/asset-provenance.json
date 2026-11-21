@@ -289,7 +289,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.svg",
-    "sha256": "c607d67fb7bd1d4bd91d664d97286c9bff0f661b3419ce31152ca2d8b2fb1f22",
+    "sha256": "0acf9f9db73c64461ebc350b20cb375448fb2c397d00488fc868ce8e12eb6c6f",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -301,7 +301,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.png",
-    "sha256": "82272f821bae48a6b1e494a56aae7eb0848ed57ccbeeca9cba5c2af0885268e8",
+    "sha256": "f929e23d0b15787d4b3931abff0ccd76ad59acc39e0e7b77fea48acbbc64c3b9",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -355,13 +355,13 @@
   },
   {
     "file": "assets/system-overview.png",
-    "sha256": "4035df5a6065394dfea2a2e41f0d2a0287a6833b6f59b5c06dab5ce4ab3c0ca2",
+    "sha256": "e0d6393d592c0e61f24c62fa7c91755be74b14dd9e9f6bf7739558c909979923",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Scientific multi-panel composition of separate published field and measured-map evidence with a native draw.io workflow; no synchronization assertion."
   },
   {
     "file": "assets/system-overview.svg",
-    "sha256": "95f299bc5938e49ad322c770a4a91378953278f9c4e4a4d1d70d710eecc3e0d9",
+    "sha256": "a51cbae5053a2b273a3da9dc8cc1ed652d958298309e24b0b1545a1986991d98",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Scientific multi-panel composition of separate published field and measured-map evidence with a native draw.io workflow; no synchronization assertion."
   },
@@ -379,13 +379,13 @@
   },
   {
     "file": "docs/system-overview.drawio",
-    "sha256": "39207581eb258abc2b2fd92f71aeecd377077c2950bf80f9a75c1dc39d675cb0",
+    "sha256": "360ac7cb1b227399c9c6a76ffc4b36ccddb26e76c926bf1dea0ad594efa30490",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Scientific multi-panel composition of separate published field and measured-map evidence with a native draw.io workflow; no synchronization assertion."
   },
   {
     "file": "docs/navigation-sight-principle.drawio",
-    "sha256": "2296b77c4685a7795ed69ee104bf4bdce05944a0215e6d5cc8b3b2aca0133324",
+    "sha256": "efef3efff9f4415897b60f6c40528608a89a3c64dd66b9e3d475602e1b9de183",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -453,36 +453,36 @@
     "file": "assets/figure-panels/inspection-workflow.png",
     "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
     "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
-    "sha256": "c6c30bbcd0fc98de1ed07d4236bb315704559b038eb6241b5d367dcb6bae9e1f"
+    "sha256": "ff4bf1783b73e1101a34bd0462b62250495f2b2a51564b619eb726d16cdb9918"
   },
   {
     "file": "docs/inspection-workflow.drawio",
     "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
     "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
-    "sha256": "6bb626a43dfc59cd61e137290a792d859541c7863cb84d514437606e1e6930c2"
+    "sha256": "9a947fb417ef61db02605c11ba1cd4aa3e6e053de224607ba6d76c52507d2680"
   },
   {
-    "file": "assets/navigation-sight-layers-82272f821bae.png",
-    "source": "Published project maps, target poses and Menagerie Go2 mesh; docs/visual-comparison.md",
-    "treatment": "Original figure or native draw.io workflow; illustrative camera anchors, not calibrated extrinsics.",
-    "sha256": "82272f821bae48a6b1e494a56aae7eb0848ed57ccbeeca9cba5c2af0885268e8"
-  },
-  {
-    "file": "assets/navigation-sight-layers-c607d67fb7bd.svg",
-    "source": "Published project maps, target poses and Menagerie Go2 mesh; docs/visual-comparison.md",
-    "treatment": "Original figure or native draw.io workflow; illustrative camera anchors, not calibrated extrinsics.",
-    "sha256": "c607d67fb7bd1d4bd91d664d97286c9bff0f661b3419ce31152ca2d8b2fb1f22"
-  },
-  {
-    "file": "assets/system-overview-4035df5a6065.png",
+    "file": "assets/navigation-sight-layers-0acf9f9db73c.svg",
     "source": "Existing public project field media, measured maps and plans; docs/visual-comparison.md",
     "treatment": "Original multi-panel composition or explanatory geometry, not a new field result. Content-specific publication copy.",
-    "sha256": "4035df5a6065394dfea2a2e41f0d2a0287a6833b6f59b5c06dab5ce4ab3c0ca2"
+    "sha256": "0acf9f9db73c64461ebc350b20cb375448fb2c397d00488fc868ce8e12eb6c6f"
   },
   {
-    "file": "assets/system-overview-95f299bc5938.svg",
+    "file": "assets/navigation-sight-layers-f929e23d0b15.png",
     "source": "Existing public project field media, measured maps and plans; docs/visual-comparison.md",
     "treatment": "Original multi-panel composition or explanatory geometry, not a new field result. Content-specific publication copy.",
-    "sha256": "95f299bc5938e49ad322c770a4a91378953278f9c4e4a4d1d70d710eecc3e0d9"
+    "sha256": "f929e23d0b15787d4b3931abff0ccd76ad59acc39e0e7b77fea48acbbc64c3b9"
+  },
+  {
+    "file": "assets/system-overview-a51cbae5053a.svg",
+    "source": "Existing public project field media, measured maps and plans; docs/visual-comparison.md",
+    "treatment": "Original multi-panel composition or explanatory geometry, not a new field result. Content-specific publication copy.",
+    "sha256": "a51cbae5053a2b273a3da9dc8cc1ed652d958298309e24b0b1545a1986991d98"
+  },
+  {
+    "file": "assets/system-overview-e0d6393d592c.png",
+    "source": "Existing public project field media, measured maps and plans; docs/visual-comparison.md",
+    "treatment": "Original multi-panel composition or explanatory geometry, not a new field result. Content-specific publication copy.",
+    "sha256": "e0d6393d592c0e61f24c62fa7c91755be74b14dd9e9f6bf7739558c909979923"
   }
 ]

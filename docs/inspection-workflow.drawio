@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram name="Inspection workflow" id="workflow">
-    <mxGraphModel dx="900" dy="430" page="1" pageWidth="900" pageHeight="430" background="#ffffff" adaptiveColors="none">
+    <mxGraphModel dx="900" dy="454" page="1" pageWidth="900" pageHeight="454" background="#ffffff" adaptiveColors="none">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -53,7 +53,7 @@
         <mxCell id="e_nav_paths" edge="1" parent="1" source="nav" target="paths" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#12858c;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.2;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="e_pose" edge="1" parent="1" source="search" target="poses" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#12858c;dashed=0;">
+        <mxCell id="e_pose" edge="1" parent="1" source="search" target="poses" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#12858c;dashed=0;exitX=0.1;exitY=1;entryX=0.1;entryY=0;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
         <mxCell id="e_route" edge="1" parent="1" source="poses" target="paths" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#b37b29;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
@@ -65,11 +65,11 @@
         <mxCell id="e_capture" edge="1" parent="1" source="mission" target="capture" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#b37b29;dashed=0;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="pose_note" value="Range · XY LOS · camera FOV" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=18;fontColor=#486a70;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
-          <mxGeometry as="geometry" x="257" y="226" width="285" height="38" />
+        <mxCell id="pose_note" value="Range · XY LOS · FOV" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="310" y="226" width="260" height="38" />
         </mxCell>
-        <mxCell id="scope" value="Trajectory first · NAV checked on grid fallback · LOS can be relaxed" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=18;fontColor=#596c76;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
-          <mxGeometry as="geometry" x="10" y="394" width="870" height="34" />
+        <mxCell id="scope" value="Trajectory first; NAV checked on grid fallback&lt;br&gt;LOS can be relaxed" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=24;fontColor=#163743;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="10" y="384" width="870" height="66" />
         </mxCell>
       </root>
     </mxGraphModel>

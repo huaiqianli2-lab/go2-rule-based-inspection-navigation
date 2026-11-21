@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1]
 
 def build():
-    model=ET.Element('mxGraphModel',dx='900',dy='430',page='1',pageWidth='900',pageHeight='430',background='#ffffff',adaptiveColors='none')
+    model=ET.Element('mxGraphModel',dx='900',dy='454',page='1',pageWidth='900',pageHeight='454',background='#ffffff',adaptiveColors='none')
     root=ET.SubElement(model,'root');ET.SubElement(root,'mxCell',id='0');ET.SubElement(root,'mxCell',id='1',parent='0')
     def node(id,label,x,y,w,h,fill='#ffffff',stroke='#bdd2d8',font='#163743',size=22,parent='1',extra=''):
         c=ET.SubElement(root,'mxCell',id=id,value=label,vertex='1',parent=parent,style=f'rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize={size};fontColor={font};fillColor={fill};strokeColor={stroke};strokeWidth=1.5;spacing=6;{extra}')
@@ -27,11 +27,11 @@ def build():
     edge('e_targets','targets','search',extra='exitX=1;exitY=0.5;entryX=0;entryY=0.75;')
     edge('e_nav','nav','search','#12858c',True);edge('e_los','los','search','#12858c')
     edge('e_nav_paths','nav','paths','#12858c',extra='exitX=1;exitY=0.5;entryX=0;entryY=0.2;')
-    edge('e_pose','search','poses','#12858c')
+    edge('e_pose','search','poses','#12858c',extra='exitX=0.1;exitY=1;entryX=0.1;entryY=0;')
     edge('e_route','poses','paths','#b37b29',extra='exitX=1;exitY=0.5;entryX=0;entryY=0.5;')
     edge('e_mission','paths','mission','#b37b29');edge('e_capture','mission','capture','#b37b29')
-    node('pose_note','Range · XY LOS · camera FOV',257,226,285,38,fill='none',stroke='none',font='#486a70',size=18)
-    node('scope','Trajectory first · NAV checked on grid fallback · LOS can be relaxed',10,394,870,34,fill='none',stroke='none',font='#596c76',size=18)
+    node('pose_note','Range · XY LOS · FOV',310,226,260,38,fill='none',stroke='none',font='#163743',size=23)
+    node('scope','Trajectory first; NAV checked on grid fallback<br>LOS can be relaxed',10,384,870,66,fill='none',stroke='none',font='#163743',size=24)
     mx=ET.Element('mxfile',host='app.diagrams.net');d=ET.SubElement(mx,'diagram',name='Inspection workflow',id='workflow');d.append(model)
     ET.indent(mx);ET.ElementTree(mx).write(R/'docs/inspection-workflow.drawio',encoding='utf-8',xml_declaration=True)
     return ET.tostring(model,encoding='unicode')

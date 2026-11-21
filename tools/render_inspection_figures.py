@@ -338,20 +338,23 @@ def overview():
     tag(1088,119,"B","Measured scene · planned route")
     im,limits=route_image("outdoor",(680,210));f.image(1088,162,680,210,im)
     f.text(1090,399,"8 observation stops + return",21,TEAL,True)
-    f.text(1768,399,f"Map Z: {limits[0]:.1f} to {limits[1]:.1f} m",19,MUT,False,"end")
+    f.text(1768,399,f"Z: {limits[0]:.1f} to {limits[1]:.1f} m",18,MUT,False,"end")
+    for k in range(110):
+        t=k/109*4; j=min(3,int(t)); c=(HEIGHT_COLORS[j]*(1-(t-j))+HEIGHT_COLORS[j+1]*(t-j)).astype(int)
+        f.rect(1450+k,386,1.2,12,"#%02x%02x%02x"%tuple(c))
     tag(1088,423,"C","Inspection navigation pipeline")
     workflow=Image.open(R/"assets/figure-panels/inspection-workflow.png")
-    f.image(1082,464,692,330,workflow)
+    f.image(1082,464,692,344,workflow)
     # Each field/map pair documents a scene; no time synchronization is asserted.
     panels=[(32,"D","Indoor · field","field-exterior-indoor.webp"),
             (478,"E","Indoor · 22 planned stops",None),
-            (924,"F","Outdoor · field","field-exterior-outdoor.webp"),
+            (924,"F","Indoor · measured 3D","indoor-scene-3d.png"),
             (1370,"G","Outdoor · measured 3D","outdoor-scene-3d.png")]
     for x,letter,title,name in panels:
         tag(x,824,letter,title)
         if name is None:
             im,_=route_image("indoor",(398,234));f.image(x,869,398,234,im)
-        else: fit(name,x,869,398,234,45 if letter=="F" else 0)
+        else: fit(name,x,869,398,234,45 if letter=="D" else 0)
     f.line([(34,1131),(94,1131)],TEAL,4)
     f.text(106,1138,"Planned route",20)
     f.circle(304,1131,6,AMBER);f.text(320,1138,"Observation pose",20)
@@ -461,14 +464,23 @@ def principle():
     c3=np.array(metas["selected"]["camera_local_m"])*100+[20,150,0]
     horizontal=p(140,-80,c3[2]);v=horizontal-anchors["C"];v/=np.linalg.norm(v)
     f.line([anchors["C"],anchors["C"]+v*95],TEAL,1.5,True)
-    f.text(anchors["C"][0]+60,anchors["C"][1]-5,"θ",22,TEAL,True)
+    ray=target-anchors["C"]; ray/=np.linalg.norm(ray)
+    lo,hi=np.arctan2(ray[1],ray[0]),np.arctan2(v[1],v[0])
+    arc=[anchors["C"]+44*np.array([np.cos(t),np.sin(t)]) for t in np.linspace(lo,hi,24)]
+    f.line(arc,TEAL,1.8)
+    q=anchors["C"]+np.array([87,-49])
+    f.rect(q[0]-14,q[1]-20,28,29,"white",r=5)
+    f.text(q[0],q[1]+3,"θ",25,TEAL,True,"middle")
     for letter,col in [("B",RED),("C",TEAL)]:f.circle(*anchors[letter],4,col,"white")
     f.line([p(140,-80,0),target],AMBER,1.5,True)
+    floor_target=p(140,-80,0)
+    f.circle(*floor_target,6,"white",AMBER)
+    f.text(floor_target[0]+18,floor_target[1]+12,"Target XY",20,AMBER,True)
     f.circle(*target,10,AMBER,"white");f.text(target[0]-65,target[1]-24,"Target",23,AMBER,True)
     f.text(818,665,"A   Rejected: conservative NAV clearance margin",23,RED,True)
     f.text(818,710,"B   Rejected: blocked XY sight mask",23,RED,True)
     f.text(818,755,"C   Selected: position + yaw + viewing elevation",23,TEAL,True)
-    f.text(818,793,"Front camera anchors are illustrative; feet share the ground plane.",18,MUT)
+    f.text(818,793,"Ground arrows: yaw toward Target XY. Camera anchors: illustrative.",18,MUT)
     # Combined pipeline kept large enough to read in a GitHub README.
     yy = 851
     for x, w, col, title, detail in [
