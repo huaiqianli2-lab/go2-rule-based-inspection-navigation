@@ -19,4 +19,14 @@ The delivered indoor and outdoor `inspection_planner.py` compute a local ground 
 
 The navigation mask counts returns within (0.16, 0.6296) m above the estimated ground. The upper limit is the sum of the 0.485 m mount height, 0.0296 m offset to the LiDAR cap, and 0.115 m clearance margin. The visibility mask counts returns within (0.90, 2.20) m. Each raw mask activates at two returns. The navigation layer can be inflated for footprint clearance; the view layer supports ray sampling from an observation pose towards a target and stops short of the target itself. These are planning rules for the project's geometry model.
 
+## Observation-pose selection
+
+The 3D [principle diagram](../assets/navigation-sight-layers.png) separates two operations: classifying a grid cell by height-band return counts, and screening possible observation positions around an annotated target. Its A/B/C positions and obstacle geometry are illustrative, not measurements or an exhaustive planner trace.
+
+The checked original `observation_point` implementation prefers positions from the recorded mapping trajectory. It screens target distance, the XY line-of-sight mask and camera elevation, scoring accepted positions by their distance from the desired observation range. Three stages widen the search: the preferred distance band with the standard sight test; a wider distance band with a shorter target exclusion margin; then a stage that can omit the sight test. A trajectory position is not rechecked with `is_free` in this branch.
+
+If no trajectory candidate is accepted, grid-ring and spiral fallbacks check the inflated navigation obstacle mask with `is_free`, the visibility mask along the XY ray, and camera elevation against half the vertical field of view. The sight sampler excludes the final segment next to the target (normally 0.5 m, or 0.35 m in the relevant fallback). This is a height-band occupancy heuristic, not a 3D optical ray tracer. If all searches fail, the planner returns an invalid fallback pose for review.
+
+Thus the navigation layer influences grid-based stance clearance and the visibility layer influences target-facing sight checks, alongside distance, local ground height, camera limits and candidate source. Passing a count test alone does not prove physical reachability or image visibility. The diagram's accepted C represents a successful illustrative case; it does not imply that every recorded pose passed both masks without relaxation.
+
 The route uses Dijkstra graph distances for waypoint legs and applies visit-order and observation checks separately. [System workflow](system.md)

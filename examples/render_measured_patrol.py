@@ -10,7 +10,7 @@ os.environ.setdefault("MUJOCO_GL", "egl")
 import mujoco as mj
 import numpy as np
 from PIL import Image, ImageDraw
-from .measured_renderer import MeasuredRenderer, PALETTE
+from .measured_renderer import MeasuredRenderer
 from .render_slam import BG, WHITE, MINT, AMBER, font
 from .slam_patrol import SCENES, build_model, ground, input_file, load_inputs
 from tools.point_cloud import read_xyz, height_rgb
@@ -195,7 +195,10 @@ def main():
                 position = k / 319 * 4
                 j = min(3, int(position))
                 colors = np.array(
-                    [[int(c[a : a + 2], 16) for a in (1, 3, 5)] for c in PALETTE]
+                    [
+                        [int(c[a : a + 2], 16) for a in (1, 3, 5)]
+                        for c in renderer.palette
+                    ]
                 )
                 rgb = tuple(
                     (
@@ -205,7 +208,10 @@ def main():
                 )
                 d.line((1310 + k, 934, 1310 + k, 945), fill=rgb)
             d.text(
-                (1308, 949), "0                  2 (clipped)", font=font(24), fill=WHITE
+                (1308, 949),
+                f"0                  {renderer.height_span:g} (clipped)",
+                font=font(24),
+                fill=WHITE,
             )
             full = f"{summary['completed_inspection_targets']}/{summary['required_inspection_targets']} stops"
             outcome = (
@@ -261,6 +267,12 @@ def main():
                 interpolation_plane_tolerance_m=0.023,
                 edl_weight=0.15,
                 pca_neighbors=12,
+                height_palette=renderer.palette,
+                trace_radius_m=renderer.trace_radius_m,
+                camera_offset_m=renderer.camera_offset.tolist(),
+                camera_vertical_fov_deg=renderer.camera_fov,
+                display_radius_m=renderer.display_radius_m,
+                display_upper_height_m=2.0 if args.scene == "indoor" else 8.0,
                 displayed_time_s=[float(times[keep[0]]), float(times[keep[-1]])],
             ),
             indent=2,

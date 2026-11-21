@@ -41,7 +41,7 @@ The XT16 frame adaptation rotates Go2 IMU vectors from frame I into LiDAR frame 
 
 ## Navigation and line-of-sight layers
 
-[![Side elevation of three obstacle examples and their corresponding navigation and line-of-sight cell tests](assets/navigation-sight-layers.png)](docs/mapping.md)
+[![3D height-band examples and candidate observation poses rejected by clearance or visibility](assets/navigation-sight-layers.png)](docs/mapping.md)
 
 The planner estimates local ground from the point cloud and the nearest recorded mapping pose. Near the trajectory, a height ceiling filters canopy and overhead returns before the ground percentile is computed. Here $g_k=z_k-0.485$ m and $d_c$ is the horizontal distance from cell $c$ to that pose.
 
@@ -52,7 +52,7 @@ z_{\max}(c) &= g_k+d_c\tan(25^\circ)+0.16+0.05,\\
 \end{aligned}
 ```
 
-In each 0.15 m cell, the two masks count returns in different bands above $\hat g_c$. The navigation layer checks body clearance. The line-of-sight layer screens candidate viewing poses for higher obstructions.
+In each 0.15 m cell, the two masks count returns in different bands above $\hat g_c$. The navigation layer checks body clearance. The line-of-sight layer samples XY rays through the higher-obstruction mask. Candidate poses are drawn from the recorded trajectory first, with grid searches as fallbacks; distance and camera elevation also affect selection. Some fallback stages relax visibility, so the diagram illustrates the checks rather than a universal safety guarantee. [Pose-selection rules](docs/mapping.md#observation-pose-selection)
 
 ```math
 \begin{aligned}
@@ -78,7 +78,7 @@ Download the [indoor and outdoor datasets](datasets/). Each includes a metric XY
 
 ## SLAM-map physical simulation
 
-The enlarged 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Fine, height-colored points with local display interpolation reveal nearby contours; a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. The collision terrain and archived robot states are used as recorded. [Display methods and comparisons](docs/visual-comparison.md)
+The wider 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Fine, height-colored points with local display interpolation reveal scene contours; the outdoor view includes more distant facades and vegetation, while a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. The collision terrain and archived robot states are used as recorded. [Display methods and comparisons](docs/visual-comparison.md)
 
 **Outdoor · 8/8 inspection stops and return**
 
