@@ -2,15 +2,15 @@
 
 ## System architecture
 
-![Integrated workflow and measured maps](../assets/system-overview.png)
+![Integrated workflow and measured maps](../assets/system-overview-25b297e5ada0.png)
 
-[Editable draw.io master](system-overview.drawio) · [SVG export](../assets/system-overview.svg)
+[Editable draw.io master](system-overview.drawio) · [SVG export](../assets/system-overview-d9d5e34b6fb0.svg)
 
 ## Planning layers
 
-![Layers](../assets/navigation-sight-layers.png)
+![Layers](../assets/navigation-sight-layers-8c93a5dcece6.png)
 
-[Editable draw.io master](navigation-sight-principle.drawio) · [SVG export](../assets/navigation-sight-layers.svg)
+[Editable draw.io master](navigation-sight-principle.drawio) · [SVG export](../assets/navigation-sight-layers-04e7a0c852f8.svg)
 
 Three illustrative 3D columns show a low barrier, a higher obstruction and a tall obstacle inside separate translucent NAV and LOS height volumes. The right-hand diagram shows candidate poses rejected by stance clearance or a blocked sight check, alongside a selected viewing direction. The floor footprints and vertical projection lines are schematic. Each band uses strict endpoints and an independent threshold of at least two returns. A below-threshold count does not establish traversability or visibility by itself. [The selection notes](mapping.md#observation-pose-selection) explain trajectory-first candidates, camera checks and relaxed fallback stages. Three grounded Go2 mesh renders show rejected grid candidate A, LOS-rejected candidate B and selected pose C. Ground arrows show yaw. The rising camera-to-target lines begin at illustrative front-camera anchors attached to the robot bodies; the target is above them. These anchors are explanatory, not calibrated camera extrinsics. The implementation checks an XY ray through the height-band mask, not a 3D optical ray.
 
@@ -81,7 +81,7 @@ python -m tools.render_diagram_robot --model /path/to/unitree-go2.xml --output a
 python -m tools.render_inspection_figures
 ```
 
-The draw.io masters retain independently selectable text, paths, shapes, projected vector faces and embedded map panels. They can be opened in [draw.io Desktop](https://github.com/jgraph/drawio-desktop). The generated SVGs are the canonical vector exports; text metrics in a draw.io re-export can vary. PNG is used in the README, with SVG and editable sources alongside it.
+The draw.io masters retain independently selectable text, paths, shapes, projected vector faces and embedded map panels. They can be opened in [draw.io Desktop](https://github.com/jgraph/drawio-desktop). The generated SVGs are the canonical vector exports; text metrics in a draw.io re-export can vary. PNG is used in the README, with SVG and editable sources alongside it. Published PNG/SVG links include a content hash in the filename, so a changed export receives a new URL instead of relying on expiry of a same-name image cache. The generator refreshes these links in the README and method pages; canonical filenames remain available for existing external links.
 
 ## Reproduce the enlarged patrol view
 

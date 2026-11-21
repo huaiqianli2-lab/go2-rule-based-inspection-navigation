@@ -424,5 +424,29 @@
     "sha256": "33af004d47c193ea8c73b658895ba18c436b01c3e3496905fd132becce6e2c43",
     "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
     "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
+  },
+  {
+    "file": "assets/system-overview-25b297e5ada0.png",
+    "sha256": "25b297e5ada079a63cea831986f8e7ff529e671ceec349e2f7c70078e4240ce0",
+    "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
+    "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained. Content-addressed publication copy for fresh GitHub image URLs."
+  },
+  {
+    "file": "assets/system-overview-d9d5e34b6fb0.svg",
+    "sha256": "d9d5e34b6fb06f8675754eb978d6e4639e86a093b0c0354a281dd617ac660e3c",
+    "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
+    "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained. Content-addressed publication copy for fresh GitHub image URLs."
+  },
+  {
+    "file": "assets/navigation-sight-layers-8c93a5dcece6.png",
+    "sha256": "8c93a5dcece612fdd667a7c43391d635570617e6cf1150c70103de4708e0fb0a",
+    "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
+    "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment. Content-addressed publication copy for fresh GitHub image URLs."
+  },
+  {
+    "file": "assets/navigation-sight-layers-04e7a0c852f8.svg",
+    "sha256": "04e7a0c852f8359f8ba9a5c245e94f3a189d49741bfa9e2aa11174369a8d630a",
+    "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
+    "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment. Content-addressed publication copy for fresh GitHub image URLs."
   }
 ]

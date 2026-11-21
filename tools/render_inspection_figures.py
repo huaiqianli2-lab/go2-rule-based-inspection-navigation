@@ -9,6 +9,8 @@ import base64
 import io
 import json
 import math
+import hashlib
+import re
 import xml.etree.ElementTree as ET
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -193,6 +195,20 @@ class Figure:
         ET.ElementTree(self.mx).write(
             R / "docs" / f"{self.name}.drawio", encoding="utf-8", xml_declaration=True
         )
+        # Content-specific URLs prevent stale same-name images in rendered READMEs.
+        for extension in ("png", "svg"):
+            source = R / "assets" / f"{asset}.{extension}"
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()[:12]
+            published = f"{asset}-{digest}.{extension}"
+            (source.parent / published).write_bytes(source.read_bytes())
+            pattern = rf"{re.escape(asset)}(?:-[0-9a-f]{{12}})?\.{extension}"
+            for document in ("README.md", "docs/system.md", "docs/mapping.md",
+                             "docs/visual-comparison.md"):
+                path = R / document
+                text = path.read_text()
+                updated = re.sub(pattern, published, text)
+                if updated != text:
+                    path.write_text(updated)
 
 
 def iso(origin, scale=1):
