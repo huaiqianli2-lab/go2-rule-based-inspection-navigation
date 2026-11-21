@@ -7,7 +7,7 @@ Rule-based quadruped navigation and inspection on Unitree Go2 EDU. The supervise
 ![MuJoCo 3.10.0](https://img.shields.io/badge/Simulation-MuJoCo%203.10.0-087e72)
 [![Repository rights and attribution](https://img.shields.io/badge/License-Rights%20notice-9a6240)](LICENSE)
 
-[Overview](#overview) · [Field demos](#field-demos) · [Simulation](#slam-map-physical-simulation) · [Datasets](#datasets) · [Route audit](#run-the-route-audit)
+[Overview](#overview) · [Datasets](#datasets) · [Field demos](#field-demos) · [Simulation](#slam-map-physical-simulation) · [Route audit](#run-the-route-audit) · [Acknowledgments](#acknowledgments) · [License](#license)
 
 ## Overview
 
