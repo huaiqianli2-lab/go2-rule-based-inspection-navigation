@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Inspection workflow" id="workflow">
+    <mxGraphModel dx="900" dy="430" page="1" pageWidth="900" pageHeight="430" background="#ffffff" adaptiveColors="none">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pose_group" value="" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#e8f3f3;strokeColor=#e8f3f3;strokeWidth=1.5;spacing=6;container=1;pointerEvents=0;">
+          <mxGeometry as="geometry" x="220" y="20" width="360" height="360" />
+        </mxCell>
+        <mxCell id="route_group" value="" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#f9efdf;strokeColor=#f9efdf;strokeWidth=1.5;spacing=6;container=1;pointerEvents=0;">
+          <mxGeometry as="geometry" x="600" y="20" width="280" height="360" />
+        </mxCell>
+        <mxCell id="map" value="Map + trajectory" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#f3f6f8;strokeColor=#cad7e0;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="10" y="80" width="185" height="74" />
+        </mxCell>
+        <mxCell id="targets" value="Target annotations" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#f3f6f8;strokeColor=#cad7e0;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="10" y="240" width="185" height="74" />
+        </mxCell>
+        <mxCell id="nav" value="NAV" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="205" y="30" width="135" height="60" />
+        </mxCell>
+        <mxCell id="los" value="LOS" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=23;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="20" y="30" width="135" height="60" />
+        </mxCell>
+        <mxCell id="search" value="Candidate search" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="55" y="135" width="250" height="64" />
+        </mxCell>
+        <mxCell id="poses" value="Observation poses" vertex="1" parent="pose_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#ffffff;strokeColor=#6baeb2;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="55" y="258" width="250" height="64" />
+        </mxCell>
+        <mxCell id="paths" value="Dijkstra leg paths" vertex="1" parent="route_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#ffffff;strokeColor=#cba266;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="25" y="38" width="230" height="66" />
+        </mxCell>
+        <mxCell id="mission" value="Visit order + return" vertex="1" parent="route_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#ffffff;strokeColor=#cba266;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="25" y="156" width="230" height="66" />
+        </mxCell>
+        <mxCell id="capture" value="Navigate + capture" vertex="1" parent="route_group" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=22;fontColor=#163743;fillColor=#ffffff;strokeColor=#cba266;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="25" y="274" width="230" height="66" />
+        </mxCell>
+        <mxCell id="e_map" edge="1" parent="1" source="map" target="search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#667a84;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.25;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_targets" edge="1" parent="1" source="targets" target="search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#667a84;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.75;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_nav" edge="1" parent="1" source="nav" target="search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#12858c;dashed=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_los" edge="1" parent="1" source="los" target="search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#12858c;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_nav_paths" edge="1" parent="1" source="nav" target="paths" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#12858c;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.2;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_pose" edge="1" parent="1" source="search" target="poses" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#12858c;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_route" edge="1" parent="1" source="poses" target="paths" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#b37b29;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_mission" edge="1" parent="1" source="paths" target="mission" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#b37b29;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e_capture" edge="1" parent="1" source="mission" target="capture" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=classic;endSize=9;strokeWidth=2;strokeColor=#b37b29;dashed=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="pose_note" value="Range · XY LOS · camera FOV" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=18;fontColor=#486a70;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="257" y="226" width="285" height="38" />
+        </mxCell>
+        <mxCell id="scope" value="Trajectory first · NAV checked on grid fallback · LOS can be relaxed" vertex="1" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=18;fontColor=#596c76;fillColor=none;strokeColor=none;strokeWidth=1.5;spacing=6;">
+          <mxGeometry as="geometry" x="10" y="394" width="870" height="34" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

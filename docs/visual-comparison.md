@@ -2,17 +2,17 @@
 
 ## System architecture
 
-![Integrated workflow and measured maps](../assets/system-overview-25b297e5ada0.png)
+![Integrated workflow and measured maps](../assets/system-overview-08295b2f372e.png)
 
-[Editable draw.io master](system-overview.drawio) · [SVG export](../assets/system-overview-d9d5e34b6fb0.svg)
+[Editable composition](system-overview.drawio) · [Native workflow master](inspection-workflow.drawio) · [SVG export](../assets/system-overview-8831664829f4.svg)
 
 ## Planning layers
 
-![Layers](../assets/navigation-sight-layers-8c93a5dcece6.png)
+![Layers](../assets/navigation-sight-layers-06c330cc59a2.png)
 
-[Editable draw.io master](navigation-sight-principle.drawio) · [SVG export](../assets/navigation-sight-layers-04e7a0c852f8.svg)
+[Editable draw.io master](navigation-sight-principle.drawio) · [SVG export](../assets/navigation-sight-layers-47e146a134ff.svg)
 
-Three illustrative 3D columns show a low barrier, a higher obstruction and a tall obstacle inside separate translucent NAV and LOS height volumes. The right-hand diagram shows candidate poses rejected by stance clearance or a blocked sight check, alongside a selected viewing direction. The floor footprints and vertical projection lines are schematic. Each band uses strict endpoints and an independent threshold of at least two returns. A below-threshold count does not establish traversability or visibility by itself. [The selection notes](mapping.md#observation-pose-selection) explain trajectory-first candidates, camera checks and relaxed fallback stages. Three grounded Go2 mesh renders show rejected grid candidate A, LOS-rejected candidate B and selected pose C. Ground arrows show yaw. The rising camera-to-target lines begin at illustrative front-camera anchors attached to the robot bodies; the target is above them. These anchors are explanatory, not calibrated camera extrinsics. The implementation checks an XY ray through the height-band mask, not a 3D optical ray.
+Three illustrative 3D columns show a low barrier, a higher obstruction and a tall obstacle inside separate translucent NAV and LOS height volumes. The right-hand diagram shows candidate poses rejected by stance clearance or a blocked sight check, alongside a selected viewing direction. The floor footprints and vertical projection lines are schematic; scene distances and mesh dimensions use a common projection scale. Each band uses strict endpoints and an independent threshold of at least two returns. A below-threshold count does not establish traversability or visibility by itself. [The selection notes](mapping.md#observation-pose-selection) explain trajectory-first candidates, camera checks and relaxed fallback stages. Three grounded Go2 mesh renders show rejected grid candidate A, LOS-rejected candidate B and selected pose C. Ground arrows show yaw. The rising camera-to-target lines begin at illustrative front-camera anchors attached to the robot bodies; the target is above them. These anchors are explanatory, not calibrated camera extrinsics. The implementation checks an XY ray through the height-band mask, not a 3D optical ray.
 
 ## Camera-angle comparison
 
@@ -22,7 +22,7 @@ The original point positions are height-colored and viewed from oblique cameras.
 
 ## Selected scene views
 
-The overview uses three nested groups for mapping, rule-based planning and supervised execution, above two height-colored measured maps on dark panels. Parallel NAV/LOS branches feed trajectory-first selection and grid fallback with different checks; Dijkstra leg costs feed visit ordering, followed by bundle preflight, viewpoint arrival, target-image capture and return. Dashed candidate edges mean fallback if the trajectory search finds no accepted pose. Numeric map-Z legends apply separately to each scene. The principle figure pairs 3D height volumes with candidate-pose screening. The measured scene views below use 35° oblique cameras, display-only sparse-cell filtering and per-scene height colors.
+The overview follows a white-background scientific multi-panel layout: a dominant outdoor field image, a separately labeled exterior-view inset, a measured scene with its planned route, a native draw.io workflow and four aligned indoor/outdoor field/map panels. These images come from already published project media, not a new synchronized experiment. The compact flow shows NAV feeding route paths and a dashed grid-only candidate input, LOS and candidate selection, then observation poses, Dijkstra paths, visit order/return planning and supervised navigation/capture. Detailed trajectory-first and relaxed-LOS behavior remains in the mapping notes. Point-cloud colors encode height, not object semantics; full numeric height scales remain in the original scene figures. Route-map distance bars remain metric. The principle diagram uses one orthographic basis for the original-material Go2 meshes, ground, obstacles and attached illustrative camera anchors, with uniform sprite scaling. Ground arrows follow the model +X heading toward each target XY. The elevated target ray describes viewing elevation, not mechanical camera pitch or calibrated optics. A conservative clearance buffer rejects A without intersecting its physical mesh; B's XY segment meets the wall; C's segment avoids both obstacles. Camera field-of-view calibration is not supplied by this model and is not newly validated here.
 
 ![Indoor cutaway](../assets/indoor-scene-3d.png)
 ![Outdoor scene](../assets/outdoor-scene-3d.png)
@@ -102,3 +102,14 @@ With the original verified input archive and optional MuJoCo/PyOpenGL/Pillow dep
 ```bash
 python -m examples.render_scene_tour --inputs /path/to/verified-inputs --output /path/to/output --ffmpeg /path/to/ffmpeg
 ```
+
+To rebuild the native workflow panel using draw.io Desktop, then compose the figures:
+
+```bash
+python -m tools.build_workflow_drawio
+drawio --export --format png --scale 2 --output assets/figure-panels/inspection-workflow.png docs/inspection-workflow.drawio
+python -m tools.render_inspection_figures
+python -m tools.check_figure_geometry
+```
+
+The geometry check verifies each model heading, foot contact tolerance, uniform projection, obstacle separation and the depicted blocked/clear sight segments. It validates this explanatory drawing, not real robot navigation safety or camera calibration.

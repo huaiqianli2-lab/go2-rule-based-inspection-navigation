@@ -21,7 +21,7 @@ The navigation mask counts returns within (0.16, 0.6296) m above the estimated g
 
 ## Observation-pose selection
 
-The 3D [principle diagram](../assets/navigation-sight-layers-8c93a5dcece6.png) separates two operations: classifying a grid cell by height-band return counts, and screening possible observation positions around an annotated target. Its A/B/C positions and obstacle geometry are illustrative, not measurements or an exhaustive planner trace.
+The 3D [principle diagram](../assets/navigation-sight-layers-06c330cc59a2.png) separates two operations: classifying a grid cell by height-band return counts, and screening possible observation positions around an annotated target. Its A/B/C positions and obstacle geometry are illustrative, not measurements or an exhaustive planner trace.
 
 The checked original `observation_point` implementation prefers positions from the recorded mapping trajectory. It screens target distance, the XY line-of-sight mask and camera elevation, scoring accepted positions by their distance from the desired observation range. Three stages widen the search: the preferred distance band with the standard sight test; a wider distance band with a shorter target exclusion margin; then a stage that can omit the sight test. A trajectory position is not rechecked with `is_free` in this branch.
 

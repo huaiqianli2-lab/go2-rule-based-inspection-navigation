@@ -59,7 +59,9 @@ def render(model_path, output):
         mapper.SetInputConnection(normals.GetOutputPort())
         actor = vtk.vtkActor()
         actor.SetMapper(mapper)
-        actor.GetProperty().SetColor(0.55, 0.62, 0.70)
+        material = int(model.geom_matid[geom])
+        rgb = model.mat_rgba[material, :3] if material >= 0 else model.geom_rgba[geom, :3]
+        actor.GetProperty().SetColor(*map(float, rgb))
         actor.GetProperty().SetAmbient(0.3)
         actor.GetProperty().SetDiffuse(0.7)
         matrix = vtk.vtkMatrix4x4()
@@ -75,8 +77,8 @@ def render(model_path, output):
     output.mkdir(parents=True, exist_ok=True)
     metadata = {}
     try:
-        for name, direction in {"selected": (115, 5), "blocked": (-112, -60),
-                                "clearance": (75, -122)}.items():
+        for name, direction in {"selected": (120, -230), "blocked": (-100, -210),
+                                "clearance": (50, -120)}.items():
             yaw = np.arctan2(direction[1], direction[0])
             mj.mj_resetDataKeyframe(model, data, 0)
             data.qpos[3:7] = [np.cos(yaw/2), 0, 0, np.sin(yaw/2)]
@@ -110,9 +112,21 @@ def render(model_path, output):
                 value = renderer.GetDisplayPoint()
                 return [value[0], 600-value[1]]
 
-            front = [0.30*np.cos(yaw), 0.30*np.sin(yaw), float(data.qpos[2])+0.03]
+            front = [0.29*np.cos(yaw), 0.29*np.sin(yaw), float(data.qpos[2])+0.07]
+            vertices=[]
+            for geom, _ in actors:
+                mesh=model.geom_dataid[geom]
+                start=model.mesh_vertadr[mesh]; count=model.mesh_vertnum[mesh]
+                vertices.append(model.mesh_vert[start:start+count] @ data.geom_xmat[geom].reshape(3,3).T + data.geom_xpos[geom])
+            vertices=np.concatenate(vertices)
             metadata[name] = {
+                "mesh_bounds_m": [vertices.min(axis=0).tolist(), vertices.max(axis=0).tolist()],
                 "origin_px": project([0, 0, 0]),
+                "projection_basis_px": [(np.array(project(axis))-project([0, 0, 0])).tolist()
+                                        for axis in np.eye(3)],
+                "forward_xy": [float(np.cos(yaw)), float(np.sin(yaw))],
+                "foot_bottoms_m": [float(data.geom_xpos[g, 2]-model.geom_size[g, 0])
+                                   for g in foot_ids],
                 "camera_px": project(front),
                 "camera_local_m": front,
                 "yaw_rad": float(yaw),
