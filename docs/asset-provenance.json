@@ -289,7 +289,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.svg",
-    "sha256": "47e146a134ff874a591b36878c3ba301445373adf7e0a9a85620fe784f9b2ebb",
+    "sha256": "c607d67fb7bd1d4bd91d664d97286c9bff0f661b3419ce31152ca2d8b2fb1f22",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -301,7 +301,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.png",
-    "sha256": "06c330cc59a278c114b432a3cf2d0b9dd8bc538189ddae1275c71522b745c5ce",
+    "sha256": "82272f821bae48a6b1e494a56aae7eb0848ed57ccbeeca9cba5c2af0885268e8",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -385,7 +385,7 @@
   },
   {
     "file": "docs/navigation-sight-principle.drawio",
-    "sha256": "7836c29efb1a685db0ad1ab7b42640448ce70e550b0be1081f96b32ba9b82d1a",
+    "sha256": "2296b77c4685a7795ed69ee104bf4bdce05944a0215e6d5cc8b3b2aca0133324",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -403,25 +403,25 @@
   },
   {
     "file": "assets/diagram-robot/anchors.json",
-    "sha256": "098c60f2d1ba982d4a99659e4975a373030012b48f552ffcb2f0ab9cb0fa5b17",
+    "sha256": "69225e722e38b80ca889bb1c072489fb3235a79db17d582d61901536a10b84b1",
     "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
     "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
   },
   {
     "file": "assets/diagram-robot/blocked.png",
-    "sha256": "878ffe8b66c5db8c5aaecbd7d1003d180eacd7cc51f57d3f4f06826650b116b6",
+    "sha256": "812bf6eedff06e6930d5d19284b56b644dd4aad78348179812bd47c62ca38e62",
     "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
     "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
   },
   {
     "file": "assets/diagram-robot/clearance.png",
-    "sha256": "98ced85063764c7e6cfdffb8a7c82d3261871268aead50a563625d47099f21ad",
+    "sha256": "148fa2eb03e161c0aff5d9d9681a8bab737a1695ef7d2f7d3876adb466dfe23c",
     "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
     "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
   },
   {
     "file": "assets/diagram-robot/selected.png",
-    "sha256": "d21b1a6c69fe6adda7887e7f9717ef9065ec80488ebb767ef6c9ec653ae8f729",
+    "sha256": "c1001cbb7955a273432364b36117f7b681840baa980dfd00aeef005f895b2738",
     "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
     "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
   },
@@ -456,18 +456,6 @@
     "sha256": "c6c30bbcd0fc98de1ed07d4236bb315704559b038eb6241b5d367dcb6bae9e1f"
   },
   {
-    "file": "assets/navigation-sight-layers-06c330cc59a2.png",
-    "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
-    "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
-    "sha256": "06c330cc59a278c114b432a3cf2d0b9dd8bc538189ddae1275c71522b745c5ce"
-  },
-  {
-    "file": "assets/navigation-sight-layers-47e146a134ff.svg",
-    "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
-    "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
-    "sha256": "47e146a134ff874a591b36878c3ba301445373adf7e0a9a85620fe784f9b2ebb"
-  },
-  {
     "file": "assets/system-overview-08295b2f372e.png",
     "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
     "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
@@ -484,5 +472,17 @@
     "source": "Existing published project field clips, metric maps, route JSON and Menagerie Go2 mesh; see docs/visual-comparison.md",
     "treatment": "Original editorial multi-panel composition, native draw.io workflow or uniformly projected explanatory mesh. No new field or physics outcome.",
     "sha256": "6bb626a43dfc59cd61e137290a792d859541c7863cb84d514437606e1e6930c2"
+  },
+  {
+    "file": "assets/navigation-sight-layers-82272f821bae.png",
+    "source": "Published project maps, target poses and Menagerie Go2 mesh; docs/visual-comparison.md",
+    "treatment": "Original figure or native draw.io workflow; illustrative camera anchors, not calibrated extrinsics.",
+    "sha256": "82272f821bae48a6b1e494a56aae7eb0848ed57ccbeeca9cba5c2af0885268e8"
+  },
+  {
+    "file": "assets/navigation-sight-layers-c607d67fb7bd.svg",
+    "source": "Published project maps, target poses and Menagerie Go2 mesh; docs/visual-comparison.md",
+    "treatment": "Original figure or native draw.io workflow; illustrative camera anchors, not calibrated extrinsics.",
+    "sha256": "c607d67fb7bd1d4bd91d664d97286c9bff0f661b3419ce31152ca2d8b2fb1f22"
   }
 ]
