@@ -147,7 +147,7 @@
   },
   {
     "file": "assets/slam-indoor.jpg",
-    "sha256": "6306864da516a1e5044c387799bf109d6f28de9083dcacd40f549c9415c3e8af",
+    "sha256": "b6c256034da3702ac83e33fdeaee305ee6a7b62fedb17899cd4b5bebffa72f98",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
     "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
   },
@@ -171,9 +171,9 @@
   },
   {
     "file": "assets/slam-outdoor.jpg",
-    "sha256": "8ded1f60514115568e4074608e66b28a5982f5a2e670af5f89aadb3e5579afb0",
+    "sha256": "bb34e3bee0b9a5d0705ac24b823bb2df7e7a5a311e745a4b377af2d070a41d85",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent. Outdoor lowest height color is dark slate for robot contrast; recent-path radius 0.035 m. Comparison headings identify the different outdoor height scales."
   },
   {
     "file": "assets/slam-outdoor.mp4",
@@ -271,15 +271,15 @@
   },
   {
     "file": "assets/slam-outdoor-route.mp4",
-    "sha256": "83565f03c8fab82d84350ecabed0ebe97bf7e795188dd7b114f1ac5ff6634e64",
+    "sha256": "5ddde9563da39fc1c20773de6e16be17c54c7298ceb9c7721278d0538c8ae222",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent. Outdoor lowest height color is dark slate for robot contrast; recent-path radius 0.035 m. Comparison headings identify the different outdoor height scales."
   },
   {
     "file": "assets/slam-outdoor-route.webp",
-    "sha256": "5e9327b6965aa5fc02eb6f0d7859a03ae622582ff5c9a9dbe9bb60f0b291d4f6",
+    "sha256": "23069369159a3bcbdb371cef33c053964445ab8fda5617d21736755f79a29eef",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent. Outdoor lowest height color is dark slate for robot contrast; recent-path radius 0.035 m. Comparison headings identify the different outdoor height scales."
   },
   {
     "file": "assets/inspection-architecture.svg",
@@ -289,7 +289,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.svg",
-    "sha256": "922ff263924644e14133de131abd150d5cc1f8a003922c6fc786a23aa6fa987f",
+    "sha256": "1ca2c1c1450931e9e8c4fea78a472f291c44e65a1920d281135a79ec7b5a0917",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
   },
@@ -301,7 +301,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.png",
-    "sha256": "672502414ce0dc153b5a98ba2dc26f1d2443622da0f59f49effcf000cd30ac15",
+    "sha256": "d0b9440ce0da8b98dc30f7517b50e55246da94c33056e199cf27cabc21c7d0a9",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
   },
@@ -385,14 +385,14 @@
   },
   {
     "file": "docs/navigation-sight-principle.drawio",
-    "sha256": "fbf09b3406753ce55a65ed89a19bdfb1e67912265ced5408c11123d7511c29a7",
+    "sha256": "ec678fb4e70acc294fe2f823bb1a6daf1561e55be182d18fdb82398393cd5164",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Illustrative 3D height volumes and candidate-pose screening, including clearance footprints and schematic viewing rays. Not to scale or an optical visibility simulation."
   },
   {
     "file": "assets/patrol-camera-comparison.jpg",
-    "sha256": "667455abaea98eaaeccd3a9bdd99c90ad3f330090f261366d36fd36930e7aa10",
+    "sha256": "58c91b8d42f44a1524ba304f8ebea56810c8b3a4f2b035ecb0cde86811492c16",
     "source": "Original measured localization clouds and unchanged archived MuJoCo state sequences; docs/data/patrol-display.json",
-    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent."
+    "treatment": "Wider camera framing with locally interpolated display points. Outdoor: 46 degree vertical FOV, 27 m neighborhood and 0–6 m color range; indoor: 42 degrees and 20 m neighborhood. Camera comparison uses matched archived timestamps and includes changed outdoor display extent. Outdoor lowest height color is dark slate for robot contrast; recent-path radius 0.035 m. Comparison headings identify the different outdoor height scales."
   }
 ]

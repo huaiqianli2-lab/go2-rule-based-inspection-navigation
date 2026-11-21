@@ -23,6 +23,10 @@ class MeasuredRenderer:
         )
         self.camera_fov = 42 if scene == "indoor" else 46
         self.display_radius_m = 20 if scene == "indoor" else 27
+        self.palette = list(PALETTE)
+        if scene == "outdoor":
+            self.palette[0] = "#546877"
+        self.trace_radius_m = 0.035 if scene == "outdoor" else 0.025
         self.model, self.scene, self.size = model, scene, size
         center = np.median(poses[:, :2], axis=0)
         excursion = np.max(np.linalg.norm(poses[:, :2] - center, axis=1))
@@ -105,7 +109,7 @@ class MeasuredRenderer:
         self.display_count = len(samples)
         lookup = vtk.vtkColorTransferFunction()
         for height, color in zip(
-            np.linspace(self.floor, self.floor + self.height_span, 5), PALETTE
+            np.linspace(self.floor, self.floor + self.height_span, 5), self.palette
         ):
             lookup.AddRGBPoint(
                 height, *[int(color[k : k + 2], 16) / 255 for k in (1, 3, 5)]
@@ -189,7 +193,7 @@ class MeasuredRenderer:
         self.trace_poly.SetPoints(self.trace_points)
         tube = vtk.vtkTubeFilter()
         tube.SetInputData(self.trace_poly)
-        tube.SetRadius(0.025)
+        tube.SetRadius(self.trace_radius_m)
         tube.SetNumberOfSides(8)
         trace_mapper = vtk.vtkPolyDataMapper()
         trace_mapper.SetInputConnection(tube.GetOutputPort())

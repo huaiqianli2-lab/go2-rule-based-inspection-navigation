@@ -25,7 +25,15 @@
     "fps": 25,
     "webp_frames": 110,
     "webp_fps": 10,
-    "state_archive_sha256": "8e35201cafca3883fc4e76fd5845053ca9495afd8373b3194089709306c02196"
+    "state_archive_sha256": "8e35201cafca3883fc4e76fd5845053ca9495afd8373b3194089709306c02196",
+    "height_palette": [
+      "#a6afb6",
+      "#4fb9cf",
+      "#2c9c9a",
+      "#dfb554",
+      "#cb6548"
+    ],
+    "trace_radius_m": 0.025
   },
   "outdoor": {
     "point_count": 398613,
@@ -37,6 +45,14 @@
     "interpolation_plane_tolerance_m": 0.023,
     "edl_weight": 0.15,
     "pca_neighbors": 12,
+    "height_palette": [
+      "#546877",
+      "#4fb9cf",
+      "#2c9c9a",
+      "#dfb554",
+      "#cb6548"
+    ],
+    "trace_radius_m": 0.035,
     "camera_offset_m": [
       -5.6,
       -6.4,

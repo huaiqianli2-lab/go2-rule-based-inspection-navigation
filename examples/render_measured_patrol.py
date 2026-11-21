@@ -10,7 +10,7 @@ os.environ.setdefault("MUJOCO_GL", "egl")
 import mujoco as mj
 import numpy as np
 from PIL import Image, ImageDraw
-from .measured_renderer import MeasuredRenderer, PALETTE
+from .measured_renderer import MeasuredRenderer
 from .render_slam import BG, WHITE, MINT, AMBER, font
 from .slam_patrol import SCENES, build_model, ground, input_file, load_inputs
 from tools.point_cloud import read_xyz, height_rgb
@@ -195,7 +195,10 @@ def main():
                 position = k / 319 * 4
                 j = min(3, int(position))
                 colors = np.array(
-                    [[int(c[a : a + 2], 16) for a in (1, 3, 5)] for c in PALETTE]
+                    [
+                        [int(c[a : a + 2], 16) for a in (1, 3, 5)]
+                        for c in renderer.palette
+                    ]
                 )
                 rgb = tuple(
                     (
@@ -264,6 +267,8 @@ def main():
                 interpolation_plane_tolerance_m=0.023,
                 edl_weight=0.15,
                 pca_neighbors=12,
+                height_palette=renderer.palette,
+                trace_radius_m=renderer.trace_radius_m,
                 camera_offset_m=renderer.camera_offset.tolist(),
                 camera_vertical_fov_deg=renderer.camera_fov,
                 display_radius_m=renderer.display_radius_m,
