@@ -111,7 +111,7 @@ def robot(f,x,y,color=PURPLE,s=1):
         for off in [0,15]:
             f.line([(x+dx*s,y+9*s-off*.5*s),(x+(dx+7)*s,y+32*s-off*.5*s),(x+(dx-4)*s,y+49*s-off*.5*s)],color,5*s)
     f.circle(x+43*s,y+1*s,4*s,'#ffffff')
-    f.circle(x-12*s,y-27*s,8*s,TEAL)
+    f.rect(x-19*s,y-34*s,14*s,12*s,'#617a98',r=2)
 
 
 def overview():
@@ -136,10 +136,10 @@ def overview():
             for dy in [-28,0,28]: f.line([(x+68,254),(x+145,254+dy)],BLUE,2,True)
         elif i==1:
             grid(f,p,4,26)
-            cube(f,p,60,33,0,20,20,55,AMBER)
+            cube(f,p,20,20,0,20,20,55,AMBER)
             f.poly([p(3,0,25),p(105,0,25),p(105,105,25),p(3,105,25)],TEAL,TEAL,.16)
             f.poly([p(3,0,66),p(105,0,66),p(105,105,66),p(3,105,66)],AMBER,AMBER,.17)
-            a=p(24,80,8); b=p(84,23,52); f.line([a,b],TEAL,3,arrow=True); f.circle(*a,8,TEAL,'white')
+            a=p(15,90,8); b=p(105,5,92); f.line([a,b],AMBER,3,arrow=True); f.circle(*a,8,TEAL,'white'); f.circle(*b,6,AMBER,'white')
         elif i==2:
             grid(f,p,4,26)
             cube(f,p,38,32,0,28,38,24,'#99abc0')
@@ -152,6 +152,7 @@ def overview():
             robot(f,x+195,285,PURPLE,.88)
             f.rect(x+265,241,45,33,'#eee8fa',PURPLE,4)
             f.circle(x+288,258,9,'white',PURPLE)
+            f.line([(x+240,287),(x+265,258)],PURPLE,2,True)
         f.text(x+20,408,detail,22,MUT)
         if i<3: f.line([(x+350,290),(x+382,290)],'#7b8da2',3,arrow=True)
     f.text(46,477,'Operator annotations identify inspection targets before pose selection.',23,MUT)
@@ -172,7 +173,7 @@ def overview():
         for xx,yy in proj(stops): d.ellipse((xx-4,yy-4,xx+4,yy+4),fill='#ffb65b',outline='white',width=1)
         d.rectangle((10,333,125,375),fill='#101f30')
         d.line((20,343,20+5*scale,343),fill='white',width=3)
-        d.text((20,349),'5 m',font=ImageFont.truetype('DejaVuSans.ttf',20),fill='white')
+        d.text((20,349),'5 m',font=ImageFont.truetype('DejaVuSans.ttf',23),fill='white')
         f.text(x+20,554,scene.title(),31,bold=True)
         f.text(x+710,553,f'{len(stops)} planned stops',25,TEAL,True,'end')
         f.image(x+18,574,694,378,im)
@@ -180,8 +181,8 @@ def overview():
         for k in range(180):
             t=k/179*4;j=min(3,int(t)); c=(HEIGHT_COLORS[j]*(1-(t-j))+HEIGHT_COLORS[j+1]*(t-j)).astype(int)
             f.rect(x+157+k,978,1.2,13,'#%02x%02x%02x'%tuple(c))
-        f.text(x+150,1020,f'{limits[0]:.1f}',19,MUT)
-        f.text(x+320,1020,f'{limits[1]:.1f}',19,MUT)
+        f.text(x+150,1020,f'{limits[0]:.1f}',22,MUT)
+        f.text(x+320,1020,f'{limits[1]:.1f}',22,MUT)
     f.line([(52,1074),(106,1074)],TEAL,5);f.text(119,1082,'Planned route',23)
     f.circle(374,1074,7,AMBER);f.text(391,1082,'Observation pose',23)
     f.text(890,1082,'Maps: measured  ·  Routes: planned',23,MUT)
@@ -202,7 +203,7 @@ def principle():
     for i,(title,nav,los) in enumerate([('Low barrier',2,0),('High structure',0,2),('Tall obstacle',2,2)]):
         cx=185+i*225
         f.text(cx,275,title,23,FG,True,'middle')
-        p=iso((cx,540),.74)
+        p=iso((cx,530),.82)
         grid(f,p,2,44)
         if i==0: cube(f,p,28,28,0,30,30,37,'#8b9caf')
         if i==1: cube(f,p,28,28,144,30,30,27,'#8b9caf')
@@ -210,6 +211,8 @@ def principle():
         for lo,hi,col in [(16,62.96,TEAL),(90,220,AMBER)]:
             # Transparent volume with matching top and bottom planes.
             f.poly([p(0,88,lo),p(88,88,lo),p(88,88,hi),p(0,88,hi)],col,col,.10)
+            for xx,yy in [(0,0),(88,0)]:
+                f.line([p(xx,yy,lo),p(xx,yy,hi)],'#90bfc1' if col==TEAL else '#e0bc85',1.2,True)
             for zz in [lo,hi]:
                 f.poly([p(0,0,zz),p(88,0,zz),p(88,88,zz),p(0,88,zz)],col,col,.12)
         for zz in ([29,43] if nav else []): f.circle(*p(44,60,zz),5,TEAL,'white')
@@ -225,12 +228,24 @@ def principle():
     grid(f,p,6,30)
     cube(f,p,102,66,0,44,14,105,'#91a3bb')
     cube(f,p,31,113,0,28,26,28,TEAL)
-    a,b,c=[p(55,147,8),p(147,144,8),p(34,38,8)]
+    a,b,c=[p(55,147,8),p(147,144,8),p(15,20,8)]
+    c_camera=p(15,20,85)
+    for x,y,col in [(55,147,RED),(15,20,TEAL)]:
+        ring=[p(x+19*math.cos(t),y+19*math.sin(t),2) for t in np.linspace(0,2*math.pi,40)]
+        f.poly(ring,col,'none',.10)
+        f.line(ring,col,1.8,True)
     target=p(130,25,90)
     f.line([b,p(137,80,58)],RED,4,True)
     f.line([p(137,80,58),target],'#9dabbc',2,True)
-    f.line([c,target],TEAL,4,arrow=True)
-    f.poly([c,p(123,23,100),p(140,29,75)],TEAL,'none',.10)
+    f.line([c,c_camera],TEAL,1.8,True)
+    f.circle(*c_camera,4,TEAL)
+    f.line([c_camera,target],TEAL,4,arrow=True)
+    f.poly([c_camera,p(123,23,100),p(140,29,75)],TEAL,'none',.10)
+    f.line([p(130,25,0),target],AMBER,1.8,True)
+    f.circle(*p(130,25,0),5,'white',AMBER)
+    hit=p(137,80,58)
+    f.line([hit+[-7,-7],hit+[7,7]],RED,3)
+    f.line([hit+[-7,7],hit+[7,-7]],RED,3)
     for pt,name,col in [(a,'A',RED),(b,'B',RED),(c,'C',TEAL)]:
         f.circle(*pt,13,col,'white');f.text(pt[0],pt[1]+6,name,18,'white',True,'middle')
     f.circle(*target,11,AMBER,'white')
