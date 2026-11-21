@@ -217,14 +217,16 @@ def cube(f, p, x, y, z, w, d, h, color=TEAL, opacity=1):
     f.poly([aa, bb, cc, ee], color, "#ffffff", opacity)
 
 
-def grid(f, p, n=5, step=30):
+def grid(f, p, n=5, step=30, ny=None):
+    ny = n if ny is None else ny
     f.poly(
-        [p(0, 0), p(n * step, 0), p(n * step, n * step), p(0, n * step)],
+        [p(0, 0), p(n * step, 0), p(n * step, ny * step), p(0, ny * step)],
         "#e8eef5",
         "#cad5e2",
     )
     for i in range(n + 1):
-        f.line([p(i * step, 0), p(i * step, n * step)], "#cfdae5", 1)
+        f.line([p(i * step, 0), p(i * step, ny * step)], "#cfdae5", 1)
+    for i in range(ny + 1):
         f.line([p(0, i * step), p(n * step, i * step)], "#cfdae5", 1)
 
 
@@ -302,33 +304,31 @@ def overview():
     for y in [294, 401]:
         f.line([(218, y + 4), (218, y + 25)], BLUE, 2, arrow=True)
     # Two independent masks share ground-relative heights.
-    box(450, 215, 294, 80, "NAV obstacle mask", "Low band + inflation", TEAL, "#edf8f8")
-    box(800, 215, 330, 80, "LOS obstacle mask", "Upper height band", AMBER, "#fff8ed")
-    f.line([(374, 466), (411, 466), (411, 255), (448, 255)], BLUE, 2, arrow=True)
-    f.line([(411, 255), (411, 204), (965, 204), (965, 214)], BLUE, 2, arrow=True)
+    box(450, 215, 294, 80, "LOS obstacle mask", "Upper height band", AMBER, "#fff8ed")
+    box(800, 215, 330, 80, "NAV obstacle mask", "Low band + inflation", TEAL, "#edf8f8")
+    f.line([(374, 466), (400, 466), (400, 255), (448, 255)], BLUE, 2, arrow=True)
+    f.line([(400, 255), (400, 204), (965, 204), (965, 214)], BLUE, 2, arrow=True)
     box(450, 343, 294, 86, "Trajectory candidates", "Range · LOS* · elevation", TEAL)
     box(800, 343, 330, 86, "Grid fallback (if none)", "Ring / spiral · NAV · LOS* · FOV", TEAL)
     f.line([(744, 386), (798, 386)], MUT, 2, True, True)
 
-    f.line([(597, 295), (597, 315), (965, 315), (965, 341)], TEAL, 2, arrow=True)
-    f.line([(965, 295), (965, 325), (730, 325), (730, 341)], AMBER, 2, arrow=True)
-    f.line([(965, 325), (1113, 325), (1113, 341)], AMBER, 2, arrow=True)
-    # NAV also constrains the route graph; distinct input port from the pose output.
-    f.line([(597, 295), (597, 305), (1140, 305), (1140, 548), (1132, 548)],
+    # LOS feeds both candidate branches; NAV has separate grid and route ports.
+    f.line([(597, 295), (597, 341)], AMBER, 2, arrow=True)
+    f.line([(597, 315), (820, 315), (820, 341)], AMBER, 2, arrow=True)
+    f.line([(965, 295), (965, 341)], TEAL, 2, arrow=True)
+    f.line([(965, 305), (1140, 305), (1140, 548), (1132, 548)],
            TEAL, 2, arrow=True)
-    # A small bridge keeps the crossing distinct from a merge with LOS.
-    f.circle(965, 305, 4, "white")
-    f.line([(965, 295), (965, 325)], AMBER, 2)
     # The trajectory is an input distinct from navigation-mask filtering.
+    f.circle(400, 360, 4, "white")
     f.line([(374, 360), (412, 360), (412, 386), (448, 386)], BLUE, 2, arrow=True)
-    f.line([(374, 615), (420, 615), (420, 447), (597, 447), (597, 431)], AMBER, 2, arrow=True)
+    f.line([(374, 615), (420, 615), (420, 420), (448, 420)], AMBER, 2, arrow=True)
     box(450, 478, 294, 88, "Observation poses", "XYZ · yaw · elevation", TEAL, "#edf8f8")
     box(800, 478, 330, 88, "Dijkstra leg paths", "NAV graph · visit order", AMBER)
     for x in [597, 965]:
         f.line([(x, 429), (x, 454), (597, 454), (597, 476)], TEAL, 2, arrow=True)
     f.line([(744, 522), (798, 522)], TEAL, 2, arrow=True)
-    f.text(453, 613, "* Stages can relax LOS; invalid poses need review.", 20, MUT)
-    f.text(453, 650, "Trajectory branch does not recheck NAV clearance.", 20, MUT)
+    f.text(453, 613, "* LOS can be relaxed; invalid poses need review.", 21, FG)
+    f.text(453, 650, "Trajectory candidates do not recheck NAV clearance.", 21, FG)
     box(1206, 215, 332, 80, "Bundle + preflight", "Map · poses · waypoints", PURPLE)
     box(1206, 343, 332, 86, "Navigate to each pose", "Capture target images", PURPLE)
     box(1206, 478, 332, 88, "Return to start", "Photos · trajectory · logs", PURPLE, "#f3effb")
@@ -469,16 +469,21 @@ def principle():
     f.text(79, 777, "LOS   0.90 < h < 2.20 m", 25, AMBER, True)
     # Grounded Go2 meshes at the three candidate base poses.
     # The target is deliberately above the illustrative front-camera anchors.
-    p = iso((1178, 370), 1.3)
-    grid(f, p, 6, 30)
-    cube(f, p, 102, 66, 0, 44, 14, 105, "#91a3bb")
-    cube(f, p, 31, 113, 0, 28, 26, 28, TEAL)
+    p = iso((1178, 335), 1.3)
+    grid(f, p, 9, 30, ny=6)
     poses = [(55, 147, "clearance", "A", RED),
-             (147, 144, "blocked", "B", RED),
+             (242, 85, "blocked", "B", RED),
              (15, 20, "selected", "C", TEAL)]
     # Ground-level projections show the XY-mask sampling separately from elevation.
     f.line([p(15,20,2), p(130,25,2)], TEAL, 1.7, True)
-    f.line([p(147,144,2), p(130,25,2)], RED, 1.7, True)
+    floor_hit = p(242+(130-242)*(85-64)/(85-25), 64, 2)
+    f.line([p(242,85,2), floor_hit], RED, 1.7, True)
+    f.line([floor_hit, p(130,25,2)], "#9dabbc", 1.4, True)
+    # Obstacles occlude floor-level projections instead of having lines painted on faces.
+    cube(f, p, 190, 50, 0, 24, 14, 105, "#91a3bb")
+    cube(f, p, 31, 113, 0, 28, 26, 28, TEAL)
+    f.line([floor_hit+[-5,-5], floor_hit+[5,5]], RED, 2)
+    f.line([floor_hit+[-5,5], floor_hit+[5,-5]], RED, 2)
     anchors = {}
     for x, y, name, letter, col in poses:
         ring = [p(x + 28*math.cos(t), y + 28*math.sin(t), 1)
@@ -492,12 +497,12 @@ def principle():
         label = p(x-5, y+38, 0)
         f.circle(*label, 13, col, "white")
         f.text(label[0], label[1]+6, letter, 18, "white", True, "middle")
-    target = p(130, 25, 145)
-    # B's camera-to-target segment intersects the tall obstacle at y=80.
+    target = p(130, 25, 125)
+    # B's camera-to-target segment intersects the tall obstacle at y=64.
     meta = json.loads((R / "assets/diagram-robot/anchors.json").read_text())["blocked"]
-    local = np.array(meta["camera_local_m"])*100 + [147, 144, 0]
-    t = (80-local[1])/(25-local[1])
-    hit3 = local + t*(np.array([130,25,145])-local)
+    local = np.array(meta["camera_local_m"])*100 + [242, 85, 0]
+    t = (64-local[1])/(25-local[1])
+    hit3 = local + t*(np.array([130,25,125])-local)
     hit = p(*hit3)
     f.line([anchors["B"], hit], RED, 3.5, True)
     f.line([hit, target], "#9dabbc", 2, True)
@@ -520,7 +525,7 @@ def principle():
     f.circle(*target, 10, AMBER, "white")
     f.text(target[0]+19, target[1]-8, "Target", 23, AMBER, True)
     f.text(818, 595, "Go2 camera → elevated target (schematic)", 22, TEAL, True)
-    f.text(818, 631, "Ground: yaw + XY LOS   /   θ: camera elevation", 20, MUT)
+    f.text(818, 631, "Ground: yaw + XY mask   /   θ: elevation only", 20, MUT)
     f.text(818, 677, "A   Grid candidate: NAV clearance rejected", 24, RED, True)
     f.text(818, 720, "B   Candidate: LOS-mask check rejected", 24, RED, True)
     f.text(818, 763, "C   Selected: position + yaw + elevation", 24, TEAL, True)
@@ -555,7 +560,7 @@ def principle():
     f.text(
         44,
         1090,
-        "Trajectory-first and grid-fallback checks differ; staged fallbacks can relax visibility. See mapping notes.",
+        "Uncalibrated camera anchors; LOS checks XY masks, not 3D rays. Fallbacks can relax LOS.",
         22,
         MUT,
     )

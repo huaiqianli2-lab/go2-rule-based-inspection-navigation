@@ -289,7 +289,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.svg",
-    "sha256": "1e90ae97d25dbfbec5b633ecd5a49cae0193cd0d102edc5bcddf4f354367dbdc",
+    "sha256": "04e7a0c852f8359f8ba9a5c245e94f3a189d49741bfa9e2aa11174369a8d630a",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -301,7 +301,7 @@
   },
   {
     "file": "assets/navigation-sight-layers.png",
-    "sha256": "d73772d7f114c62a23457bf70fb152e5d380a0f412324a3a457af62b34ae6245",
+    "sha256": "8c93a5dcece612fdd667a7c43391d635570617e6cf1150c70103de4708e0fb0a",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -355,13 +355,13 @@
   },
   {
     "file": "assets/system-overview.png",
-    "sha256": "b451f5f8f0eec82b9fd56909fa2dad9fda5203039ab537dd8e947497a13f9ed0",
+    "sha256": "190991377587185f3b473fa1ea8a0c2e2bfa571f81860bc3fccc750da108b4ec",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
   {
     "file": "assets/system-overview.svg",
-    "sha256": "e800825518af2cd02f22fa0b440be367dc9480b677acf82d5239121cb9a0f29e",
+    "sha256": "4771d405149683cb8131c0f98f0405ee2cd6c4bc62e178dba741a405ee485d9b",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
@@ -379,13 +379,13 @@
   },
   {
     "file": "docs/system-overview.drawio",
-    "sha256": "b882df9db4dc22437166c423b09f4c66069ae5ae42a9388da022fd81dbc96a8c",
+    "sha256": "f853be9a717dd34ccee5fd75b04d256cbf8196efa3fea037a530bc727d661a6c",
     "source": "Published metric LiDAR datasets and original route JSON; supervised project workflow",
     "treatment": "Nested mapping/planning/execution dataflow with parallel NAV/LOS masks, trajectory-first and grid fallback branches, route NAV input and target-image capture followed by return. Measured map panels and original planned routes are retained."
   },
   {
     "file": "docs/navigation-sight-principle.drawio",
-    "sha256": "6d457be7a17a002ffe9eb91349737d20590968a1d77647fb27abd1e500b41b7b",
+    "sha256": "e5ead7f2ab8f6377d47c2351ba35656a34e06aa021908b954f920e832a0c58c7",
     "source": "Original planner height bands, independent two-return tests and observation_point implementation; docs/mapping.md",
     "treatment": "Independent height bands plus three grounded Go2 mesh candidates. Camera-to-elevated-target lines originate at illustrative front-camera anchors; ground projections represent XY LOS-mask checks, with yaw arrows and an elevation angle. Not calibrated camera extrinsics, optical ray tracing, or a new experiment."
   },
@@ -403,13 +403,13 @@
   },
   {
     "file": "assets/diagram-robot/anchors.json",
-    "sha256": "04cabfdcf2bc870fb01bdc1d1e3ba34d56fda61aa644a031424119db330df6a0",
+    "sha256": "bfb6f36a89e7dcfa635894ee308f0ed2afc5a3a27a07de1499504c6a3b2aec87",
     "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
     "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
   },
   {
     "file": "assets/diagram-robot/blocked.png",
-    "sha256": "d648e489c80bb4d869d781ad5aecad8a0b505c11f80cbc4c592b508c8adb3642",
+    "sha256": "d9b571405795e8b518a9faac4dce9bc2cd47c9a0e37ddadb560a99f1762ed676",
     "source": "Existing project Unitree Go2 mesh model derived from MuJoCo Menagerie unitree_go2; upstream Unitree Robotics notice retained in assets/diagram-robot/LICENSE",
     "treatment": "Static home joint configuration, grounded by four named foot collision spheres, mj_forward only. Orthographic RGBA mesh view and illustrative camera anchor metadata; tools/render_diagram_robot.py."
   },

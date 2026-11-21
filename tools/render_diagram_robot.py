@@ -75,7 +75,7 @@ def render(model_path, output):
     output.mkdir(parents=True, exist_ok=True)
     metadata = {}
     try:
-        for name, direction in {"selected": (115, 5), "blocked": (-17, -119),
+        for name, direction in {"selected": (115, 5), "blocked": (-112, -60),
                                 "clearance": (75, -122)}.items():
             yaw = np.arctan2(direction[1], direction[0])
             mj.mj_resetDataKeyframe(model, data, 0)
