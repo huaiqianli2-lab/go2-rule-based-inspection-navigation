@@ -12,7 +12,7 @@
 
 [Editable draw.io master](navigation-sight-principle.drawio) · [SVG export](../assets/navigation-sight-layers.svg)
 
-Three illustrative 3D columns show a low barrier, a higher obstruction and a tall obstacle inside separate translucent NAV and LOS height volumes. The right-hand diagram shows candidate poses rejected by stance clearance or a blocked sight check, alongside a selected viewing direction. The floor footprints and vertical projection lines are schematic. Each band uses strict endpoints and an independent threshold of at least two returns. A below-threshold count does not establish traversability or visibility by itself. [The selection notes](mapping.md#observation-pose-selection) explain trajectory-first candidates, camera checks and relaxed fallback stages. The raised sight line illustrates orientation; the implementation checks an XY ray through the height-band mask, not a 3D optical ray.
+Three illustrative 3D columns show a low barrier, a higher obstruction and a tall obstacle inside separate translucent NAV and LOS height volumes. The right-hand diagram shows candidate poses rejected by stance clearance or a blocked sight check, alongside a selected viewing direction. The floor footprints and vertical projection lines are schematic. Each band uses strict endpoints and an independent threshold of at least two returns. A below-threshold count does not establish traversability or visibility by itself. [The selection notes](mapping.md#observation-pose-selection) explain trajectory-first candidates, camera checks and relaxed fallback stages. Three grounded Go2 mesh renders show rejected grid candidate A, LOS-rejected candidate B and selected pose C. Ground arrows show yaw. The rising camera-to-target lines begin at illustrative front-camera anchors attached to the robot bodies; the target is above them. These anchors are explanatory, not calibrated camera extrinsics. The implementation checks an XY ray through the height-band mask, not a 3D optical ray.
 
 ## Camera-angle comparison
 
@@ -22,7 +22,7 @@ The original point positions are height-colored and viewed from oblique cameras.
 
 ## Selected scene views
 
-The overview pairs four colored workflow cards, each with an original isometric process sketch, with two height-colored measured maps on dark panels. Numeric map-Z legends apply separately to each scene. The principle figure pairs 3D height volumes with candidate-pose screening. The measured scene views below use 35° oblique cameras, display-only sparse-cell filtering and per-scene height colors.
+The overview uses three nested groups for mapping, rule-based planning and supervised execution, above two height-colored measured maps on dark panels. Parallel NAV/LOS branches feed trajectory-first selection and grid fallback with different checks; Dijkstra leg costs feed visit ordering, followed by bundle preflight, viewpoint arrival, target-image capture and return. Dashed candidate edges mean fallback if the trajectory search finds no accepted pose. Numeric map-Z legends apply separately to each scene. The principle figure pairs 3D height volumes with candidate-pose screening. The measured scene views below use 35° oblique cameras, display-only sparse-cell filtering and per-scene height colors.
 
 ![Indoor cutaway](../assets/indoor-scene-3d.png)
 ![Outdoor scene](../assets/outdoor-scene-3d.png)
@@ -61,14 +61,23 @@ The matched-time comparison below shows the previous 34° cameras on the left an
 
 ## Figure layout references
 
-The multi-panel composition was informed by the official [FDM](https://github.com/leggedrobotics/fdm), [elevation_mapping_cupy](https://github.com/leggedrobotics/elevation_mapping_cupy), [grid_map](https://github.com/ANYbotics/grid_map), [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM) and [wild_visual_navigation](https://github.com/leggedrobotics/wild_visual_navigation) repositories. Their images, implementations and scientific claims are not copied into these figures. The diagrams describe this project's existing workflow and thresholds.
+The multi-panel composition was informed by the official [FDM](https://github.com/leggedrobotics/fdm), [elevation_mapping_cupy](https://github.com/leggedrobotics/elevation_mapping_cupy), [grid_map](https://github.com/ANYbotics/grid_map), [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM) and [wild_visual_navigation](https://github.com/leggedrobotics/wild_visual_navigation) repositories. Only their information hierarchy and visual grouping inform the original diagram layout; their algorithms and scientific claims are not part of this project. The Go2 mesh source is credited separately above. The diagrams describe this project's existing workflow and thresholds.
+
+The distinction between viewpoint selection, camera constraints and route construction was also checked against [Bircher et al., Structural Inspection Path Planning (ICRA 2015), author page](https://www.kostasalexis.com/structural-inspection-path-planning.html) and [Tankasala et al., Beyond Shortsighted Navigation (2024 preprint)](https://arxiv.org/html/2408.12513v1). These are conceptual and presentation references, not algorithms implemented here.
 
 ## Reproduce the editable figures
 
-`python -m tools.render_inspection_figures` generates the two SVGs, 1.5× PNG exports and `.drawio` masters directly from the published metric datasets. It requires NumPy, Pillow, [CairoSVG](https://cairosvg.org/documentation/) and DejaVu Sans. The reviewed exports used CairoSVG 2.9.1. CairoSVG requires the platform Cairo library.
+`python -m tools.render_inspection_figures` uses the checked-in transparent Go2 sprites and generates the two SVGs, 1.5× PNG exports and `.drawio` masters directly from the published metric datasets. It requires NumPy, Pillow, [CairoSVG](https://cairosvg.org/documentation/) and DejaVu Sans. The reviewed exports used CairoSVG 2.9.1. CairoSVG requires the platform Cairo library.
 
 ```bash
 python -m pip install numpy pillow cairosvg==2.9.1
+python -m tools.render_inspection_figures
+```
+
+The small Go2 figures are static mesh renders derived from the [MuJoCo Menagerie Unitree Go2 model](https://github.com/google-deepmind/mujoco_menagerie/tree/370c43965323c0944b433b202aac5058b5f907a9/unitree_go2), using the existing project model with its home joint configuration. The [upstream model notice](../assets/diagram-robot/LICENSE) is retained. No physics steps are run and no new inspection outcome is claimed. The meshes remain embedded raster images; labels, floor arrows and camera rays remain editable. To regenerate the sprites with existing local model assets:
+
+```bash
+python -m tools.render_diagram_robot --model /path/to/unitree-go2.xml --output assets/diagram-robot
 python -m tools.render_inspection_figures
 ```
 

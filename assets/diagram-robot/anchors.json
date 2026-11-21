@@ -1,0 +1,56 @@
+{
+  "selected": {
+    "origin_px": [
+      300.0,
+      300.0000000000001
+    ],
+    "camera_px": [
+      393.56187164086333,
+      121.41800679017848
+    ],
+    "camera_local_m": [
+      0.29971684750651784,
+      0.01303116728289208,
+      0.3183725003025579
+    ],
+    "yaw_rad": 0.04345089539153084,
+    "pixels_per_m": 461.53846153846155,
+    "camera_note": "Illustrative front-camera anchor, not calibrated extrinsics"
+  },
+  "blocked": {
+    "origin_px": [
+      300.0,
+      300.0000000000001
+    ],
+    "camera_px": [
+      383.07692307692304,
+      232.0043365194685
+    ],
+    "camera_local_m": [
+      -0.04242640687119286,
+      -0.29698484809834996,
+      0.31837250030255804
+    ],
+    "yaw_rad": -1.7126933813990606,
+    "pixels_per_m": 461.53846153846155,
+    "camera_note": "Illustrative front-camera anchor, not calibrated extrinsics"
+  },
+  "clearance": {
+    "origin_px": [
+      300.0,
+      300.0000000000001
+    ],
+    "camera_px": [
+      434.6815601422903,
+      191.14585130148652
+    ],
+    "camera_local_m": [
+      0.15711233225966567,
+      -0.25556939380905613,
+      0.3183725003025579
+    ],
+    "yaw_rad": -1.0195988007760681,
+    "pixels_per_m": 461.53846153846155,
+    "camera_note": "Illustrative front-camera anchor, not calibrated extrinsics"
+  }
+}

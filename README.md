@@ -41,7 +41,7 @@ The XT16 frame adaptation rotates Go2 IMU vectors from frame I into LiDAR frame 
 
 ## Navigation and line-of-sight layers
 
-[![3D height-band examples and candidate observation poses rejected by clearance or visibility](assets/navigation-sight-layers.png)](docs/mapping.md)
+[![3D height bands and grounded Go2 candidate poses with camera-to-target viewing rays](assets/navigation-sight-layers.png)](docs/mapping.md)
 
 The planner estimates local ground from the point cloud and the nearest recorded mapping pose. Near the trajectory, a height ceiling filters canopy and overhead returns before the ground percentile is computed. Here $g_k=z_k-0.485$ m and $d_c$ is the horizontal distance from cell $c$ to that pose.
 
