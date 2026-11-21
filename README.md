@@ -11,9 +11,9 @@ Rule-based quadruped navigation and inspection on Unitree Go2 EDU. The supervise
 
 ## Overview
 
-[![Measured outdoor map with eight planned observation stops, paired field views and inspection workflow](assets/system-overview-451e88bbdc40.png)](docs/system.md)
+[![Measured outdoor map with eight planned observation stops, paired field views and inspection workflow](assets/system-overview-555c7b5c4d08.png)](docs/system.md)
 
-[Full-size overview](assets/system-overview-451e88bbdc40.png) · [Inspection workflow](assets/figure-panels/inspection-workflow.png)
+[Full-size overview](assets/system-overview-555c7b5c4d08.png) · [Inspection workflow](assets/figure-panels/inspection-workflow.png)
 
 ### Measured scenes in 3D
 
