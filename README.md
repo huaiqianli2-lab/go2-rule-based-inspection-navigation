@@ -13,6 +13,8 @@ Rule-based quadruped navigation and inspection on Unitree Go2 EDU. The supervise
 
 [![Measured outdoor map with eight planned observation stops, paired field views and inspection workflow](assets/system-overview-451e88bbdc40.png)](docs/system.md)
 
+[Full-size overview](assets/system-overview-451e88bbdc40.png) · [Inspection workflow](assets/figure-panels/inspection-workflow.png)
+
 ### Measured scenes in 3D
 
 | Indoor roof cutaway | Outdoor environment |
