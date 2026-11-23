@@ -80,27 +80,19 @@ Download the [indoor and outdoor datasets](datasets/). Each includes a metric XY
 
 ## SLAM-map physical simulation
 
-The wider 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Fine, height-colored points with local display interpolation reveal scene contours; the outdoor view includes more distant facades and vegetation, while a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. The collision terrain and archived robot states are used as recorded. [Display methods and comparisons](docs/visual-comparison.md)
+The outdoor 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Fine, height-colored points with local display interpolation reveal scene contours; the outdoor view includes more distant facades and vegetation, while a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. The collision terrain and archived robot states are used as recorded. [Display methods and comparisons](docs/visual-comparison.md)
 
 **Outdoor · 8/8 inspection stops and return**
 
 [![Enlarged outdoor measured scene with the simulated Go2 and a synchronized mission-context inset](assets/slam-outdoor-route.webp)](assets/slam-outdoor-route.mp4?raw=1)
 
-**Indoor · early replay excerpt (2–13 s)**
+**Indoor · safety stop and field obstacle response**
 
-[![Enlarged indoor measured scene cutaway with the simulated Go2 and a synchronized mission-context inset](assets/slam-indoor-route.webp)](assets/slam-indoor-route.mp4?raw=1)
+[![One continuous video: logged simulation stop, field wait and resume, and field backoff and bypass](assets/indoor-obstacle-response-b233cb4b2a8e.webp)](assets/indoor-obstacle-response.mp4?raw=1)
 
-**Indoor simulation stop · 193.258 s, after 4/22 observations**
+[Play MP4](assets/indoor-obstacle-response.mp4?raw=1) · [Evidence and event timings](docs/obstacle-response.md)
 
-[![Final saved Go2 poses and the timestamped contact-triggered safety-stop record](assets/slam-indoor-stop.jpg)](docs/obstacle-response.md#contact-stop-in-the-indoor-simulation)
-
-The early clip ends at 13 s. The archived run later logged an obstacle contact and ended immediately. Its last saved pose is at 193.242 s.
-
-## Field obstacle response
-
-[![Two indoor field sequences showing wait and resume, and back off and bypass](assets/field-obstacle-response.jpg)](docs/obstacle-response.md#wait-or-bypass-in-the-field)
-
-In separate indoor field runs, the controller waited when the route was blocked. It resumed when clearance returned, or backed up and bypassed when the blockage persisted. The stills show the onboard view at selected times. The [event timelines](docs/obstacle-response.md) show what the controller decided and when.
+The video combines three clearly marked recordings. The simulation ends at its logged contact at 193.258 s after 4/22 observations. The two field runs show the controller waiting and resuming after clearance, or backing up and bypassing a persistent blockage.
 
 ## Navigation comparison
 

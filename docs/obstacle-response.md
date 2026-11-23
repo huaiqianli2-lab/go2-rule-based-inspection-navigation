@@ -2,13 +2,15 @@
 
 The measured-map simulation and the field controller handle different conditions. The archived MuJoCo run ends at the safety trigger. The separate field runs continue after the controller detects renewed clearance or completes a bypass.
 
+[Play the combined indoor obstacle response video](../assets/indoor-obstacle-response.mp4?raw=1). It opens with the archived simulation approach and the logged stop, followed by two independent onboard field recordings. The simulation clock shows archived timestamps. Each field clock resets at its own logged near stop, with negative times showing the approach. Transition cards and the final simulation hold are editorial overlays.
+
 ## Contact stop in the indoor simulation
 
 ![Approach, last saved pose and logged stop](../assets/slam-indoor-stop.jpg)
 
 | Simulation time | Evidence |
 | ---: | --- |
-| 2–13 s | The early README replay shows ordinary navigation. |
+| 2–13 s | The original early replay shows ordinary navigation. The combined video uses the final saved approach instead. |
 | 187.620 s | Fourth capture recorded. |
 | 193.242 s | Last saved pose, 16 ms before the event. |
 | 193.258 s | `safety_stop`. One obstacle contact sample, zero non-foot ground contact samples and 2.16° body tilt. The simulation ends after 4 of 22 observations. |
@@ -47,4 +49,12 @@ For the field storyboard, select the camera frame nearest each recorded time, re
 python -m tools.render_field_obstacle_evidence \
   --record docs/data/field-obstacle-response.json --frames /path/to/selected-stills \
   --output assets/field-obstacle-response.jpg
+```
+
+
+To reproduce the combined video, run the simulation render with `--sequence` and use an output folder named `simulation`. It writes numbered frames and their saved timestamps at 12.5 Hz. In sibling folders named `dynamic` and `static`, sample the corresponding onboard archives at the same cadence from −1.2 s through +8.08 s and +17.92 s, respectively. Select the nearest original camera frame for each sample and store its actual relative timestamp in the matching `times.json` entry. The selected frames in this export are within 0.05 s of the sampling grid.
+
+```bash
+python -m tools.render_indoor_obstacle_video --frames /path/to/three-sequences --output assets/indoor-obstacle-response.mp4
+ffmpeg -i assets/indoor-obstacle-response.mp4 -vf 'fps=10,scale=800:-2' -an -c:v libwebp_anim -quality 80 -loop 0 assets/indoor-obstacle-response-b233cb4b2a8e.webp
 ```
