@@ -56,5 +56,5 @@ To reproduce the combined video, run the simulation render with `--sequence` and
 
 ```bash
 python -m tools.render_indoor_obstacle_video --frames /path/to/three-sequences --output assets/indoor-obstacle-response.mp4
-ffmpeg -i assets/indoor-obstacle-response.mp4 -vf 'fps=10,scale=800:-2' -an -c:v libwebp_anim -quality 72 -loop 0 assets/indoor-obstacle-response.webp
+ffmpeg -i assets/indoor-obstacle-response.mp4 -vf 'fps=10,scale=800:-2' -an -c:v libwebp_anim -quality 80 -loop 0 assets/indoor-obstacle-response-b233cb4b2a8e.webp
 ```

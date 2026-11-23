@@ -88,7 +88,7 @@ The outdoor 3D view places the Go2 mesh at its archived MuJoCo pose inside the m
 
 **Indoor · safety stop and field obstacle response**
 
-[![One continuous video: logged simulation stop, field wait and resume, and field backoff and bypass](assets/indoor-obstacle-response.webp)](assets/indoor-obstacle-response.mp4?raw=1)
+[![One continuous video: logged simulation stop, field wait and resume, and field backoff and bypass](assets/indoor-obstacle-response-b233cb4b2a8e.webp)](assets/indoor-obstacle-response.mp4?raw=1)
 
 [Play MP4](assets/indoor-obstacle-response.mp4?raw=1) · [Evidence and event timings](docs/obstacle-response.md)
 

@@ -540,8 +540,8 @@
     "treatment": "One video with labeled source transitions, logged event overlays and final recorded simulation pose held for the stop card. The WebP is a smaller animation derived from the MP4."
   },
   {
-    "file": "assets/indoor-obstacle-response.webp",
-    "sha256": "0a6d867986cd5e5983135df056619abc508e646cddb17054b9b2333f9f7d58d4",
+    "file": "assets/indoor-obstacle-response-b233cb4b2a8e.webp",
+    "sha256": "b233cb4b2a8e2310ccafccb316439ce439e56efdde07ed86f656059b6a39bc3b",
     "source": "Archived indoor MuJoCo states and two time-matched onboard camera archives with field controller events; docs/obstacle-response.md",
     "treatment": "One video with labeled source transitions, logged event overlays and final recorded simulation pose held for the stop card. The WebP is a smaller animation derived from the MP4."
   }
