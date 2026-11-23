@@ -80,7 +80,7 @@ Download the [indoor and outdoor datasets](datasets/). Each includes a metric XY
 
 ## SLAM-map physical simulation
 
-The outdoor 3D view places the Go2 mesh at its archived MuJoCo pose inside the measured LiDAR scene, at 1× speed. Fine, height-colored points with local display interpolation reveal scene contours; the outdoor view includes more distant facades and vegetation, while a fixed scene inset locates the robot and next stop on the full route. The mint trail marks recent simulated motion. The collision terrain and archived robot states are used as recorded. [Display methods and comparisons](docs/visual-comparison.md)
+MuJoCo simulations evaluate Go2 navigation on terrain and obstacle models derived from measured indoor and outdoor SLAM maps. In each run, the task is to follow a planned inspection route, pause at designated observation poses, and return to the start. [Recorded simulation results](docs/data/slam-physics-results.json)
 
 **Outdoor · 8/8 inspection stops and return**
 
